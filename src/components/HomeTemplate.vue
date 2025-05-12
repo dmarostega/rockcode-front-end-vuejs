@@ -37,8 +37,8 @@ defineProps({
         {{ msg.text }}
       </li>
     </ul> -->
-  </div>
-  <div>
-    <NavBoard />
+    <div>
+      <NavBoard />
+    </div>
   </div>
 </template>
