@@ -5,7 +5,7 @@ import NavBoard from '@/components/defaults/NavBoard.vue'
 
 <template>
   <LayoutDefault>
-    <h3>Experiências</h3>
+    <h1 class="page-title">Experiências</h1>
     <NavBoard />
   </LayoutDefault>
 </template>

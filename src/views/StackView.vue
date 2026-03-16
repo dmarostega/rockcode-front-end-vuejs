@@ -5,7 +5,7 @@ import NavBoard from '@/components/defaults/NavBoard.vue'
 
 <template>
   <LayoutDefault>
-    <h3>Stacks</h3>
+    <h1 class="page-title">Stacks</h1>
     <div
       style="
         display: flex;

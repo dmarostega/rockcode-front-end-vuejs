@@ -7,8 +7,10 @@ import api from '../services/api'
 const messages = ref([])
 
 onMounted(async () => {
-  const res = await api.get('/messages')
-  messages.value = res.data
+  // console.log("onMounted init!!");
+  // const res = await api.get('/messages')
+  // messages.value = res.data;
+  // console.log("onMounted end!!");
 })
 </script>
 

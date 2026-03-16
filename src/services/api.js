@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: 'http://rockcodelabs.local/api',
+  baseURL: 'http://dev.rockcode.local/api',
 })
 
 export default api

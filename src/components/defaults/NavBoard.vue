@@ -12,8 +12,8 @@ const isOpen = ref(false)
       <RouterLink to="/" class="nav-link">Inicio</RouterLink>
       <RouterLink to="/about" class="nav-link">Sobre</RouterLink>
       <RouterLink to="/stacks" class="nav-link">Stacks</RouterLink>
-      <RouterLink to="/experiences" class="nav-link">Experiências</RouterLink>
-      <RouterLink to="/infos" class="nav-link">Informações</RouterLink>
+      <!-- <RouterLink to="/experiences" class="nav-link">Experiências</RouterLink>
+      <RouterLink to="/infos" class="nav-link">Informações</RouterLink> -->
       <RouterLink to="/apps" class="nav-link">Aplicativos</RouterLink>
       <RouterLink to="/contact" class="nav-link">Contato</RouterLink>
     </div>
@@ -34,10 +34,10 @@ const isOpen = ref(false)
         <RouterLink to="/" class="nav-link">Inicio</RouterLink>
         <RouterLink to="/about" class="nav-link">Sobre</RouterLink>
         <RouterLink to="/stacks" class="nav-link">Stacks</RouterLink>
-        <RouterLink to="/experiences" class="nav-link">Experiências</RouterLink>
-        <RouterLink to="/infos" class="nav-link">Informações</RouterLink>
-        <RouterLink to="/apps" class="nav-link">Aplicativos</RouterLink>
-        <RouterLink to="/contact" class="nav-link">Contato</RouterLink>
+        <!-- <RouterLink to="/experiences" class="nav-link">Experiências</RouterLink>
+        <RouterLink to="/infos" class="nav-link">Informações</RouterLink>-->
+        <RouterLink to="/apps" class="nav-link">Aplicativos<br><small> (MVP)</small></RouterLink> 
+        <RouterLink to="/contact" class="nav-link">Contato</RouterLink> 
       </div>
     </div>
   </nav>
