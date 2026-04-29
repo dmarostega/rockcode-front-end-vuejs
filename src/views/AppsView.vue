@@ -10,6 +10,14 @@ const apps = [
     url: 'https://meufinanceiro.rockcodelabs.com.br',
     icon: '💰',
     tag: 'Finanças',
+  },  
+  {
+    id: 2,
+    name: 'Minha Loteria',
+    description: 'Plataforma de estudos de loterias com consulta de resultados, análises históricas, rankings estatísticos, geração de jogos e simulações de desempenho.',
+    url: 'https://minhaloteria.rockcodelabs.com.br',
+    icon: '🍀',
+    tag: 'Loterias',
   },
   // Adicione novos apps aqui no futuro
 ]
@@ -17,7 +25,7 @@ const apps = [
 
 <template>
   <LayoutDefault>
-    <div class="mvp-page">
+    <div >
       <div class="mvp-header">
         <h1 class="page-title">Aplicativos <span class="highlight">MVP</span></h1>
         <p class="mvp-subtitle">
@@ -53,94 +61,102 @@ const apps = [
 
 <style scoped>
 .mvp-page {
-  padding: 2rem 1em;
+  padding: 3rem 1.5rem;
+  background-color: #0f172a; /* Slate 900 - dark modern background */
+  min-height: 100vh;
+  color: #f8fafc; /* Slate 50 */
 }
 
 .mvp-header {
-  margin-bottom: 2.5rem;
-}
-
-.highlight {
-  color: var(--color-primary, #4f46e5);
+  margin-bottom: 3rem;
+  text-align: center;
 }
 
 .mvp-subtitle {
-  color: var(--color-text-muted, #6b7280);
-  font-size: 0.975rem;
-  /* max-width: 560px; */
+  color: #94a3b8; /* Slate 400 */
+  font-size: 1.1rem;
   line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-/* Grid escalável: 1 coluna em mobile, mais em telas maiores */
+/* Centralized Flex row for cards */
 .apps-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .app-card {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 1.5rem;
-  border: 1px solid var(--color-border, #e5e7eb);
-  border-radius: 12px;
-  background: var(--color-surface, #ffffff);
+  gap: 0.75rem;
+  padding: 1.75rem;
+  border: 1px solid #1e293b; /* Slate 800 */
+  border-radius: 16px;
+  background: #1e293b; /* Slate 800 */
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
+  width: 100%;
+  max-width: 340px;
 }
 
 .app-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(79, 70, 229, 0.12);
-  border-color: var(--color-primary, #4f46e5);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  border-color: #38bdf8; /* Sky 400 border on hover */
 }
 
 .card-icon {
-  font-size: 2rem;
+  font-size: 2.5rem;
   line-height: 1;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .card-tag {
   display: inline-block;
-  font-size: 0.7rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-primary, #4f46e5);
-  background: color-mix(in srgb, var(--color-primary, #4f46e5) 10%, transparent);
-  padding: 0.2rem 0.6rem;
+  letter-spacing: 0.05em;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  padding: 0.3rem 0.8rem;
   border-radius: 99px;
   width: fit-content;
 }
 
 .card-name {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  color: var(--color-heading, #1a1a2e);
-  margin: 0.25rem 0 0;
+  color: #f8fafc;
+  margin: 0.5rem 0 0;
 }
 
 .card-description {
-  font-size: 0.875rem;
-  color: var(--color-text-muted, #6b7280);
+  font-size: 0.95rem;
+  color: #94a3b8;
   line-height: 1.6;
   flex: 1;
   margin: 0;
 }
 
 .card-footer {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--color-border, #e5e7eb);
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #334155; /* Slate 700 */
 }
 
 .card-link {
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  color: var(--color-primary, #4f46e5);
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 </style>

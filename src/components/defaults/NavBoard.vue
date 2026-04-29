@@ -36,7 +36,7 @@ const isOpen = ref(false)
         <RouterLink to="/stacks" class="nav-link">Stacks</RouterLink>
         <!-- <RouterLink to="/experiences" class="nav-link">Experiências</RouterLink>
         <RouterLink to="/infos" class="nav-link">Informações</RouterLink>-->
-        <RouterLink to="/apps" class="nav-link">Aplicativos<br><small> (MVP)</small></RouterLink> 
+        <RouterLink to="/apps" class="nav-link">Aplicativos</RouterLink> 
         <RouterLink to="/contact" class="nav-link">Contato</RouterLink> 
       </div>
     </div>
@@ -49,7 +49,6 @@ const isOpen = ref(false)
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: black;
   color: white;
   z-index: 10;
 }
