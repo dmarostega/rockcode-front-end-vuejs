@@ -9,9 +9,15 @@
 }
 
 body {
-  background-color: #0a0b0e;
+  background-color: #05090D;
+  /* variações
+  #060B10
+  #070D12
+  #02060A
+  */
   /* Slate 900 */
-  color: #f8fafc;
+  color: #5d656d;
+
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -36,9 +42,7 @@ body {
 
 nav {
   position: fixed;
-  color: white;
   font-size: 1.1em;
-  background-color: #0e0f13;
   backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
@@ -64,7 +68,14 @@ nav a {
 nav a:hover,
 nav a.router-link-active {
   color: #38bdf8;
-  /* Sky 400 */
+  /* Outras cores */
+  /* 
+  #00BFEF
+  #13D9F5
+  #00A8D8
+  #4FEAFF
+  */
+
 }
 
 div.stack-icon-component {
@@ -83,7 +94,7 @@ div.stack-icon-component>img {
 .page-title {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #f8fafc;
+  color: #8d98a3;
   margin-bottom: 1.5rem;
   letter-spacing: -0.02em;
 }

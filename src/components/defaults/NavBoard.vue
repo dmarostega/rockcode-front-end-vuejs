@@ -20,7 +20,7 @@ const isOpen = ref(false)
 
     <!-- Container principal -->
     <div class="nav-container">
-      <div class="brand">Rockcode</div>
+      <div class="brand">Rock Code</div>
 
       <button class="menu-toggle" @click="isOpen = !isOpen">
         <span v-if="!isOpen">&#9650;</span>
@@ -49,7 +49,7 @@ const isOpen = ref(false)
   bottom: 0;
   left: 0;
   right: 0;
-  color: white;
+  /* color: #00BFEF; */
   z-index: 10;
 }
 
@@ -64,16 +64,17 @@ const isOpen = ref(false)
 /* Marca */
 .brand {
   font-size: 1.2rem;
-  color: white;
+  /* color: white; */
 }
 
 /* Botão de menu mobile */
 .menu-toggle {
   background: none;
   border: none;
-  font-size: 1.5rem;
-  color: white;
+  font-size: 1rem;
+  color: inherit;
   cursor: pointer;
+  padding-left: .5em;
 }
 
 /* Links do menu normal (desktop) */
@@ -83,7 +84,7 @@ const isOpen = ref(false)
 }
 
 .nav-link {
-  color: white;
+  /* color: white; */
   text-decoration: none;
 }
 
@@ -97,7 +98,8 @@ const isOpen = ref(false)
   bottom: 100%;
   left: 0;
   right: 0;
-  background-color: black;
+  background-color: #05090D;
+  opacity: .95;
   display: flex;
   flex-direction: column;
   align-items: center;

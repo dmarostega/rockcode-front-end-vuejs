@@ -20,23 +20,11 @@ defineProps({
 
 <template>
   <div>
-    <!-- <img
-      src="../assets/images/logo03.jpg"
-      alt="Logo Rockcode labs"
-      style="max-width: 200px; max-height: 200px"
-    /> -->
-    <div class="text-logo">
-      <span>< /></span>
-      <p>Rockcode labs</p>
+    <div
+      style="width: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px;">
+      <img src="../assets/images/stone.png" alt="Stone logo, Rockcode labs" style="max-width: 230px; max-height: 250px; margin-bottom: 1.3em;" />
+      <img src="../assets/images/solo_name.png" alt="Name Logo Rockcode labs" style="max-width: 280px;" />      
     </div>
-    <p style="padding: 1em">by Diogo Marostega de Oliveira</p>
-
-    <!-- <h5>Messagens</h5>
-    <ul>
-      <li v-for="msg in messages" :key="msg.id">
-        {{ msg.text }}
-      </li>
-    </ul> -->
     <div>
       <NavBoard />
     </div>
