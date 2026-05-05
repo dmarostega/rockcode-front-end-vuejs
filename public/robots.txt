@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rockcodelabs.com.br/sitemap.xml

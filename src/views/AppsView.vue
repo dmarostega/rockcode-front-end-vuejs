@@ -2,161 +2,251 @@
 import LayoutDefault from '@/components/defaults/LayoutDefault.vue'
 import NavBoard from '@/components/defaults/NavBoard.vue'
 
-const apps = [
+const projects = [
   {
     id: 1,
     name: 'Meu Financeiro',
-    description: 'Aplicativo para controle financeiro pessoal, com o objetivo de ajudar os usuários a gerenciar suas finanças de forma simples e eficiente.',
+    description:
+      'Sistema para controle financeiro pessoal, com organização de receitas, despesas, contas, cartões e visão geral das movimentações.',
+    details:
+      'Projeto desenvolvido para estudar e validar recursos comuns de um sistema financeiro, como autenticação, CRUDs, organização de dados e experiência de uso simples.',
     url: 'https://meufinanceiro.rockcodelabs.com.br',
     icon: '💰',
     tag: 'Finanças',
-  },  
+    status: 'MVP publicado',
+    stack: ['Laravel', 'PHP', 'MySQL', 'Blade'],
+  },
   {
     id: 2,
     name: 'Minha Loteria',
-    description: 'Plataforma de estudos de loterias com consulta de resultados, análises históricas, rankings estatísticos, geração de jogos e simulações de desempenho.',
+    description:
+      'Plataforma experimental para estudos de loterias, análises históricas, rankings estatísticos, geração de jogos e simulações de desempenho.',
+    details:
+      'Projeto criado para explorar análise de dados, regras de negócio, geração de combinações, filtros estatísticos e visualização de informações.',
     url: 'https://minhaloteria.rockcodelabs.com.br',
     icon: '🍀',
     tag: 'Loterias',
+    status: 'Em evolução',
+    stack: ['Laravel', 'Vue', 'Inertia', 'MySQL'],
   },
-  // Adicione novos apps aqui no futuro
 ]
 </script>
 
 <template>
   <LayoutDefault>
-    <div >
-      <div class="mvp-header">
-        <h1 class="page-title">Aplicativos <span class="highlight">MVP</span></h1>
-        <p class="mvp-subtitle">
-          Aplicativos desenvolvidos em fase de MVP
-          <em>(Minimum Viable Product)</em>, com o objetivo de validar ideias
-          e obter feedback dos usuários.
-        </p>
-      </div>
+    <main class="page-shell">
+      <section class="page-hero">
+        <span class="eyebrow">Projetos</span>
 
-      <div class="apps-grid">
+        <h1>Aplicações próprias, estudos técnicos e MVPs em evolução.</h1>
+
+        <p>
+          Projetos criados dentro da Rockcode Labs para validar ideias, estudar
+          tecnologias, melhorar arquitetura e transformar experimentos em soluções
+          digitais utilizáveis.
+        </p>
+      </section>
+
+      <section class="projects-grid">
         <a
-          v-for="app in apps"
-          :key="app.id"
-          :href="app.url"
+          v-for="project in projects"
+          :key="project.id"
+          :href="project.url"
           target="_blank"
           rel="noopener noreferrer"
-          class="app-card"
+          class="project-card"
         >
-          <div class="card-icon">{{ app.icon }}</div>
-          <span class="card-tag">{{ app.tag }}</span>
-          <h3 class="card-name">{{ app.name }}</h3>
-          <p class="card-description">{{ app.description }}</p>
-          <div class="card-footer">
-            <span class="card-link">Acessar aplicativo →</span>
+          <div class="project-top">
+            <div class="project-icon">{{ project.icon }}</div>
+
+            <div>
+              <span class="project-tag">{{ project.tag }}</span>
+              <span class="project-status">{{ project.status }}</span>
+            </div>
           </div>
+
+          <h2>{{ project.name }}</h2>
+
+          <p class="project-description">
+            {{ project.description }}
+          </p>
+
+          <p class="project-details">
+            {{ project.details }}
+          </p>
+
+          <div class="stack-list">
+            <span v-for="item in project.stack" :key="item">
+              {{ item }}
+            </span>
+          </div>
+
+          <strong>Acessar projeto →</strong>
         </a>
-      </div>
-    </div>
+      </section>
+    </main>
 
     <NavBoard />
   </LayoutDefault>
 </template>
 
 <style scoped>
-.mvp-page {
-  padding: 3rem 1.5rem;
-  background-color: #0f172a; /* Slate 900 - dark modern background */
+.page-shell {
   min-height: 100vh;
-  color: #f8fafc; /* Slate 50 */
+  padding: 3rem 1.25rem 6rem;
+  background:
+    radial-gradient(circle at top, rgba(56, 189, 248, 0.14), transparent 30rem),
+    linear-gradient(180deg, #05090d 0%, #0f172a 55%, #111827 100%);
+  color: #f8fafc;
 }
 
-.mvp-header {
-  margin-bottom: 3rem;
-  text-align: center;
-}
-
-.mvp-subtitle {
-  color: #94a3b8; /* Slate 400 */
-  font-size: 1.1rem;
-  line-height: 1.6;
-  max-width: 600px;
+.page-hero,
+.projects-grid {
+  max-width: 1100px;
   margin: 0 auto;
 }
 
-/* Centralized Flex row for cards */
-.apps-grid {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
+.page-hero {
+  padding: 2rem 0 3rem;
+  text-align: center;
 }
 
-.app-card {
+.eyebrow {
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.42rem 0.8rem;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.75);
+  color: #7dd3fc;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.page-hero h1 {
+  max-width: 860px;
+  margin: 1.3rem auto 0;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+}
+
+.page-hero p {
+  max-width: 760px;
+  margin: 1.3rem auto 0;
+  color: #cbd5e1;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.project-card {
   display: flex;
+  min-height: 430px;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 1.75rem;
-  border: 1px solid #1e293b; /* Slate 800 */
-  border-radius: 16px;
-  background: #1e293b; /* Slate 800 */
-  text-decoration: none;
+  gap: 1rem;
+  padding: 1.7rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 24px;
+  background: rgba(15, 23, 42, 0.78);
   color: inherit;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  width: 100%;
-  max-width: 340px;
+  text-decoration: none;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
-.app-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-  border-color: #38bdf8; /* Sky 400 border on hover */
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.55);
+  background: rgba(30, 41, 59, 0.88);
 }
 
-.card-icon {
-  font-size: 2.5rem;
-  line-height: 1;
-  margin-bottom: 0.5rem;
+.project-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
-.card-tag {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 700;
+.project-icon {
+  font-size: 2.4rem;
+}
+
+.project-tag,
+.project-status {
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  padding: 0.32rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #38bdf8;
-  background: rgba(56, 189, 248, 0.1);
-  padding: 0.3rem 0.8rem;
-  border-radius: 99px;
-  width: fit-content;
 }
 
-.card-name {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #f8fafc;
-  margin: 0.5rem 0 0;
+.project-tag {
+  background: rgba(56, 189, 248, 0.12);
+  color: #7dd3fc;
 }
 
-.card-description {
-  font-size: 0.95rem;
-  color: #94a3b8;
-  line-height: 1.6;
-  flex: 1;
+.project-status {
+  margin-top: 0.45rem;
+  background: rgba(34, 197, 94, 0.12);
+  color: #86efac;
+}
+
+.project-card h2 {
   margin: 0;
+  color: #ffffff;
+  font-size: 1.55rem;
 }
 
-.card-footer {
-  margin-top: 1.5rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid #334155; /* Slate 700 */
+.project-description,
+.project-details {
+  margin: 0;
+  color: #94a3b8;
+  line-height: 1.75;
 }
 
-.card-link {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #38bdf8;
+.project-description {
+  color: #cbd5e1;
+}
+
+.stack-list {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
+  margin-top: auto;
+}
+
+.stack-list span {
+  padding: 0.32rem 0.65rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 999px;
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.project-card strong {
+  color: #38bdf8;
+}
+
+@media (max-width: 820px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    min-height: auto;
+  }
 }
 </style>

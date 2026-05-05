@@ -28,3 +28,6 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+dump*.txt
+dump*.ps1
+
