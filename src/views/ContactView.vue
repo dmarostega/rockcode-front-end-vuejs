@@ -50,7 +50,7 @@ const contacts = [
       </section>
 
       <section class="contact-note">
-        <h2>Rockcode Labs</h2>
+        <h2>Rock Code Labs</h2>
 
         <p>
           Laboratório pessoal de desenvolvimento web, projetos SaaS, estudos técnicos

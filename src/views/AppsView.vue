@@ -41,7 +41,7 @@ const projects = [
         <h1>Aplicações próprias, estudos técnicos e MVPs em evolução.</h1>
 
         <p>
-          Projetos criados dentro da Rockcode Labs para validar ideias, estudar
+          Projetos criados dentro da Rock Code Labs para validar ideias, estudar
           tecnologias, melhorar arquitetura e transformar experimentos em soluções
           digitais utilizáveis.
         </p>

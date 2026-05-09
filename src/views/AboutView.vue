@@ -9,10 +9,10 @@ import NavBoard from '@/components/defaults/NavBoard.vue'
       <section class="page-hero">
         <span class="eyebrow">Sobre</span>
 
-        <h1>Rockcode Labs: laboratório pessoal de desenvolvimento web.</h1>
+        <h1>Rock Code Labs: laboratório pessoal de desenvolvimento web.</h1>
 
         <p>
-          A Rockcode Labs é um espaço criado por Diogo Marostega para centralizar
+          A Rock Code Labs é um espaço criado por Diogo Marostega para centralizar
           projetos próprios, estudos técnicos e aplicações reais desenvolvidas com foco
           em tecnologia, aprendizado contínuo e evolução profissional.
         </p>
@@ -20,7 +20,7 @@ import NavBoard from '@/components/defaults/NavBoard.vue'
 
       <section class="content-grid">
         <article class="content-card large-card">
-          <h2>O que é a Rockcode Labs?</h2>
+          <h2>O que é a Rock Code Labs?</h2>
 
           <p>
             Este site funciona como um laboratório pessoal de desenvolvimento web.
@@ -67,7 +67,7 @@ import NavBoard from '@/components/defaults/NavBoard.vue'
           </p>
 
           <p>
-            A Rockcode Labs também funciona como portfólio técnico, reunindo projetos,
+            A Rock Code Labs também funciona como portfólio técnico, reunindo projetos,
             experiências, estudos e tecnologias utilizadas em aplicações próprias.
           </p>
         </div>

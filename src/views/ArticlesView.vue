@@ -41,7 +41,7 @@ const plannedArticles = [
         <p>
           Esta área será usada para registrar conteúdos técnicos, decisões de
           desenvolvimento, problemas encontrados, soluções aplicadas e aprendizados
-          obtidos durante a construção dos projetos da Rockcode Labs.
+          obtidos durante a construção dos projetos da Rock Code Labs.
         </p>
       </section>
 

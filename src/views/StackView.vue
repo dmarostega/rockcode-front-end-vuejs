@@ -66,7 +66,7 @@ const supportStacks = [
         <p>
           Principais tecnologias, práticas e ferramentas usadas no desenvolvimento
           de sistemas web, APIs, interfaces, integrações e projetos próprios da
-          Rockcode Labs.
+          Rock Code Labs.
         </p>
       </section>
 

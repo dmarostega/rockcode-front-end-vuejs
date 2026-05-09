@@ -32,13 +32,13 @@ const featuredProjects = [
       <div class="hero-logo">
         <img
           src="../assets/images/stone.png"
-          alt="Ícone da Rockcode Labs"
+          alt="Ícone da Rock Code Labs"
           class="stone-logo"
         />
 
         <img
           src="../assets/images/solo_name.png"
-          alt="Rockcode Labs"
+          alt="Rock Code Labs"
           class="name-logo"
         />
       </div>
@@ -52,7 +52,7 @@ const featuredProjects = [
       </h1>
 
       <p class="hero-description">
-        A Rockcode Labs é o laboratório pessoal de Diogo Marostega, criado para
+        A Rock Code Labs é o laboratório pessoal de Diogo Marostega, criado para
         centralizar projetos próprios, estudos técnicos e aplicações reais
         desenvolvidas com Laravel, Vue, PHP, JavaScript, APIs REST e bancos de
         dados relacionais.
@@ -64,7 +64,7 @@ const featuredProjects = [
         </RouterLink>
 
         <RouterLink to="/about" class="button button-secondary">
-          Sobre a Rockcode Labs
+          Sobre a Rock Code Labs
         </RouterLink>
       </div>
     </section>
@@ -113,7 +113,7 @@ const featuredProjects = [
         <span class="section-kicker">Aplicações</span>
         <h2>Projetos em destaque</h2>
         <p>
-          Alguns projetos publicados ou em fase de evolução dentro da Rockcode Labs.
+          Alguns projetos publicados ou em fase de evolução dentro da Rock Code Labs.
         </p>
       </div>
 
