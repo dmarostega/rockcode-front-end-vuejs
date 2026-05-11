@@ -29,6 +29,19 @@ const projects = [
     status: 'Em evolução',
     stack: ['Laravel', 'Vue', 'Inertia', 'MySQL'],
   },
+  {
+    id: 3,
+    name: 'Validade em Dia',
+    description:
+      'Aplicação para acompanhar validades de produtos, organizar itens por status e evitar perdas com vencimentos esquecidos.',
+    details:
+      'Projeto criado para validar uma solução simples de controle de validade, com cadastro de itens, alertas visuais e uma rotina mais prática para manter tudo em dia.',
+    url: 'https://validadeemdia.rockcodelabs.com.br',
+    icon: '📅',
+    tag: 'Produtividade',
+    status: 'MVP publicado',
+    stack: ['Laravel', 'Vue', 'Inertia', 'MySQL', 'Vide Coding'],
+  },
 ]
 </script>
 
@@ -41,9 +54,8 @@ const projects = [
         <h1>Aplicações próprias, estudos técnicos e MVPs em evolução.</h1>
 
         <p>
-          Projetos criados dentro da Rock Code Labs para validar ideias, estudar
-          tecnologias, melhorar arquitetura e transformar experimentos em soluções
-          digitais utilizáveis.
+          Projetos criados dentro da Rock Code Labs para validar ideias, estudar tecnologias,
+          melhorar arquitetura e transformar experimentos em soluções digitais utilizáveis.
         </p>
       </section>
 
@@ -159,7 +171,10 @@ const projects = [
   color: inherit;
   text-decoration: none;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
 }
 
 .project-card:hover {
