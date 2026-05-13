@@ -2,7 +2,6 @@
 import HomeTemplate from '../components/HomeTemplate.vue'
 import LayoutDefault from '../components/defaults/LayoutDefault.vue'
 import { ref, onMounted } from 'vue'
-import api from '../services/api'
 
 const messages = ref([])
 
