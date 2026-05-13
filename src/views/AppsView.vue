@@ -27,7 +27,7 @@ const projects = [
     icon: '🍀',
     tag: 'Loterias',
     status: 'Em evolução',
-    stack: ['Laravel', 'Vue', 'Inertia', 'MySQL', 'Vide Coding'],
+    stack: ['Laravel', 'Vue', 'Inertia', 'MySQL', 'Vibe Coding'],
   },
   {
     id: 3,
@@ -40,7 +40,7 @@ const projects = [
     icon: '📅',
     tag: 'Produtividade',
     status: 'MVP publicado',
-    stack: ['Laravel', 'Vue', 'Inertia', 'MySQL', 'Vide Coding'],
+    stack: ['Laravel', 'Vue', 'Inertia', 'MySQL', 'Vibe Coding'],
   },
   {
     id: 4,
@@ -53,7 +53,7 @@ const projects = [
     icon: '📄',
     tag: 'Comercial',
     status: 'Em evolução',
-    stack: ['Laravel', 'Vue', 'MySQL', 'Vide Coding'],
+    stack: ['Laravel', 'Vue', 'MySQL', 'Vibe Coding'],
   },
 ]
 </script>
