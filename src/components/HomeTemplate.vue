@@ -9,12 +9,22 @@ defineProps({
 })
 
 const featuredProjects = [
+  // {
+  //   name: 'Meu Financeiro',
+  //   tag: 'Finanças',
+  //   description:
+  //     'Sistema para controle financeiro pessoal, organização de receitas, despesas, contas e visão geral das movimentações.',
+  //   url: 'https://meufinanceiro.rockcodelabs.com.br',
+  // },
   {
-    name: 'Meu Financeiro',
-    tag: 'Finanças',
+    name: 'Proposta Fácil',
     description:
-      'Sistema para controle financeiro pessoal, organização de receitas, despesas, contas e visão geral das movimentações.',
-    url: 'https://meufinanceiro.rockcodelabs.com.br',
+      'Aplicação para criar, organizar e acompanhar propostas comerciais de forma simples, com foco em agilidade no envio e clareza para o cliente.',
+    details:
+      'Projeto criado para validar um fluxo prático de geração de propostas, organização de clientes, controle de status e padronização de informações comerciais.',
+    url: 'https://propostafacil.rockcodelabs.com.br',
+    icon: '📄',
+    tag: 'Comercial',
   },
   {
     name: 'Minha Loteria',
