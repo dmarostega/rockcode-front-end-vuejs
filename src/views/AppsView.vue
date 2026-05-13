@@ -27,7 +27,7 @@ const projects = [
     icon: '🍀',
     tag: 'Loterias',
     status: 'Em evolução',
-    stack: ['Laravel', 'Vue', 'Inertia', 'MySQL'],
+    stack: ['Laravel', 'Vue', 'Inertia', 'MySQL', 'Vide Coding'],
   },
   {
     id: 3,
@@ -41,6 +41,19 @@ const projects = [
     tag: 'Produtividade',
     status: 'MVP publicado',
     stack: ['Laravel', 'Vue', 'Inertia', 'MySQL', 'Vide Coding'],
+  },
+  {
+    id: 4,
+    name: 'Proposta Fácil',
+    description:
+      'Aplicação para criar, organizar e acompanhar propostas comerciais de forma simples, com foco em agilidade no envio e clareza para o cliente.',
+    details:
+      'Projeto criado para validar um fluxo prático de geração de propostas, organização de clientes, controle de status e padronização de informações comerciais.',
+    url: 'https://propostafacil.rockcodelabs.com.br',
+    icon: '📄',
+    tag: 'Comercial',
+    status: 'Em evolução',
+    stack: ['Laravel', 'Vue', 'MySQL', 'Vide Coding'],
   },
 ]
 </script>
