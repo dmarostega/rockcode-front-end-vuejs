@@ -1,5 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import {
+  INDEXABLE_PAGE_METADATA,
+  NOT_FOUND_PAGE_METADATA,
+  updatePageMetadata,
+} from './pageMetadata'
+
+const pageMetadataByPath = Object.fromEntries(
+  INDEXABLE_PAGE_METADATA.map((pageMetadata) => [pageMetadata.path, pageMetadata]),
+)
+
+const getPageMetadata = (path) => pageMetadataByPath[path]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,36 +19,43 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
+      meta: getPageMetadata('/'),
     },
     {
       path: '/about',
       name: 'about',
       component: () => import('../views/AboutView.vue'),
+      meta: getPageMetadata('/about'),
     },
     {
       path: '/apps',
       name: 'apps',
       component: () => import('../views/AppsView.vue'),
+      meta: getPageMetadata('/apps'),
     },
     {
       path: '/experiences',
       name: 'experiences',
       component: () => import('../views/ExperiencesView.vue'),
+      meta: getPageMetadata('/experiences'),
     },
     {
       path: '/stacks',
       name: 'stacks',
       component: () => import('../views/StackView.vue'),
+      meta: getPageMetadata('/stacks'),
     },
     {
       path: '/articles',
       name: 'articles',
       component: () => import('../views/ArticlesView.vue'),
+      meta: getPageMetadata('/articles'),
     },
     {
       path: '/contact',
       name: 'contact',
       component: () => import('../views/ContactView.vue'),
+      meta: getPageMetadata('/contact'),
     },
 
     // precisa ser sempre a última rota
@@ -45,8 +63,17 @@ const router = createRouter({
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: () => import('../views/NotFoundView.vue'),
+      meta: {
+        canonicalPath: NOT_FOUND_PAGE_METADATA.path,
+        title: NOT_FOUND_PAGE_METADATA.title,
+        description: NOT_FOUND_PAGE_METADATA.description,
+      },
     },
   ],
+})
+
+router.afterEach((to) => {
+  updatePageMetadata(to)
 })
 
 export default router
