@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://www.rockcodelabs.com.br'
+export const SITE_URL = 'https://rockcodelabs.com.br'
 export const DEFAULT_TITLE = 'Rock Code Labs | Projetos Laravel, Vue e Desenvolvimento Web'
 export const DEFAULT_DESCRIPTION =
   'Projetos, estudos e soluções web com Laravel, Vue, PHP, APIs REST, sistemas SaaS e boas práticas de desenvolvimento.'
