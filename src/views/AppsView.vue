@@ -14,7 +14,7 @@ const projects = [
     icon: '💰',
     tag: 'Finanças',
     status: 'MVP publicado',
-    stack: ['Laravel', 'PHP', 'MySQL', 'Blade'],
+    stack: ['Laravel 8', 'PHP', 'MySQL', 'Blade'],
   },
   {
     id: 2,
@@ -26,8 +26,8 @@ const projects = [
     url: 'https://minhaloteria.rockcodelabs.com.br',
     icon: '🍀',
     tag: 'Loterias',
-    status: 'Em evolução',
-    stack: ['Laravel', 'Vue', 'Inertia', 'MySQL', 'Vibe Coding'],
+    status: 'MVP publicado',
+    stack: ['Laravel 12', 'Vue', 'Inertia', 'MySQL', 'Vibe Coding'],
   },
   {
     id: 3,
@@ -40,7 +40,7 @@ const projects = [
     icon: '📅',
     tag: 'Produtividade',
     status: 'MVP publicado',
-    stack: ['Laravel', 'Vue', 'Inertia', 'MySQL', 'Vibe Coding'],
+    stack: ['Laravel 13', 'Vue', 'Inertia', 'MySQL', 'Vibe Coding'],
   },
   {
     id: 4,
@@ -52,9 +52,127 @@ const projects = [
     url: 'https://propostafacil.rockcodelabs.com.br',
     icon: '📄',
     tag: 'Comercial',
-    status: 'Em evolução',
-    stack: ['Laravel', 'Vue', 'MySQL', 'Vibe Coding'],
+    status: 'MVP publicado',
+    stack: ['Laravel 13', 'Vue', 'MySQL', 'Vibe Coding'],
   },
+    {
+    id: 13,
+    name: 'OS Simples',
+    description:
+      'Sistema para controle de ordens de serviço, clientes, equipamentos, status de atendimento e acompanhamento de serviços.',
+    details:
+      'Projeto pensado para assistências técnicas, oficinas pequenas e prestadores de manutenção que precisam organizar serviços, prazos, orçamentos e histórico de atendimento.',
+    url: 'https://ossimples.rockcodelabs.com.br',
+    icon: '🛠️',
+    tag: 'Serviços',
+    status: 'MVP publicado',
+    stack: ['Laravel 13', 'Vue', 'TypeScript', 'MySQL', 'Codex'],
+  },
+    {
+    id: 9,
+    name: 'MarmitaFlow',
+    description:
+      'Sistema para controle de cardápios, pedidos, clientes, entregas e pagamentos manuais para pequenos vendedores de alimentos.',
+    details:
+      'Projeto pensado para organizar vendas de marmitas, doces, bolos, salgados e encomendas locais, reduzindo controles manuais por WhatsApp e planilhas.',
+    url: 'https://marmitaflow.rockcodelabs.com.br',
+    icon: '🍱',
+    tag: 'Pedidos',
+    status: 'Publicado - Em Andamento',
+    stack: ['Laravel 13', 'Vue', 'TypeScript', 'MySQL', 'Codex'],
+  },
+  {
+    id: 5,
+    name: 'Agenda Autônoma',
+    description:
+      'Aplicação para controle de agenda, clientes, atendimentos, serviços e cobranças manuais para profissionais autônomos.',
+    details:
+      'Projeto criado para validar uma solução simples de organização de horários, pagamentos pendentes, mensalidades recorrentes e mensagens copiáveis para WhatsApp.',
+    url: 'https://agendaautonoma.rockcodelabs.com.br',
+    icon: '🗓️',
+    tag: 'Agenda',
+    status: 'Em preparação',
+    stack: ['Laravel 13', 'Vue', 'TypeScript', 'MySQL', 'Codex'],
+  },
+  {
+    id: 6,
+    name: 'Atende Simples',
+    description:
+      'Helpdesk simples para pequenos negócios controlarem solicitações, chamados, clientes, comentários e atendimentos.',
+    details:
+      'Projeto criado para validar um fluxo leve de suporte, com abertura de chamados, categorias, prioridades, comentários internos e acompanhamento pelo cliente.',
+    url: 'https://atendesimples.rockcodelabs.com.br',
+    icon: '🎧',
+    tag: 'Suporte',
+    status: 'Em preparação',
+    stack: ['Laravel 13', 'Vue', 'TypeScript', 'MySQL', 'Codex'],
+  },
+  {
+    id: 7,
+    name: 'CheckLaudo',
+    description:
+      'Aplicação para criação de checklists, vistorias simples, relatórios operacionais e registros técnicos não regulados.',
+    details:
+      'Projeto voltado para prestadores que precisam criar modelos de checklist, preencher relatórios, adicionar fotos e gerar registros organizados de execução.',
+    url: 'https://checklaudo.rockcodelabs.com.br',
+    icon: '✅',
+    tag: 'Relatórios',
+    status: 'Em preparação',
+    stack: ['Laravel 13', 'Vue', 'TypeScript', 'MySQL', 'Codex'],
+  },
+  {
+    id: 8,
+    name: 'ClienteHub',
+    description:
+      'Portal do cliente para acompanhamento de projetos, etapas, tarefas, aprovações e entregas.',
+    details:
+      'Projeto voltado para freelancers, desenvolvedores, designers e pequenas agências que precisam organizar a comunicação com clientes e dar visibilidade ao andamento dos projetos.',
+    url: 'https://clientehub.rockcodelabs.com.br',
+    icon: '🤝',
+    tag: 'Projetos',
+    status: 'Em preparação',
+    stack: ['Laravel 13', 'Vue', 'TypeScript', 'MySQL', 'Codex'],
+  },
+  {
+    id: 10,
+    name: 'Mensalidade Fácil',
+    description:
+      'Sistema para controle de mensalidades, clientes recorrentes, cobranças, pagamentos manuais e inadimplência.',
+    details:
+      'Projeto pensado para professores, personal trainers, instrutores, consultores e pequenos negócios que recebem valores recorrentes de clientes.',
+    url: 'https://mensalidadefacil.rockcodelabs.com.br',
+    icon: '🔁',
+    tag: 'Assinaturas',
+    status: 'Em preparação',
+    stack: ['Laravel 13', 'Vue', 'TypeScript', 'MySQL', 'Codex'],
+  },
+  {
+    id: 11,
+    name: 'Meu Caixa Simples',
+    description:
+      'Aplicação para controle financeiro simples de receitas, despesas, categorias, recorrências e fluxo de caixa.',
+    details:
+      'Projeto voltado para autônomos, freelancers e pequenos prestadores que precisam organizar entradas, saídas, contas pendentes e visão básica do resultado mensal.',
+    url: 'https://meucaixasimples.rockcodelabs.com.br',
+    icon: '📒',
+    tag: 'Finanças',
+    status: 'Em preparação',
+    stack: ['Laravel 13', 'Vue', 'TypeScript', 'MySQL', 'Codex'],
+  },
+  // {
+  //   id: 12,
+  //   name: 'Minha Loteria Lab',
+  //   description:
+  //     'SaaS experimental para estudo estatístico, histórico de resultados e geração de jogos para loterias.',
+  //   details:
+  //     'Projeto criado para testar uma versão mais estruturada e SaaS do estudo de loterias, com planos, painel admin, limites de uso e comunicação responsável.',
+  //   url: 'https://minhaloterialab.rockcodelabs.com.br',
+  //   icon: '🧪',
+  //   tag: 'Loterias',
+  //   status: 'Em preparação',
+  //   stack: ['Laravel 13', 'Vue', 'TypeScript', 'MySQL', 'Codex'],
+  // },
+
 ]
 </script>
 
