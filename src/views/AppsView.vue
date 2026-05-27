@@ -4,17 +4,30 @@ import NavBoard from '@/components/defaults/NavBoard.vue'
 
 const projects = [
   {
-    id: 1,
-    name: 'Meu Financeiro',
+    id: 9,
+    name: 'MarmitaFlow',
     description:
-      'Sistema para controle financeiro pessoal, com organização de receitas, despesas, contas, cartões e visão geral das movimentações.',
+      'Sistema para controle de cardápios, pedidos, clientes, entregas e pagamentos manuais para pequenos vendedores de alimentos.',
     details:
-      'Projeto desenvolvido para estudar e validar recursos comuns de um sistema financeiro, como autenticação, CRUDs, organização de dados e experiência de uso simples.',
-    url: 'https://meufinanceiro.rockcodelabs.com.br',
-    icon: '💰',
-    tag: 'Finanças',
+      'Projeto pensado para organizar vendas de marmitas, doces, bolos, salgados e encomendas locais, reduzindo controles manuais por WhatsApp e planilhas.',
+    url: 'https://marmitaflow.rockcodelabs.com.br',
+    icon: '🍱',
+    tag: 'Pedidos',
+    status: 'Publicado - Em Andamento',
+    stack: ['Laravel 13', 'Vue', 'TypeScript', 'MySQL', 'Codex'],
+  },
+  {
+    id: 4,
+    name: 'Proposta Fácil',
+    description:
+      'Aplicação para criar, organizar e acompanhar propostas comerciais de forma simples, com foco em agilidade no envio e clareza para o cliente.',
+    details:
+      'Projeto criado para validar um fluxo prático de geração de propostas, organização de clientes, controle de status e padronização de informações comerciais.',
+    url: 'https://propostafacil.rockcodelabs.com.br',
+    icon: '📄',
+    tag: 'Comercial',
     status: 'MVP publicado',
-    stack: ['Laravel 8', 'PHP', 'MySQL', 'Blade'],
+    stack: ['Laravel 13', 'Vue', 'MySQL', 'Vibe Coding'],
   },
   {
     id: 2,
@@ -30,32 +43,6 @@ const projects = [
     stack: ['Laravel 12', 'Vue', 'Inertia', 'MySQL', 'Vibe Coding'],
   },
   {
-    id: 3,
-    name: 'Validade em Dia',
-    description:
-      'Aplicação para acompanhar validades de produtos, organizar itens por status e evitar perdas com vencimentos esquecidos.',
-    details:
-      'Projeto criado para validar uma solução simples de controle de validade, com cadastro de itens, alertas visuais e uma rotina mais prática para manter tudo em dia.',
-    url: 'https://validadeemdia.rockcodelabs.com.br',
-    icon: '📅',
-    tag: 'Produtividade',
-    status: 'MVP publicado',
-    stack: ['Laravel 13', 'Vue', 'Inertia', 'MySQL', 'Vibe Coding'],
-  },
-  {
-    id: 4,
-    name: 'Proposta Fácil',
-    description:
-      'Aplicação para criar, organizar e acompanhar propostas comerciais de forma simples, com foco em agilidade no envio e clareza para o cliente.',
-    details:
-      'Projeto criado para validar um fluxo prático de geração de propostas, organização de clientes, controle de status e padronização de informações comerciais.',
-    url: 'https://propostafacil.rockcodelabs.com.br',
-    icon: '📄',
-    tag: 'Comercial',
-    status: 'MVP publicado',
-    stack: ['Laravel 13', 'Vue', 'MySQL', 'Vibe Coding'],
-  },
-    {
     id: 13,
     name: 'OS Simples',
     description:
@@ -68,18 +55,31 @@ const projects = [
     status: 'MVP publicado',
     stack: ['Laravel 13', 'Vue', 'TypeScript', 'MySQL', 'Codex'],
   },
-    {
-    id: 9,
-    name: 'MarmitaFlow',
+  {
+    id: 1,
+    name: 'Meu Financeiro',
     description:
-      'Sistema para controle de cardápios, pedidos, clientes, entregas e pagamentos manuais para pequenos vendedores de alimentos.',
+      'Sistema para controle financeiro pessoal, com organização de receitas, despesas, contas, cartões e visão geral das movimentações.',
     details:
-      'Projeto pensado para organizar vendas de marmitas, doces, bolos, salgados e encomendas locais, reduzindo controles manuais por WhatsApp e planilhas.',
-    url: 'https://marmitaflow.rockcodelabs.com.br',
-    icon: '🍱',
-    tag: 'Pedidos',
-    status: 'Publicado - Em Andamento',
-    stack: ['Laravel 13', 'Vue', 'TypeScript', 'MySQL', 'Codex'],
+      'Projeto desenvolvido para estudar e validar recursos comuns de um sistema financeiro, como autenticação, CRUDs, organização de dados e experiência de uso simples.',
+    url: 'https://meufinanceiro.rockcodelabs.com.br',
+    icon: '💰',
+    tag: 'Finanças',
+    status: 'MVP publicado',
+    stack: ['Laravel 8', 'PHP', 'MySQL', 'Blade'],
+  },
+  {
+    id: 3,
+    name: 'Validade em Dia',
+    description:
+      'Aplicação para acompanhar validades de produtos, organizar itens por status e evitar perdas com vencimentos esquecidos.',
+    details:
+      'Projeto criado para validar uma solução simples de controle de validade, com cadastro de itens, alertas visuais e uma rotina mais prática para manter tudo em dia.',
+    url: 'https://validadeemdia.rockcodelabs.com.br',
+    icon: '📅',
+    tag: 'Produtividade',
+    status: 'MVP publicado',
+    stack: ['Laravel 13', 'Vue', 'Inertia', 'MySQL', 'Vibe Coding'],
   },
   {
     id: 5,
