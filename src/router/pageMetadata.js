@@ -3,6 +3,8 @@ export const DEFAULT_TITLE = 'Rock Code Labs | Projetos Laravel, Vue e Desenvolv
 export const DEFAULT_DESCRIPTION =
   'Projetos, estudos e soluções web com Laravel, Vue, PHP, APIs REST, sistemas SaaS e boas práticas de desenvolvimento.'
 
+const normalizePath = (path) =>  `${path.replace(/\/$/, '')}/`
+  
 export const INDEXABLE_PAGE_METADATA = [
   {
     path: '/',
@@ -56,14 +58,20 @@ export const NOT_FOUND_PAGE_METADATA = {
 
 export const getCanonicalPath = (route) => {
   if (route.meta?.canonicalPath) {
-    return route.meta.canonicalPath
+      return route.meta.canonicalPath === '/'
+      ? '/'
+      : normalizePath(route.meta.canonicalPath)
   }
 
-  return route.path === '/' ? '/' : route.path.replace(/\/$/, '')
+  return route.path === '/' ? '/' : normalizePath(route.path)
 }
 
-export const getCanonicalUrlFromPath = (canonicalPath) =>
-  new URL(canonicalPath, SITE_URL).toString()
+export const getCanonicalUrlFromPath = (canonicalPath) => {
+  const normalizedPath =
+    canonicalPath === '/' ? '/' : normalizePath(canonicalPath)
+
+  return new URL(normalizedPath, SITE_URL).toString()
+}
 
 export const getCanonicalUrl = (route) => getCanonicalUrlFromPath(getCanonicalPath(route))
 
