@@ -295,11 +295,12 @@ const featuredProjects = [
 
 .section-header {
   max-width: 760px;
-  margin-bottom: 1.5rem;
+  margin: 0 auto 1.5rem;
+  text-align: center;
 }
 
 .section-header .section-kicker {
-  margin: 0 0 1rem;
+  margin: 0 auto 1rem;
 }
 
 .section-header h2,
@@ -321,8 +322,16 @@ const featuredProjects = [
 .info-grid,
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
+}
+
+.info-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.projects-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 360px));
+  justify-content: center;
 }
 
 .info-card,
@@ -337,6 +346,7 @@ const featuredProjects = [
 
 .info-card {
   padding: 1.5rem;
+  text-align: center;
 }
 
 .card-number {
@@ -365,6 +375,7 @@ const featuredProjects = [
   flex-direction: column;
   min-height: 250px;
   padding: 1.5rem;
+  text-align: center;
   text-decoration: none;
   color: inherit;
   transition:
@@ -381,7 +392,7 @@ const featuredProjects = [
 
 .project-tag {
   width: fit-content;
-  margin-bottom: 1.1rem;
+  margin: 0 auto 1.1rem;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
   background: rgba(56, 189, 248, 0.12);
@@ -414,18 +425,29 @@ const featuredProjects = [
 
 .resume-callout {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
+  justify-content: center;
+  gap: 1.5rem;
   padding: 2rem;
+  text-align: center;
 }
 
 .resume-callout .section-kicker {
-  margin: 0 0 1rem;
+  margin: 0 auto 1rem;
 }
 
 .resume-callout p {
   max-width: 720px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.resume-callout .button {
+  width: fit-content;
+  min-width: 260px;
+  border-radius: 999px;
+  white-space: nowrap;
 }
 
 @media (max-width: 900px) {
@@ -435,8 +457,7 @@ const featuredProjects = [
   }
 
   .resume-callout {
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 }
 
