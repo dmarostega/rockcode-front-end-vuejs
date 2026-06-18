@@ -4,6 +4,19 @@ import NavBoard from '@/components/defaults/NavBoard.vue'
 
 const projects = [
   {
+    id: 14,
+    name: 'QrCode Flow',
+    description:
+      'Gerador gratuito de QR Code para links, com fluxo simples para criar, visualizar e baixar codigos rapidamente.',
+    details:
+      'Projeto criado para validar uma ferramenta publica e direta para geracao de QR Codes, com foco em uso rapido, paginas informativas e evolucao controlada de monetizacao.',
+    url: 'https://qrcodeflow.rockcodelabs.com.br',
+    icon: '▦',
+    tag: 'QR Code',
+    status: 'MVP publicado',
+    stack: ['Laravel 13', 'Vue', 'Inertia', 'MySQL', 'Codex'],
+  },
+  {
     id: 9,
     name: 'MarmitaFlow',
     description:
