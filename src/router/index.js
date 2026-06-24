@@ -40,6 +40,12 @@ const router = createRouter({
       meta: getPageMetadata('/ferramentas'),
     },
     {
+      path: '/ferramentas/gerador-uuid',
+      name: 'uuid-generator',
+      component: () => import('../views/UuidGeneratorView.vue'),
+      meta: getPageMetadata('/ferramentas/gerador-uuid'),
+    },
+    {
       path: '/experiences',
       name: 'experiences',
       component: () => import('../views/ExperiencesView.vue'),

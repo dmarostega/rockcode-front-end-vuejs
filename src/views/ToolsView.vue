@@ -1,15 +1,17 @@
 <script setup>
 import LayoutDefault from '@/components/defaults/LayoutDefault.vue'
 import NavBoard from '@/components/defaults/NavBoard.vue'
+import { RouterLink } from 'vue-router'
 
 const hubTools = [
   {
     name: 'Gerador de UUID',
-    status: 'Previsto',
+    status: 'Disponivel',
     description:
       'Ferramenta gratuita para gerar identificadores UUID de forma rápida, simples e sem cadastro.',
     details:
-      'O primeiro espaço do hub fica preparado para receber utilitários pequenos, diretos e independentes do backend institucional.',
+      'Gere UUIDs v4 direto no navegador, copie com um clique e use em testes, prototipos ou chaves temporarias.',
+    route: '/ferramentas/gerador-uuid',
   },
 ]
 
@@ -57,7 +59,7 @@ const relatedProjects = [
           <h2 id="tools-title">Espaço preparado para o primeiro utilitário do hub.</h2>
         </div>
 
-        <article v-for="tool in hubTools" :key="tool.name" class="tool-card">
+        <RouterLink v-for="tool in hubTools" :key="tool.name" :to="tool.route" class="tool-card">
           <div class="card-top">
             <span class="tool-icon" aria-hidden="true">ID</span>
             <span class="status-badge">{{ tool.status }}</span>
@@ -67,7 +69,8 @@ const relatedProjects = [
 
           <p>{{ tool.description }}</p>
           <p class="card-details">{{ tool.details }}</p>
-        </article>
+          <strong>Acessar ferramenta -></strong>
+        </RouterLink>
       </section>
 
       <section class="related-section" aria-labelledby="related-title">
@@ -221,6 +224,22 @@ const relatedProjects = [
   padding: 1.7rem;
 }
 
+.tool-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.55);
+  background: rgba(30, 41, 59, 0.88);
+}
+
 .card-top {
   display: flex;
   align-items: flex-start;
@@ -281,6 +300,12 @@ const relatedProjects = [
 
 .related-card strong {
   flex: 0 0 auto;
+  color: #38bdf8;
+}
+
+.tool-card strong {
+  display: inline-block;
+  margin-top: 1rem;
   color: #38bdf8;
 }
 
