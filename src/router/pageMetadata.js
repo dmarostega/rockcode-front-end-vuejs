@@ -31,6 +31,12 @@ export const INDEXABLE_PAGE_METADATA = [
       'Hub de ferramentas gratuitas da Rock Code Labs com utilitários simples para tarefas rápidas, projetos relacionados e novas entregas em preparação.',
   },
   {
+    path: '/ferramentas/gerador-uuid',
+    title: 'Gerador UUID online gratuito | Rock Code Labs',
+    description:
+      'Gere UUIDs v4 online e gratuitamente no navegador, sem login, sem salvar dados e sem depender de API externa.',
+  },
+  {
     path: '/experiences',
     title: 'Experiências | Rock Code Labs',
     description:
