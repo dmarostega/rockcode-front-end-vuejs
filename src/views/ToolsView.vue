@@ -6,12 +6,32 @@ import { RouterLink } from 'vue-router'
 const hubTools = [
   {
     name: 'Gerador de UUID',
+    icon: 'ID',
     status: 'Disponível',
     description:
       'Ferramenta gratuita para gerar identificadores UUID de forma rápida, simples e sem cadastro.',
     details:
       'Gere UUIDs v4 direto no navegador, copie com um clique e use em testes, protótipos ou chaves temporárias.',
     route: '/ferramentas/gerador-uuid',
+  },
+  {
+    name: 'Conversor Base64',
+    icon: '64',
+    status: 'Disponível',
+    description: 'Converta texto para Base64 e decodifique Base64 para texto direto no navegador.',
+    details:
+      'Use para testar payloads, exemplos de APIs, tokens de desenvolvimento e pequenos trechos de texto sem enviar dados para servidores.',
+    route: '/ferramentas/base64',
+  },
+  {
+    name: 'Formatador JSON',
+    icon: '{}',
+    status: 'Disponível',
+    description:
+      'Formate, valide e minifique JSON com mensagens claras quando houver erro de sintaxe.',
+    details:
+      'Cole um objeto JSON, organize a leitura, gere uma versão minificada e copie o resultado sem depender de backend.',
+    route: '/ferramentas/formatador-json',
   },
 ]
 
@@ -55,13 +75,13 @@ const relatedProjects = [
 
       <section class="tools-grid" aria-labelledby="tools-title">
         <div class="section-heading">
-          <span class="section-label">Primeira ferramenta</span>
-          <h2 id="tools-title">Espaço preparado para o primeiro utilitário do hub.</h2>
+          <span class="section-label">Ferramentas disponíveis</span>
+          <h2 id="tools-title">Utilitários client-side para tarefas rápidas de desenvolvimento.</h2>
         </div>
 
         <RouterLink v-for="tool in hubTools" :key="tool.name" :to="tool.route" class="tool-card">
           <div class="card-top">
-            <span class="tool-icon" aria-hidden="true">ID</span>
+            <span class="tool-icon" aria-hidden="true">{{ tool.icon }}</span>
             <span class="status-badge">{{ tool.status }}</span>
           </div>
 
@@ -215,7 +235,14 @@ const relatedProjects = [
   margin-top: 2rem;
 }
 
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
 .section-heading {
+  grid-column: 1 / -1;
   margin-bottom: 1rem;
 }
 
@@ -332,7 +359,8 @@ const relatedProjects = [
 
 @media (max-width: 820px) {
   .hub-intro,
-  .related-card {
+  .related-card,
+  .tools-grid {
     grid-template-columns: 1fr;
   }
 

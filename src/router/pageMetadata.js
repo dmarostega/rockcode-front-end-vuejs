@@ -37,6 +37,18 @@ export const INDEXABLE_PAGE_METADATA = [
       'Gere UUIDs v4 online e gratuitamente no navegador, sem login, sem salvar dados e sem depender de API externa.',
   },
   {
+    path: '/ferramentas/base64',
+    title: 'Conversor Base64 online gratuito | Rock Code Labs',
+    description:
+      'Converta texto para Base64 e decodifique Base64 para texto no navegador, sem login, sem salvar dados e sem API externa.',
+  },
+  {
+    path: '/ferramentas/formatador-json',
+    title: 'Formatador e validador JSON online gratuito | Rock Code Labs',
+    description:
+      'Formate, valide e minifique JSON online no navegador, com erro amigável, sem login, sem salvar dados e sem API externa.',
+  },
+  {
     path: '/experiences',
     title: 'Experiências | Rock Code Labs',
     description:

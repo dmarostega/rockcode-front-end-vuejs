@@ -46,6 +46,18 @@ const router = createRouter({
       meta: getPageMetadata('/ferramentas/gerador-uuid'),
     },
     {
+      path: '/ferramentas/base64',
+      name: 'base64-converter',
+      component: () => import('../views/Base64ConverterView.vue'),
+      meta: getPageMetadata('/ferramentas/base64'),
+    },
+    {
+      path: '/ferramentas/formatador-json',
+      name: 'json-formatter',
+      component: () => import('../views/JsonFormatterView.vue'),
+      meta: getPageMetadata('/ferramentas/formatador-json'),
+    },
+    {
       path: '/experiences',
       name: 'experiences',
       component: () => import('../views/ExperiencesView.vue'),
