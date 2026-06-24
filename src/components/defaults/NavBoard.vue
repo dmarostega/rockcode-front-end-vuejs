@@ -15,6 +15,7 @@ const closeMenu = () => {
       <RouterLink to="/" class="nav-link" @click="closeMenu">Início</RouterLink>
       <RouterLink to="/about" class="nav-link" @click="closeMenu">Sobre</RouterLink>
       <RouterLink to="/apps" class="nav-link" @click="closeMenu">Projetos</RouterLink>
+      <RouterLink to="/ferramentas" class="nav-link" @click="closeMenu">Ferramentas</RouterLink>
       <RouterLink to="/experiences" class="nav-link" @click="closeMenu">Experiência</RouterLink>
       <RouterLink to="/stacks" class="nav-link" @click="closeMenu">Stacks</RouterLink>
       <RouterLink to="/articles" class="nav-link" @click="closeMenu">Artigos</RouterLink>
@@ -22,9 +23,7 @@ const closeMenu = () => {
     </div>
 
     <div class="nav-container">
-      <RouterLink to="/" class="brand" @click="closeMenu">
-        Rock Code
-      </RouterLink>
+      <RouterLink to="/" class="brand" @click="closeMenu"> Rock Code </RouterLink>
 
       <button class="menu-toggle" type="button" @click="isOpen = !isOpen" aria-label="Abrir menu">
         <span v-if="!isOpen">&#9650;</span>
@@ -35,6 +34,7 @@ const closeMenu = () => {
         <RouterLink to="/" class="nav-link">Início</RouterLink>
         <RouterLink to="/about" class="nav-link">Sobre</RouterLink>
         <RouterLink to="/apps" class="nav-link">Projetos</RouterLink>
+        <RouterLink to="/ferramentas" class="nav-link">Ferramentas</RouterLink>
         <RouterLink to="/experiences" class="nav-link">Experiência</RouterLink>
         <RouterLink to="/stacks" class="nav-link">Stacks</RouterLink>
         <RouterLink to="/articles" class="nav-link">Artigos</RouterLink>

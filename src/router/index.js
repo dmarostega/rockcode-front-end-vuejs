@@ -34,6 +34,12 @@ const router = createRouter({
       meta: getPageMetadata('/apps'),
     },
     {
+      path: '/ferramentas',
+      name: 'tools',
+      component: () => import('../views/ToolsView.vue'),
+      meta: getPageMetadata('/ferramentas'),
+    },
+    {
       path: '/experiences',
       name: 'experiences',
       component: () => import('../views/ExperiencesView.vue'),

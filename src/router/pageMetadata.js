@@ -3,8 +3,8 @@ export const DEFAULT_TITLE = 'Rock Code Labs | Projetos Laravel, Vue e Desenvolv
 export const DEFAULT_DESCRIPTION =
   'Projetos, estudos e soluções web com Laravel, Vue, PHP, APIs REST, sistemas SaaS e boas práticas de desenvolvimento.'
 
-const normalizePath = (path) =>  `${path.replace(/\/$/, '')}/`
-  
+const normalizePath = (path) => `${path.replace(/\/$/, '')}/`
+
 export const INDEXABLE_PAGE_METADATA = [
   {
     path: '/',
@@ -23,6 +23,12 @@ export const INDEXABLE_PAGE_METADATA = [
     title: 'Aplicativos | Rock Code Labs',
     description:
       'Projetos e aplicações desenvolvidos pela Rock Code Labs usando Laravel, Vue, APIs REST e boas práticas de desenvolvimento web.',
+  },
+  {
+    path: '/ferramentas',
+    title: 'Ferramentas gratuitas | Rock Code Labs',
+    description:
+      'Hub de ferramentas gratuitas da Rock Code Labs com utilitários simples para tarefas rápidas, projetos relacionados e novas entregas em preparação.',
   },
   {
     path: '/experiences',
@@ -58,17 +64,14 @@ export const NOT_FOUND_PAGE_METADATA = {
 
 export const getCanonicalPath = (route) => {
   if (route.meta?.canonicalPath) {
-      return route.meta.canonicalPath === '/'
-      ? '/'
-      : normalizePath(route.meta.canonicalPath)
+    return route.meta.canonicalPath === '/' ? '/' : normalizePath(route.meta.canonicalPath)
   }
 
   return route.path === '/' ? '/' : normalizePath(route.path)
 }
 
 export const getCanonicalUrlFromPath = (canonicalPath) => {
-  const normalizedPath =
-    canonicalPath === '/' ? '/' : normalizePath(canonicalPath)
+  const normalizedPath = canonicalPath === '/' ? '/' : normalizePath(canonicalPath)
 
   return new URL(normalizedPath, SITE_URL).toString()
 }
