@@ -6,11 +6,11 @@ import { RouterLink } from 'vue-router'
 const hubTools = [
   {
     name: 'Gerador de UUID',
-    status: 'Disponivel',
+    status: 'Disponível',
     description:
       'Ferramenta gratuita para gerar identificadores UUID de forma rápida, simples e sem cadastro.',
     details:
-      'Gere UUIDs v4 direto no navegador, copie com um clique e use em testes, prototipos ou chaves temporarias.',
+      'Gere UUIDs v4 direto no navegador, copie com um clique e use em testes, protótipos ou chaves temporárias.',
     route: '/ferramentas/gerador-uuid',
   },
 ]

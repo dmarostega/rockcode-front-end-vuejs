@@ -79,7 +79,7 @@ const copyUuid = async () => {
 
     copyStatus.value = 'UUID copiado.'
   } catch {
-    copyStatus.value = 'Nao foi possivel copiar automaticamente.'
+    copyStatus.value = 'Não foi possível copiar automaticamente.'
   } finally {
     resetCopyStatus()
   }
@@ -104,8 +104,8 @@ const copyUuid = async () => {
           <span class="section-label">UUID v4</span>
           <h2 id="generated-uuid-title">Identificador gerado no seu navegador.</h2>
           <p>
-            Use em testes, prototipos, chaves temporarias, seeds ou qualquer contexto em que voce
-            precise de um identificador unico no formato UUID.
+            Use em testes, protótipos, chaves temporárias, seeds ou qualquer contexto em que você
+            precise de um identificador único no formato UUID.
           </p>
         </div>
 
@@ -114,7 +114,7 @@ const copyUuid = async () => {
 
           <div class="uuid-status" :class="{ valid: uuidIsValid }">
             <span aria-hidden="true"></span>
-            {{ uuidIsValid ? 'Formato UUID valido' : 'Formato UUID invalido' }}
+            {{ uuidIsValid ? 'Formato UUID válido' : 'Formato UUID inválido' }}
           </div>
 
           <div class="button-row">
@@ -128,12 +128,12 @@ const copyUuid = async () => {
         </div>
       </section>
 
-      <section class="content-grid" aria-label="Informacoes sobre UUID">
+      <section class="content-grid" aria-label="Informações sobre UUID">
         <article class="info-panel">
           <span class="section-label">Exemplo de uso</span>
-          <h2>Chave unica para dados de teste.</h2>
+          <h2>Chave única para dados de teste.</h2>
           <p>
-            Um UUID pode identificar um registro temporario, uma requisicao de teste, uma referencia
+            Um UUID pode identificar um registro temporário, uma requisição de teste, uma referência
             em planilhas ou uma entidade criada durante o desenvolvimento.
           </p>
 
@@ -142,10 +142,10 @@ const copyUuid = async () => {
 
         <article class="info-panel">
           <span class="section-label">Privacidade</span>
-          <h2>Nada e enviado para servidores.</h2>
+          <h2>Nada é enviado para servidores.</h2>
           <p>
-            A geracao acontece apenas no navegador. A pagina nao cria historico, nao exige conta e
-            nao salva os UUIDs gerados em banco ou storage remoto.
+            A geração acontece apenas no navegador. A página não cria histórico, não exige conta e
+            não salva os UUIDs gerados em banco ou storage remoto.
           </p>
         </article>
       </section>
@@ -153,36 +153,38 @@ const copyUuid = async () => {
       <section class="faq-section" aria-labelledby="uuid-faq-title">
         <div class="section-heading">
           <span class="section-label">FAQ</span>
-          <h2 id="uuid-faq-title">Duvidas rapidas sobre UUID.</h2>
+          <h2 id="uuid-faq-title">Dúvidas rápidas sobre UUID.</h2>
         </div>
 
         <div class="faq-list">
           <article>
-            <h3>O que e um UUID?</h3>
+            <h3>O que é um UUID?</h3>
             <p>
-              UUID e um identificador padronizado com 36 caracteres, usado para diferenciar itens
-              sem depender de uma sequencia centralizada.
+              UUID é um identificador padronizado com 36 caracteres, usado para diferenciar itens
+              sem depender de uma sequência centralizada.
             </p>
           </article>
 
           <article>
             <h3>Este gerador usa backend?</h3>
             <p>
-              Nao. A ferramenta roda no navegador e usa a API nativa de criptografia quando ela esta
-              disponivel.
+              Não. A ferramenta roda no navegador e usa a API nativa de criptografia quando ela está
+              disponível.
             </p>
           </article>
 
           <article>
             <h3>Os UUIDs ficam salvos?</h3>
-            <p>Nao. A pagina mostra apenas o UUID atual e nao mantem historico dos valores gerados.</p>
+            <p>
+              Não. A página mostra apenas o UUID atual e não mantém histórico dos valores gerados.
+            </p>
           </article>
         </div>
       </section>
 
       <section class="manual-test-roadmap" aria-labelledby="manual-test-title">
         <span class="section-label">Teste manual</span>
-        <h2 id="manual-test-title">Roadmap breve de validacao.</h2>
+        <h2 id="manual-test-title">Roadmap breve de validação.</h2>
         <ol>
           <li>Abrir a rota em desktop e mobile.</li>
           <li>Gerar um novo UUID e conferir se o formato muda.</li>
