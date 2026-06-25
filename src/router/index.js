@@ -58,6 +58,12 @@ const router = createRouter({
       meta: getPageMetadata('/ferramentas/formatador-json'),
     },
     {
+      path: '/ferramentas/gerador-slug',
+      name: 'slug-generator',
+      component: () => import('../views/tools/SlugGeneratorView.vue'),
+      meta: getPageMetadata('/ferramentas/gerador-slug'),
+    },
+    {
       path: '/experiences',
       name: 'experiences',
       component: () => import('../views/ExperiencesView.vue'),

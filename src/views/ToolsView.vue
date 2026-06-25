@@ -33,6 +33,16 @@ const hubTools = [
       'Cole um objeto JSON, organize a leitura, gere uma versão minificada e copie o resultado sem depender de backend.',
     route: '/ferramentas/formatador-json',
   },
+  {
+    name: 'Gerador de Slug',
+    icon: 'SL',
+    status: 'Disponível',
+    description:
+      'Transforme títulos e frases em slugs amigáveis para URLs, com remoção de acentos e pontuação.',
+    details:
+      'Digite um texto, gere uma versão em letras minúsculas separada por hífens e copie o resultado sem enviar dados para servidores.',
+    route: '/ferramentas/gerador-slug',
+  },
 ]
 
 const relatedProjects = [
@@ -237,7 +247,7 @@ const relatedProjects = [
 
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
 }
 

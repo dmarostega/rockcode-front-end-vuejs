@@ -1,16 +1,13 @@
 <script setup>
-import LayoutDefault from '@/components/defaults/LayoutDefault.vue'
 import NavBoard from '@/components/defaults/NavBoard.vue'
 </script>
 
 <template>
-  <LayoutDefault>
-    <main class="tool-page-layout">
-      <slot />
-    </main>
+  <main class="tool-page-layout">
+    <slot />
+  </main>
 
-    <NavBoard />
-  </LayoutDefault>
+  <NavBoard />
 </template>
 
 <style scoped>
