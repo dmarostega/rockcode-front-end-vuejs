@@ -1,5 +1,7 @@
 import { defineConfig, devices } from '@playwright/test'
 
+const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm'
+
 export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: true,
@@ -10,7 +12,7 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   webServer: {
-    command: 'npm.cmd run preview -- --host 127.0.0.1',
+    command: `${npmCommand} run preview -- --host 127.0.0.1`,
     url: 'http://127.0.0.1:4173',
     reuseExistingServer: !process.env.CI,
   },
