@@ -182,15 +182,6 @@ const copyUuid = async () => {
         </div>
       </section>
 
-      <section class="manual-test-roadmap" aria-labelledby="manual-test-title">
-        <span class="section-label">Teste manual</span>
-        <h2 id="manual-test-title">Roadmap breve de validação.</h2>
-        <ol>
-          <li>Abrir a rota em desktop e mobile.</li>
-          <li>Gerar um novo UUID e conferir se o formato muda.</li>
-          <li>Copiar o UUID e validar o feedback visual.</li>
-        </ol>
-      </section>
     </main>
 
     <NavBoard />
@@ -210,8 +201,7 @@ const copyUuid = async () => {
 .uuid-hero,
 .generator-panel,
 .content-grid,
-.faq-section,
-.manual-test-roadmap {
+.faq-section {
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -264,8 +254,7 @@ const copyUuid = async () => {
 
 .generator-panel,
 .info-panel,
-.faq-section,
-.manual-test-roadmap {
+.faq-section {
   border: 1px solid rgba(148, 163, 184, 0.18);
   border-radius: 22px;
   background: rgba(15, 23, 42, 0.74);
@@ -282,16 +271,14 @@ const copyUuid = async () => {
 .generator-copy h2,
 .section-heading h2,
 .info-panel h2,
-.faq-list h3,
-.manual-test-roadmap h2 {
+.faq-list h3 {
   margin: 0;
   color: #ffffff;
 }
 
 .generator-copy p,
 .info-panel p,
-.faq-list p,
-.manual-test-roadmap li {
+.faq-list p {
   margin: 0;
   color: #94a3b8;
   line-height: 1.75;
@@ -404,8 +391,7 @@ const copyUuid = async () => {
   font-size: 0.9rem;
 }
 
-.faq-section,
-.manual-test-roadmap {
+.faq-section {
   margin-top: 2rem;
   padding: 1.7rem;
 }
@@ -430,13 +416,6 @@ const copyUuid = async () => {
 .faq-list h3 {
   margin-bottom: 0.55rem;
   font-size: 1rem;
-}
-
-.manual-test-roadmap ol {
-  display: grid;
-  gap: 0.6rem;
-  margin: 0;
-  padding-left: 1.2rem;
 }
 
 @media (max-width: 820px) {

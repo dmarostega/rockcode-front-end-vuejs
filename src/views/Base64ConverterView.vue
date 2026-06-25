@@ -236,15 +236,6 @@ convertInput()
         </div>
       </section>
 
-      <section class="manual-test-roadmap" aria-labelledby="manual-test-title">
-        <span class="section-label">Teste manual</span>
-        <h2 id="manual-test-title">Roadmap breve de validação.</h2>
-        <ol>
-          <li>Converter texto simples para Base64 e copiar o resultado.</li>
-          <li>Decodificar um Base64 válido e conferir o texto original.</li>
-          <li>Digitar Base64 inválido e validar a mensagem de erro em desktop e mobile.</li>
-        </ol>
-      </section>
     </main>
 
     <NavBoard />
@@ -264,8 +255,7 @@ convertInput()
 .tool-hero,
 .tool-panel,
 .content-grid,
-.faq-section,
-.manual-test-roadmap {
+.faq-section {
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -318,8 +308,7 @@ convertInput()
 
 .tool-panel,
 .info-panel,
-.faq-section,
-.manual-test-roadmap {
+.faq-section {
   border: 1px solid rgba(148, 163, 184, 0.18);
   border-radius: 22px;
   background: rgba(15, 23, 42, 0.74);
@@ -336,16 +325,14 @@ convertInput()
 .tool-copy h2,
 .section-heading h2,
 .info-panel h2,
-.faq-list h3,
-.manual-test-roadmap h2 {
+.faq-list h3 {
   margin: 0;
   color: #ffffff;
 }
 
 .tool-copy p,
 .info-panel p,
-.faq-list p,
-.manual-test-roadmap li {
+.faq-list p {
   margin: 0;
   color: #94a3b8;
   line-height: 1.75;
@@ -471,8 +458,7 @@ textarea:focus {
   font-family: 'Courier New', Courier, monospace;
 }
 
-.faq-section,
-.manual-test-roadmap {
+.faq-section {
   margin-top: 2rem;
   padding: 1.7rem;
 }
@@ -497,13 +483,6 @@ textarea:focus {
 .faq-list h3 {
   margin-bottom: 0.55rem;
   font-size: 1rem;
-}
-
-.manual-test-roadmap ol {
-  display: grid;
-  gap: 0.6rem;
-  margin: 0;
-  padding-left: 1.2rem;
 }
 
 @media (max-width: 820px) {
