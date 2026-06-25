@@ -21,6 +21,16 @@ export default defineConfig([
     },
   },
 
+  {
+    files: ['*.config.js', 'scripts/**/*.mjs', 'tests/**/*.js'],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+    },
+  },
+
   js.configs.recommended,
   ...pluginVue.configs['flat/essential'],
   ...pluginOxlint.configs['flat/recommended'],
