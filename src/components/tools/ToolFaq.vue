@@ -1,8 +1,14 @@
 <script setup>
-defineProps({
+import { computed, useId } from 'vue'
+
+const props = defineProps({
   eyebrow: {
     type: String,
     default: 'FAQ',
+  },
+  headingId: {
+    type: String,
+    default: '',
   },
   title: {
     type: String,
@@ -13,13 +19,16 @@ defineProps({
     required: true,
   },
 })
+
+const fallbackHeadingId = useId()
+const resolvedHeadingId = computed(() => props.headingId || `tool-faq-${fallbackHeadingId}`)
 </script>
 
 <template>
-  <section class="tool-faq" aria-labelledby="tool-faq-title">
+  <section class="tool-faq" :aria-labelledby="resolvedHeadingId">
     <div class="tool-faq__heading">
       <span class="tool-faq__eyebrow">{{ eyebrow }}</span>
-      <h2 id="tool-faq-title">{{ title }}</h2>
+      <h2 :id="resolvedHeadingId">{{ title }}</h2>
     </div>
 
     <div class="tool-faq__list">

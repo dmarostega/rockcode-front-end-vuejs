@@ -11,7 +11,7 @@ defineProps({
   description: {
     type: String,
     default:
-      'Use este bloco para explicar que a ferramenta nao envia, salva ou compartilha os dados digitados.',
+      'Use este bloco para explicar que a ferramenta não envia, salva ou compartilha os dados digitados.',
   },
   items: {
     type: Array,
