@@ -49,6 +49,12 @@ export const INDEXABLE_PAGE_METADATA = [
       'Formate, valide e minifique JSON online no navegador, com erro amigável, sem login, sem salvar dados e sem API externa.',
   },
   {
+    path: '/ferramentas/gerador-slug',
+    title: 'Gerador de slug online gratuito | Rock Code Labs',
+    description:
+      'Gere slugs amigáveis para URLs a partir de textos com espaços, acentos e pontuação, direto no navegador e sem salvar dados.',
+  },
+  {
     path: '/experiences',
     title: 'Experiências | Rock Code Labs',
     description:
