@@ -43,6 +43,15 @@ const hubTools = [
       'Digite um texto, gere uma versão em letras minúsculas separada por hífens e copie o resultado sem enviar dados para servidores.',
     route: '/ferramentas/gerador-slug',
   },
+  {
+    name: 'Contador de Caracteres e Palavras',
+    icon: 'Aa',
+    status: 'Disponível',
+    description: 'Conte caracteres, palavras e linhas em tempo real diretamente no navegador.',
+    details:
+      'Cole ou digite um texto para revisar tamanho, estrutura e quebras de linha sem login, backend, histórico ou envio para API externa.',
+    route: '/ferramentas/contador-caracteres-palavras',
+  },
 ]
 
 const relatedProjects = [

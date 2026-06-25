@@ -55,6 +55,12 @@ export const INDEXABLE_PAGE_METADATA = [
       'Gere slugs amigáveis para URLs a partir de textos com espaços, acentos e pontuação, direto no navegador e sem salvar dados.',
   },
   {
+    path: '/ferramentas/contador-caracteres-palavras',
+    title: 'Contador de caracteres e palavras online gratuito | Rock Code Labs',
+    description:
+      'Conte caracteres, palavras e linhas em tempo real no navegador, sem login, sem backend, sem API externa e sem salvar o texto digitado.',
+  },
+  {
     path: '/experiences',
     title: 'Experiências | Rock Code Labs',
     description:
