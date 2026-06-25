@@ -277,6 +277,7 @@ const relatedProjects = [
 
 .tool-icon {
   display: inline-flex;
+  flex: 0 0 3rem;
   align-items: center;
   justify-content: center;
   width: 3rem;
@@ -284,8 +285,12 @@ const relatedProjects = [
   border-radius: 16px;
   background: rgba(56, 189, 248, 0.12);
   color: #7dd3fc;
-  font-size: 0.9rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95rem;
   font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1;
+  text-align: center;
 }
 
 .status-badge {
