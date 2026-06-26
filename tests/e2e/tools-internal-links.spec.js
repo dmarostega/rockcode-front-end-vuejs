@@ -37,6 +37,14 @@ const publishedTools = [
     name: 'Calculadora de Desconto',
     path: '/ferramentas/calculadora-desconto',
   },
+  {
+    name: 'Comparador de Preço por Unidade',
+    path: '/ferramentas/comparador-preco-unidade',
+  },
+  {
+    name: 'Calculadora de Consumo de Combustível',
+    path: '/ferramentas/calculadora-consumo-combustivel',
+  },
 ]
 
 test('hub lista todas as ferramentas publicadas com links internos', async ({ page }) => {
@@ -77,6 +85,33 @@ test('hub separa ferramentas comuns, ferramentas dev e projeto relacionado', asy
     'href',
     'https://qrcodeflow.rockcodelabs.com.br',
   )
+})
+
+test('hub mantem cards confortaveis no desktop e uma coluna no mobile', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1100 })
+  await page.goto('/ferramentas')
+
+  const commonCards = page.locator('.tool-group').first().locator('.tool-card')
+  const discountCardBox = await commonCards.first().boundingBox()
+
+  expect(discountCardBox).not.toBeNull()
+  expect(discountCardBox.width).toBeGreaterThanOrEqual(300)
+  await expect(commonCards).toHaveCount(3)
+
+  await page.setViewportSize({ width: 390, height: 1000 })
+  await page.goto('/ferramentas')
+
+  const mobileCards = page.locator('.tool-card')
+  const firstMobileCardBox = await mobileCards.first().boundingBox()
+  const secondMobileCardBox = await mobileCards.nth(1).boundingBox()
+  const hasHorizontalOverflow = await page.evaluate(
+    () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+  )
+
+  expect(firstMobileCardBox).not.toBeNull()
+  expect(secondMobileCardBox).not.toBeNull()
+  expect(Math.abs(firstMobileCardBox.x - secondMobileCardBox.x)).toBeLessThanOrEqual(1)
+  expect(hasHorizontalOverflow).toBe(false)
 })
 
 test('paginas de ferramentas possuem retorno explicito para o hub', async ({ page }) => {
