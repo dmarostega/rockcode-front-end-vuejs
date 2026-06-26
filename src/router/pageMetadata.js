@@ -20,15 +20,15 @@ export const INDEXABLE_PAGE_METADATA = [
   },
   {
     path: '/apps',
-    title: 'Aplicativos | Rock Code Labs',
+    title: 'Micro-SaaS, aplicativos web e projetos Laravel/Vue | Rock Code Labs',
     description:
-      'Projetos e aplicações desenvolvidos pela Rock Code Labs usando Laravel, Vue, APIs REST e boas práticas de desenvolvimento web.',
+      'Conheça apps, MVPs e projetos web da Rock Code Labs criados com Laravel, Vue e foco em soluções simples para negócios reais.',
   },
   {
     path: '/ferramentas',
-    title: 'Ferramentas gratuitas | Rock Code Labs',
+    title: 'Ferramentas online gratuitas para uso diário e desenvolvedores | Rock Code Labs',
     description:
-      'Hub de ferramentas gratuitas da Rock Code Labs com utilitários simples para tarefas rápidas, projetos relacionados e novas entregas em preparação.',
+      'Use ferramentas online gratuitas da Rock Code Labs para cálculos, conversões e tarefas rápidas do dia a dia ou de desenvolvimento.',
   },
   {
     path: '/ferramentas/gerador-uuid',

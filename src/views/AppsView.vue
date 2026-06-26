@@ -204,42 +204,53 @@ const projects = [
         </p>
       </section>
 
-      <section class="projects-grid">
-        <a
-          v-for="project in projects"
-          :key="project.id"
-          :href="project.url"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="project-card"
-        >
-          <div class="project-top">
-            <div class="project-icon">{{ project.icon }}</div>
+      <section class="projects-section" aria-labelledby="projects-title">
+        <div class="section-heading">
+          <span class="section-label">Catálogo público</span>
+          <h2 id="projects-title">Projetos publicados e ideias em preparação.</h2>
+          <p>
+            A lista reúne produtos, MVPs e estudos com status visível para separar o que já pode
+            ser acessado do que ainda está em validação.
+          </p>
+        </div>
 
-            <div>
-              <span class="project-tag">{{ project.tag }}</span>
-              <span class="project-status">{{ project.status }}</span>
+        <div class="projects-grid">
+          <a
+            v-for="project in projects"
+            :key="project.id"
+            :href="project.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-card"
+          >
+            <div class="project-top">
+              <div class="project-icon">{{ project.icon }}</div>
+
+              <div>
+                <span class="project-tag">{{ project.tag }}</span>
+                <span class="project-status">{{ project.status }}</span>
+              </div>
             </div>
-          </div>
 
-          <h2>{{ project.name }}</h2>
+            <h3>{{ project.name }}</h3>
 
-          <p class="project-description">
-            {{ project.description }}
-          </p>
+            <p class="project-description">
+              {{ project.description }}
+            </p>
 
-          <p class="project-details">
-            {{ project.details }}
-          </p>
+            <p class="project-details">
+              {{ project.details }}
+            </p>
 
-          <div class="stack-list">
-            <span v-for="item in project.stack" :key="item">
-              {{ item }}
-            </span>
-          </div>
+            <div class="stack-list">
+              <span v-for="item in project.stack" :key="item">
+                {{ item }}
+              </span>
+            </div>
 
-          <strong>Acessar projeto →</strong>
-        </a>
+            <strong>Acessar projeto →</strong>
+          </a>
+        </div>
       </section>
 
       <section class="related-tools-section" aria-labelledby="related-tools-title">
@@ -273,7 +284,7 @@ const projects = [
 }
 
 .page-hero,
-.projects-grid,
+.projects-section,
 .related-tools-section {
   max-width: 1100px;
   margin: 0 auto;
@@ -312,6 +323,43 @@ const projects = [
   color: #cbd5e1;
   font-size: 1.08rem;
   line-height: 1.8;
+}
+
+.projects-section {
+  margin-top: 0.5rem;
+}
+
+.section-heading {
+  max-width: 760px;
+  margin: 0 auto 1.5rem;
+  text-align: center;
+}
+
+.section-label {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 1rem;
+  padding: 0.32rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.12);
+  color: #7dd3fc;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  line-height: 1.15;
+}
+
+.section-heading p {
+  margin: 1rem 0 0;
+  color: #94a3b8;
+  line-height: 1.7;
 }
 
 .projects-grid {
@@ -379,7 +427,7 @@ const projects = [
   color: #86efac;
 }
 
-.project-card h2 {
+.project-card h3 {
   margin: 0;
   color: #ffffff;
   font-size: 1.55rem;
