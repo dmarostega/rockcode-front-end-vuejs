@@ -79,6 +79,12 @@ export const INDEXABLE_PAGE_METADATA = [
       'Gere hashes SHA-256 e SHA-512 localmente no navegador para uso didático e de desenvolvimento, sem backend ou API externa.',
   },
   {
+    path: '/ferramentas/calculadora-desconto',
+    title: 'Calculadora de desconto percentual online gratuita | Rock Code Labs',
+    description:
+      'Calcule preço final e economia a partir de um desconto percentual, com moeda em pt-BR e processamento local no navegador.',
+  },
+  {
     path: '/experiences',
     title: 'Experiências | Rock Code Labs',
     description:

@@ -33,6 +33,10 @@ const publishedTools = [
     name: 'Gerador de Hash',
     path: '/ferramentas/gerador-hash',
   },
+  {
+    name: 'Calculadora de Desconto',
+    path: '/ferramentas/calculadora-desconto',
+  },
 ]
 
 test('hub lista todas as ferramentas publicadas com links internos', async ({ page }) => {
