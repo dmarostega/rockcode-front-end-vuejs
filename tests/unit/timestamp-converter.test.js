@@ -15,7 +15,7 @@ const mountTimestampConverter = () =>
   })
 
 describe('TimestampConverterView', () => {
-  it('converte timestamp em segundos para data UTC legivel', async () => {
+  it('converte timestamp em segundos para data UTC legível', async () => {
     const wrapper = mountTimestampConverter()
 
     await wrapper.get('#timestamp-input').setValue('1700000000')
@@ -23,7 +23,7 @@ describe('TimestampConverterView', () => {
     expect(wrapper.get('#timestamp-date-result').text()).toContain('2023-11-14T22:13:20.000Z')
   })
 
-  it('converte timestamp em milissegundos para data UTC legivel', async () => {
+  it('converte timestamp em milissegundos para data UTC legível', async () => {
     const wrapper = mountTimestampConverter()
 
     await wrapper.get('button[aria-pressed="false"]').trigger('click')
@@ -50,7 +50,7 @@ describe('TimestampConverterView', () => {
 
     await wrapper.get('#timestamp-input').setValue('abc')
 
-    expect(wrapper.get('[role="alert"]').text()).toContain('Use apenas numeros')
+    expect(wrapper.get('[role="alert"]').text()).toContain('Use apenas números')
     expect(wrapper.get('button.primary-action').attributes('disabled')).toBeDefined()
   })
 })

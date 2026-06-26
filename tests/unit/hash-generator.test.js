@@ -55,10 +55,10 @@ describe('HashGeneratorView', () => {
     expect(wrapper.get('#hash-result').text()).toBe(digestHex('SHA-512', 'Rock Code Labs'))
   })
 
-  it('exibe aviso claro de uso didatico e nao recomenda hash simples para senhas', () => {
+  it('exibe aviso claro de uso didático e não recomenda hash simples para senhas', () => {
     const wrapper = mountHashGenerator()
 
-    expect(wrapper.text()).toContain('Hash simples nao e recomendacao')
+    expect(wrapper.text()).toContain('Hash simples não é recomendação')
     expect(wrapper.text()).toContain('senhas')
   })
 })

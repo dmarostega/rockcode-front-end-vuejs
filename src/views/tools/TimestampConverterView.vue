@@ -17,19 +17,19 @@ const copyStatusTimeout = ref(null)
 
 const faqItems = [
   {
-    question: 'A conversao usa API externa?',
+    question: 'A conversão usa API externa?',
     answer:
-      'Nao. A conversao usa apenas recursos do navegador e nao envia timestamp ou data para servidores.',
+      'Não. A conversão usa apenas recursos do navegador e não envia timestamp ou data para servidores.',
   },
   {
-    question: 'Qual a diferenca entre segundos e milissegundos?',
+    question: 'Qual a diferença entre segundos e milissegundos?',
     answer:
       'Timestamp Unix em segundos tem 10 digitos em datas atuais. Em milissegundos costuma ter 13 digitos.',
   },
   {
     question: 'A data convertida considera meu fuso horario?',
     answer:
-      'A data legivel mostra uma versao local e uma versao UTC para facilitar comparacao com logs e APIs.',
+      'A data legível mostra uma versão local e uma versão UTC para facilitar comparação com logs e APIs.',
   },
 ]
 
@@ -46,7 +46,7 @@ const parseTimestamp = () => {
   if (!/^-?\d+$/.test(normalizedValue)) {
     return {
       date: null,
-      error: 'Use apenas numeros inteiros no timestamp.',
+      error: 'Use apenas números inteiros no timestamp.',
     }
   }
 
@@ -55,7 +55,7 @@ const parseTimestamp = () => {
   if (!Number.isSafeInteger(numericValue)) {
     return {
       date: null,
-      error: 'O timestamp informado e grande demais para converter com seguranca.',
+      error: 'O timestamp informado é grande demais para converter com segurança.',
     }
   }
 
@@ -65,7 +65,7 @@ const parseTimestamp = () => {
   if (Number.isNaN(date.getTime())) {
     return {
       date: null,
-      error: 'Nao foi possivel converter esse timestamp em uma data valida.',
+      error: 'Não foi possível converter esse timestamp em uma data válida.',
     }
   }
 
@@ -104,7 +104,7 @@ const dateToTimestampConversion = computed(() => {
     return {
       seconds: '',
       milliseconds: '',
-      error: 'Informe uma data valida para gerar o timestamp.',
+      error: 'Informe uma data válida para gerar o timestamp.',
     }
   }
 
@@ -145,7 +145,7 @@ const copyWithFallback = (value) => {
 
 const copyValue = async (value, label) => {
   if (!value) {
-    copyStatus.value = 'Gere um resultado valido antes de copiar.'
+    copyStatus.value = 'Gere um resultado válido antes de copiar.'
     resetCopyStatus()
     return
   }
@@ -159,7 +159,7 @@ const copyValue = async (value, label) => {
 
     copyStatus.value = `${label} copiado.`
   } catch {
-    copyStatus.value = 'Nao foi possivel copiar automaticamente.'
+    copyStatus.value = 'Não foi possível copiar automaticamente.'
   } finally {
     resetCopyStatus()
   }
@@ -184,11 +184,11 @@ const useDateExample = () => {
     <ToolHero
       eyebrow="Ferramenta gratuita"
       title="Conversor timestamp Unix e data"
-      description="Converta timestamp Unix em data legivel e data em timestamp diretamente no navegador, sem login, backend, API externa ou historico."
+      description="Converta timestamp Unix em data legível e data em timestamp diretamente no navegador, sem login, backend, API externa ou histórico."
     />
 
     <ToolResultCard
-      eyebrow="Conversao client-side"
+      eyebrow="Conversão client-side"
       title="Confira timestamps de APIs, logs e payloads."
       description="Use segundos ou milissegundos para transformar timestamp em data, ou informe uma data para gerar timestamp Unix."
     >
@@ -229,9 +229,9 @@ const useDateExample = () => {
 
           <output id="timestamp-date-result" class="result-box" aria-live="polite">
             <strong>Local</strong>
-            <span>{{ localDateResult || 'A data aparecera aqui' }}</span>
+            <span>{{ localDateResult || 'A data aparecerá aqui' }}</span>
             <strong>UTC</strong>
-            <span>{{ utcDateResult || 'A data ISO aparecera aqui' }}</span>
+            <span>{{ utcDateResult || 'A data ISO aparecerá aqui' }}</span>
           </output>
 
           <div class="button-row">
@@ -259,9 +259,9 @@ const useDateExample = () => {
 
           <output id="date-timestamp-result" class="result-box" aria-live="polite">
             <strong>Segundos</strong>
-            <span>{{ dateToTimestampConversion.seconds || 'O timestamp aparecera aqui' }}</span>
+            <span>{{ dateToTimestampConversion.seconds || 'O timestamp aparecerá aqui' }}</span>
             <strong>Milissegundos</strong>
-            <span>{{ dateToTimestampConversion.milliseconds || 'O timestamp aparecera aqui' }}</span>
+            <span>{{ dateToTimestampConversion.milliseconds || 'O timestamp aparecerá aqui' }}</span>
           </output>
 
           <div class="button-row">
@@ -288,10 +288,10 @@ const useDateExample = () => {
       </template>
     </ToolResultCard>
 
-    <section class="content-grid" aria-label="Informacoes sobre timestamps">
+    <section class="content-grid" aria-label="Informações sobre timestamps">
       <article class="info-panel">
         <span class="section-label">Quando usar</span>
-        <h2>Datas previsiveis para APIs, logs e testes.</h2>
+        <h2>Datas previsíveis para APIs, logs e testes.</h2>
         <p>
           Timestamps ajudam a comparar eventos, validar payloads e entender datas retornadas por
           sistemas que usam Unix time.
@@ -300,10 +300,10 @@ const useDateExample = () => {
 
       <article class="info-panel">
         <span class="section-label">Privacidade</span>
-        <h2>Conversao local, sem historico.</h2>
+        <h2>Conversão local, sem histórico.</h2>
         <p>
-          Os valores digitados ficam apenas no navegador durante o uso da pagina. Nao ha login,
-          backend obrigatorio, API externa ou persistencia.
+          Os valores digitados ficam apenas no navegador durante o uso da página. Não há login,
+          backend obrigatório, API externa ou persistência.
         </p>
       </article>
     </section>
@@ -312,7 +312,7 @@ const useDateExample = () => {
 
     <ToolFaq
       heading-id="timestamp-faq-title"
-      title="Duvidas rapidas sobre timestamp Unix."
+      title="Dúvidas rápidas sobre timestamp Unix."
       :items="faqItems"
     />
   </ToolPageLayout>

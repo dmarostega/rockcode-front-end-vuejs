@@ -19,19 +19,19 @@ const isGenerating = ref(false)
 
 const faqItems = [
   {
-    question: 'O texto digitado e enviado para algum servidor?',
+    question: 'O texto digitado é enviado para algum servidor?',
     answer:
-      'Nao. A geracao usa a Web Crypto API no navegador e nao envia o texto para backend ou API externa.',
+      'Não. A geração usa a Web Crypto API no navegador e não envia o texto para backend ou API externa.',
   },
   {
     question: 'Posso usar SHA-256 simples para armazenar senhas?',
     answer:
-      'Nao e uma recomendacao segura para senhas. Para senhas, use algoritmos apropriados com salt e custo, como Argon2, bcrypt ou scrypt.',
+      'Não é uma recomendação segura para senhas. Para senhas, use algoritmos apropriados com salt e custo, como Argon2, bcrypt ou scrypt.',
   },
   {
-    question: 'Para que esta ferramenta e util?',
+    question: 'Para que esta ferramenta é útil?',
     answer:
-      'Ela ajuda em testes, documentacao, exemplos tecnicos, verificacao didatica e comparacao de hashes em desenvolvimento.',
+      'Ela ajuda em testes, documentação, exemplos técnicos, verificação didática e comparação de hashes em desenvolvimento.',
   },
 ]
 
@@ -58,7 +58,7 @@ const generateHash = async () => {
   }
 
   if (!globalThis.crypto?.subtle) {
-    errorMessage.value = 'Seu navegador nao disponibilizou a Web Crypto API para gerar hashes.'
+    errorMessage.value = 'Seu navegador não disponibilizou a Web Crypto API para gerar hashes.'
     hashResult.value = ''
     return
   }
@@ -73,7 +73,7 @@ const generateHash = async () => {
 
     hashResult.value = formatDigestAsHex(digest)
   } catch {
-    errorMessage.value = 'Nao foi possivel gerar o hash neste navegador.'
+    errorMessage.value = 'Não foi possível gerar o hash neste navegador.'
     hashResult.value = ''
   } finally {
     isGenerating.value = false
@@ -122,7 +122,7 @@ const copyHash = async () => {
 
     copyStatus.value = 'Hash copiado.'
   } catch {
-    copyStatus.value = 'Nao foi possivel copiar automaticamente.'
+    copyStatus.value = 'Não foi possível copiar automaticamente.'
   } finally {
     resetCopyStatus()
   }
@@ -142,13 +142,13 @@ const useExample = async () => {
     <ToolHero
       eyebrow="Ferramenta gratuita"
       title="Gerador de hash SHA-256 e SHA-512"
-      description="Gere hashes localmente no navegador para testes, exemplos e uso didatico/dev, sem login, backend, API externa ou historico."
+      description="Gere hashes localmente no navegador para testes, exemplos e uso didático/dev, sem login, backend, API externa ou histórico."
     />
 
     <ToolResultCard
       eyebrow="Processamento local"
       title="Digite um texto e gere um hash."
-      description="A ferramenta usa a Web Crypto API do navegador. O texto digitado nao deve ser capturado por analytics e nao e enviado para servidores."
+      description="A ferramenta usa a Web Crypto API do navegador. O texto digitado não deve ser capturado por analytics e não é enviado para servidores."
     >
       <div class="hash-tool">
         <label class="field-label" for="hash-input">Texto para gerar hash</label>
@@ -181,13 +181,13 @@ const useExample = async () => {
         </div>
 
         <p class="security-note">
-          Uso local, didatico e de desenvolvimento. Hash simples nao e recomendacao para
+          Uso local, didático e de desenvolvimento. Hash simples não é recomendação para
           armazenamento moderno de senhas.
         </p>
 
         <label class="field-label" for="hash-result">Resultado {{ algorithm }}</label>
         <output id="hash-result" class="hash-result" aria-live="polite">
-          {{ hashResult || 'O hash aparecera aqui apos gerar' }}
+          {{ hashResult || 'O hash aparecerá aqui após gerar' }}
         </output>
 
         <p v-if="errorMessage" class="error-message" role="alert">{{ errorMessage }}</p>
@@ -218,29 +218,29 @@ const useExample = async () => {
       </template>
     </ToolResultCard>
 
-    <section class="content-grid" aria-label="Informacoes sobre hashes">
+    <section class="content-grid" aria-label="Informações sobre hashes">
       <article class="info-panel">
         <span class="section-label">Quando usar</span>
-        <h2>Comparacao rapida para testes e documentacao.</h2>
+        <h2>Comparação rápida para testes e documentação.</h2>
         <p>
-          Hashes sao uteis para exemplos tecnicos, conferencias didaticas e validacao de pequenos
+          Hashes são úteis para exemplos técnicos, conferências didáticas e validação de pequenos
           textos em ambiente de desenvolvimento.
         </p>
       </article>
 
       <article class="info-panel">
         <span class="section-label">Seguranca</span>
-        <h2>Nao substitui estrategia segura de senha.</h2>
+        <h2>Não substitui estratégia segura de senha.</h2>
         <p>
-          Para senhas, use solucoes apropriadas com salt e fator de custo. Esta pagina nao vende
-          SHA simples como solucao moderna para armazenamento de credenciais.
+          Para senhas, use soluções apropriadas com salt e fator de custo. Esta página não vende
+          SHA simples como solução moderna para armazenamento de credenciais.
         </p>
       </article>
     </section>
 
     <ToolPrivacyNotice />
 
-    <ToolFaq heading-id="hash-faq-title" title="Duvidas rapidas sobre hashes." :items="faqItems" />
+    <ToolFaq heading-id="hash-faq-title" title="Dúvidas rápidas sobre hashes." :items="faqItems" />
   </ToolPageLayout>
 </template>
 
