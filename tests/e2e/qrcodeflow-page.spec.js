@@ -15,6 +15,9 @@ test('pagina piloto do QRCodeFlow explica produto e aponta para app publico', as
   await expect(page.getByRole('heading', { level: 1, name: 'QRCodeFlow' })).toBeVisible()
   await expect(page.getByRole('heading', { name: /Links precisam circular fora da tela/ })).toBeVisible()
   await expect(page.getByRole('heading', { name: /MVP publicado/ })).toBeVisible()
+  await expect(page.getByRole('heading', { name: /gerar QR Codes/ })).toBeVisible()
+  await expect(page.getByRole('heading', { name: /escopo atual é enxuto/ })).toBeVisible()
+  await expect(page.getByRole('heading', { name: /Projeto Laravel\/Vue/ })).toBeVisible()
 
   await expect(page.getByRole('link', { name: 'Acessar QRCodeFlow' })).toHaveAttribute(
     'href',
