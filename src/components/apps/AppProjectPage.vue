@@ -112,7 +112,7 @@ defineProps({
           <span class="section-label">Status</span>
           <h2>{{ status.title }}</h2>
           <p>
-            <span v-if="status.prefix">{{ status.prefix }} </span>
+            <span v-if="status.prefix">{{ status.prefix }}&nbsp;</span>
             <code v-if="status.code">{{ status.code }}</code>
             <span v-if="status.suffix">{{ status.suffix }}</span>
           </p>
@@ -180,10 +180,10 @@ defineProps({
 <style scoped>
 .app-page {
   min-height: 100vh;
-  padding: 3rem 1.25rem 6rem;
+  padding: 3.5rem 1.25rem 6rem;
   background:
-    radial-gradient(circle at top, rgba(56, 189, 248, 0.14), transparent 30rem),
-    linear-gradient(180deg, #05090d 0%, #0f172a 55%, #111827 100%);
+    radial-gradient(circle at 50% 0, rgba(56, 189, 248, 0.18), transparent 28rem),
+    linear-gradient(180deg, #05090d 0%, #0f172a 48%, #111827 100%);
   color: #f8fafc;
 }
 
@@ -197,14 +197,17 @@ defineProps({
 }
 
 .hero-section {
-  padding: 2rem 0 3rem;
+  max-width: 940px;
+  padding: 1.25rem 0 3.25rem;
   text-align: center;
 }
 
 .back-link {
-  display: inline-flex;
-  margin-bottom: 1.4rem;
+  display: flex;
+  width: fit-content;
+  margin: 0 auto 1.25rem;
   color: #7dd3fc;
+  font-size: 0.9rem;
   font-weight: 900;
   text-decoration: none;
 }
@@ -227,24 +230,24 @@ defineProps({
 .eyebrow {
   padding: 0.42rem 0.8rem;
   border: 1px solid rgba(56, 189, 248, 0.35);
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(15, 23, 42, 0.82);
   color: #7dd3fc;
   font-size: 0.78rem;
 }
 
 .hero-section h1 {
   max-width: 880px;
-  margin: 1.3rem auto 0;
+  margin: 1.1rem auto 0;
   color: #ffffff;
-  font-size: clamp(2.4rem, 6vw, 4.8rem);
+  font-size: clamp(2.65rem, 7vw, 5.25rem);
   line-height: 1.05;
 }
 
 .hero-section p {
   max-width: 760px;
-  margin: 1.3rem auto 0;
+  margin: 1.2rem auto 0;
   color: #cbd5e1;
-  font-size: 1.08rem;
+  font-size: 1.12rem;
   line-height: 1.8;
 }
 
@@ -253,15 +256,15 @@ defineProps({
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 2.1rem;
 }
 
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 46px;
-  padding: 0.85rem 1.25rem;
+  min-height: 48px;
+  padding: 0.9rem 1.35rem;
   border-radius: 12px;
   font-weight: 900;
   text-decoration: none;
@@ -289,7 +292,7 @@ defineProps({
 .content-grid,
 .related-grid {
   display: grid;
-  gap: 1rem;
+  gap: 1.2rem;
 }
 
 .content-grid,
@@ -301,17 +304,23 @@ defineProps({
 .list-section,
 .stack-section,
 .related-card {
-  padding: 1.7rem;
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  border-radius: 22px;
-  background: rgba(15, 23, 42, 0.74);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+  padding: 1.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.82);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
+}
+
+.info-panel,
+.list-section,
+.stack-section {
+  text-align: left;
 }
 
 .list-section,
 .stack-section,
 .related-section {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .section-label {
@@ -327,37 +336,58 @@ defineProps({
 .stack-section h2 {
   margin: 0;
   color: #ffffff;
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  line-height: 1.2;
 }
 
 .info-panel p,
 .stack-section p,
 .related-card p,
 .list-section li {
-  color: #94a3b8;
+  color: #cbd5e1;
   line-height: 1.75;
 }
 
 .info-panel p,
 .stack-section p,
 .related-card p {
-  margin: 0.7rem 0 0;
+  margin: 0.85rem 0 0;
 }
 
 .info-panel code {
   color: #bae6fd;
   font-family: 'Courier New', Courier, monospace;
+  overflow-wrap: anywhere;
 }
 
 .section-heading {
   max-width: 760px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.15rem;
 }
 
 .list-section ul {
   display: grid;
-  gap: 0.85rem;
+  gap: 0.75rem;
   margin: 1rem 0 0;
-  padding-left: 1.2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.list-section li {
+  position: relative;
+  padding-left: 1.25rem;
+  color: #cbd5e1;
+}
+
+.list-section li::before {
+  position: absolute;
+  top: 0.72em;
+  left: 0;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: #38bdf8;
+  content: '';
 }
 
 .stack-section {
@@ -371,6 +401,7 @@ defineProps({
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  justify-content: flex-end;
 }
 
 .stack-list span {
@@ -398,15 +429,41 @@ defineProps({
 }
 
 .related-card strong {
+  display: block;
   color: #bae6fd;
   font-size: 1.12rem;
 }
 
 @media (max-width: 820px) {
+  .app-page {
+    padding: 2rem 1rem 5.5rem;
+  }
+
   .content-grid,
   .related-grid,
   .stack-section {
     grid-template-columns: 1fr;
+  }
+
+  .hero-section {
+    padding-top: 0.5rem;
+    padding-bottom: 2.25rem;
+  }
+
+  .hero-section p {
+    font-size: 1rem;
+  }
+
+  .info-panel,
+  .list-section,
+  .stack-section,
+  .related-card {
+    padding: 1.2rem;
+    border-radius: 14px;
+  }
+
+  .stack-list {
+    justify-content: flex-start;
   }
 
   .button {
