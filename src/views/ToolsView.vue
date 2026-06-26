@@ -61,6 +61,24 @@ const hubTools = [
       'Use para converter espaços, acentos, query strings e caracteres especiais sem backend, login, API externa ou histórico.',
     route: '/ferramentas/url-encode-decode',
   },
+  {
+    name: 'Conversor Timestamp',
+    icon: 'TS',
+    status: 'Disponível',
+    description: 'Converta timestamp Unix em data legível e data em timestamp direto no navegador.',
+    details:
+      'Use segundos ou milissegundos para conferir datas, exemplos de APIs, logs e payloads sem backend, login, API externa ou histórico.',
+    route: '/ferramentas/conversor-timestamp',
+  },
+  {
+    name: 'Gerador de Hash',
+    icon: '#',
+    status: 'Disponível',
+    description: 'Gere SHA-256 e SHA-512 localmente para testes, exemplos e uso didático/dev.',
+    details:
+      'Digite um texto, escolha o algoritmo e copie o hash sem enviar dados para servidores ou salvar histórico.',
+    route: '/ferramentas/gerador-hash',
+  },
 ]
 
 const relatedProjects = [
