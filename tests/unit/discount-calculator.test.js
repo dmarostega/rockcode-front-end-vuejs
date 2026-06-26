@@ -14,7 +14,9 @@ describe('discountCalculator', () => {
     expect(calculateDiscount('199,90', '10').finalPrice).toBe(179.91)
     expect(calculateDiscount('199.90', '10.5').discountAmount).toBe(20.99)
     expect(parseDiscountNumber('15,5')).toBe(15.5)
+    expect(parseDiscountNumber('1.000')).toBe(1000)
     expect(parseDiscountNumber('1.000,50')).toBe(1000.5)
+    expect(parseDiscountNumber('199.90')).toBe(199.9)
     expect(parseDiscountNumber('1,000.50')).toBe(1000.5)
   })
 

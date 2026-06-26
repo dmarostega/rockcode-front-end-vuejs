@@ -21,6 +21,10 @@ const normalizeNumericInput = (value) => {
     return compactValue.replaceAll(thousandSeparator, '').replace(decimalSeparator, '.')
   }
 
+  if (lastDotIndex !== -1 && /^\d{1,3}(\.\d{3})+$/.test(compactValue)) {
+    return compactValue.replaceAll('.', '')
+  }
+
   return compactValue.replace(',', '.')
 }
 
