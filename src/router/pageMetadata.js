@@ -25,6 +25,12 @@ export const INDEXABLE_PAGE_METADATA = [
       'Conheça apps, MVPs e projetos web da Rock Code Labs criados com Laravel, Vue e foco em soluções simples para negócios reais.',
   },
   {
+    path: '/apps/qrcodeflow',
+    title: 'QRCodeFlow: gerador de QR Code para links | Rock Code Labs',
+    description:
+      'Conheça o QRCodeFlow, app público da Rock Code Labs para gerar QR Codes de links com fluxo simples e MVP publicado.',
+  },
+  {
     path: '/ferramentas',
     title: 'Ferramentas online gratuitas para uso diário e desenvolvedores | Rock Code Labs',
     description:
