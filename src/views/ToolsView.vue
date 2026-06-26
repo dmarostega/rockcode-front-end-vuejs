@@ -91,6 +91,24 @@ const commonUserTools = [
       'Informe o preço original e o percentual de desconto para conferir ofertas direto no navegador, sem login, backend ou histórico.',
     route: '/ferramentas/calculadora-desconto',
   },
+  {
+    name: 'Comparador de Preço por Unidade',
+    icon: 'R$',
+    status: 'Disponível',
+    description: 'Compare custo por unidade, quilo, litro ou metro entre duas opções.',
+    details:
+      'Informe preço, quantidade e unidade para descobrir qual embalagem compensa mais em mercado, farmácia ou material de construção.',
+    route: '/ferramentas/comparador-preco-unidade',
+  },
+  {
+    name: 'Calculadora de Consumo de Combustível',
+    icon: 'KM',
+    status: 'Disponível',
+    description: 'Calcule km/l, custo por km e gasto estimado com combustível.',
+    details:
+      'Use distância, litros consumidos e preço opcional sem informar placa, localização, rota real ou dados pessoais.',
+    route: '/ferramentas/calculadora-consumo-combustivel',
+  },
 ]
 
 const relatedProjects = [
