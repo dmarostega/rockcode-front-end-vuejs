@@ -125,6 +125,25 @@ test('hub mantem cards confortaveis no desktop e uma coluna no mobile', async ({
   expect(lastRowCards).toHaveLength(2)
   expect(Math.abs(lastRowCenter - developerGridCenter)).toBeLessThanOrEqual(2)
 
+  const firstCardBox = await commonCards.first().boundingBox()
+  const firstCardCtaBox = await commonCards.first().locator('strong').boundingBox()
+
+  expect(firstCardBox).not.toBeNull()
+  expect(firstCardCtaBox).not.toBeNull()
+  expect(
+    Math.abs(
+      firstCardCtaBox.x + firstCardCtaBox.width / 2 - (firstCardBox.x + firstCardBox.width / 2),
+    ),
+  ).toBeLessThanOrEqual(2)
+
+  const relatedCard = page.getByRole('link', { name: /QRCodeFlow/ })
+  const relatedDescriptionBox = await relatedCard.locator('p').boundingBox()
+  const relatedCtaBox = await relatedCard.locator('strong').boundingBox()
+
+  expect(relatedDescriptionBox).not.toBeNull()
+  expect(relatedCtaBox).not.toBeNull()
+  expect(relatedCtaBox.y).toBeGreaterThan(relatedDescriptionBox.y + relatedDescriptionBox.height)
+
   await page.setViewportSize({ width: 390, height: 1000 })
   await page.goto('/ferramentas')
 

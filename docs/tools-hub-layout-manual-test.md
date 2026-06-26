@@ -8,8 +8,9 @@ Issue de origem: <https://github.com/dmarostega/rockcode-front-end-vuejs/issues/
 2. Confirmar que a secao "Ferramentas para usuarios comuns" exibe os cards com largura confortavel.
 3. Confirmar que "Calculadora de Desconto" nao fica estreita nem com quebras excessivas de texto.
 4. Confirmar que linhas incompletas de cards ficam centralizadas, sem sobrar coluna vazia destacada na direita.
-5. Confirmar que "Ferramentas para desenvolvedores" permanece organizada com espacamento consistente.
-6. Confirmar que QRCodeFlow continua separado em "Projeto relacionado".
+5. Confirmar que textos e links "Acessar ferramenta" ficam centralizados dentro dos cards.
+6. Confirmar que "Ferramentas para desenvolvedores" permanece organizada com espacamento consistente.
+7. Confirmar que QRCodeFlow continua separado em "Projeto relacionado", com o link abaixo do texto e centralizado.
 
 ## Mobile
 
