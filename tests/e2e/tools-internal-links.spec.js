@@ -25,6 +25,14 @@ const publishedTools = [
     name: 'URL Encode/Decode',
     path: '/ferramentas/url-encode-decode',
   },
+  {
+    name: 'Conversor Timestamp',
+    path: '/ferramentas/conversor-timestamp',
+  },
+  {
+    name: 'Gerador de Hash',
+    path: '/ferramentas/gerador-hash',
+  },
 ]
 
 test('hub lista todas as ferramentas publicadas com links internos', async ({ page }) => {

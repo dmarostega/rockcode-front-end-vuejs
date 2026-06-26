@@ -67,6 +67,18 @@ export const INDEXABLE_PAGE_METADATA = [
       'Codifique e decodifique URLs, parâmetros e textos no navegador, sem login, sem backend, sem API externa e sem salvar a entrada digitada.',
   },
   {
+    path: '/ferramentas/conversor-timestamp',
+    title: 'Conversor timestamp Unix e data online gratuito | Rock Code Labs',
+    description:
+      'Converta timestamp Unix em data legível e data em timestamp no navegador, sem login, backend, API externa ou histórico.',
+  },
+  {
+    path: '/ferramentas/gerador-hash',
+    title: 'Gerador SHA-256 e SHA-512 online gratuito | Rock Code Labs',
+    description:
+      'Gere hashes SHA-256 e SHA-512 localmente no navegador para uso didático e de desenvolvimento, sem backend ou API externa.',
+  },
+  {
     path: '/experiences',
     title: 'Experiências | Rock Code Labs',
     description:

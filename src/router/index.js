@@ -76,6 +76,18 @@ const router = createRouter({
       meta: getPageMetadata('/ferramentas/url-encode-decode'),
     },
     {
+      path: '/ferramentas/conversor-timestamp',
+      name: 'timestamp-converter',
+      component: () => import('../views/tools/TimestampConverterView.vue'),
+      meta: getPageMetadata('/ferramentas/conversor-timestamp'),
+    },
+    {
+      path: '/ferramentas/gerador-hash',
+      name: 'hash-generator',
+      component: () => import('../views/tools/HashGeneratorView.vue'),
+      meta: getPageMetadata('/ferramentas/gerador-hash'),
+    },
+    {
       path: '/experiences',
       name: 'experiences',
       component: () => import('../views/ExperiencesView.vue'),
