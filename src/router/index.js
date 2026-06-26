@@ -64,6 +64,12 @@ const router = createRouter({
       meta: getPageMetadata('/ferramentas/gerador-slug'),
     },
     {
+      path: '/ferramentas/contador-caracteres-palavras',
+      name: 'character-word-counter',
+      component: () => import('../views/tools/CharacterWordCounterView.vue'),
+      meta: getPageMetadata('/ferramentas/contador-caracteres-palavras'),
+    },
+    {
       path: '/experiences',
       name: 'experiences',
       component: () => import('../views/ExperiencesView.vue'),
