@@ -6,6 +6,7 @@ import {
   ToolHero,
   ToolPageLayout,
   ToolPrivacyNotice,
+  ToolRelatedLinks,
   ToolResultCard,
 } from '@/components/tools'
 import {
@@ -34,6 +35,23 @@ const faqItems = [
     question: 'O resultado é exato?',
     answer:
       'Não. É uma estimativa simples, porque consumo real varia com trânsito, carga, calibragem, trajeto e forma de condução.',
+  },
+]
+
+const relatedTools = [
+  {
+    kicker: 'Compras',
+    title: 'Calculadora de desconto percentual',
+    description:
+      'Confira o preço final de promoções antes de comparar abastecimento, acessórios ou itens de viagem.',
+    to: '/ferramentas/calculadora-desconto',
+  },
+  {
+    kicker: 'Comparação',
+    title: 'Comparador de preço por unidade',
+    description:
+      'Compare custo por litro, unidade ou embalagem quando houver opções diferentes para a mesma compra.',
+    to: '/ferramentas/comparador-preco-unidade',
   },
 ]
 
@@ -174,6 +192,12 @@ const useExample = () => {
     <ToolPrivacyNotice
       estimate
       estimate-description="O consumo real pode variar conforme trânsito, rota, carga, manutenção e forma de condução."
+    />
+
+    <ToolRelatedLinks
+      title="Continue estimando custos do dia a dia."
+      description="Use outras ferramentas de economia quando a decisão envolver promoções, embalagens ou comparação de preços."
+      :links="relatedTools"
     />
 
     <ToolFaq

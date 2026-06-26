@@ -63,6 +63,22 @@ test('hub lista todas as ferramentas publicadas com links internos', async ({ pa
   )
 })
 
+test('home e apps apontam para o hub de ferramentas quando relacionado', async ({ page }) => {
+  await page.goto('/')
+
+  await expect(page.getByRole('link', { name: /Usar ferramentas gratuitas/ })).toHaveAttribute(
+    'href',
+    '/ferramentas',
+  )
+
+  await page.goto('/apps')
+
+  await expect(page.getByRole('link', { name: /Ver ferramentas gratuitas/ })).toHaveAttribute(
+    'href',
+    '/ferramentas',
+  )
+})
+
 test('hub separa ferramentas comuns, ferramentas dev e projeto relacionado', async ({ page }) => {
   await page.goto('/ferramentas')
 
@@ -225,5 +241,15 @@ test('ferramentas de compra apontam apenas para relacionadas publicadas', async 
   await page.goto('/ferramentas/calculadora-consumo-combustivel')
 
   await expect(page.getByRole('link', { name: /custo de viagem/i })).toHaveCount(0)
-  await expect(page.getByRole('region', { name: /Ferramentas relacionadas/i })).toHaveCount(0)
+
+  const fuelRelatedTools = page.getByRole('region', {
+    name: /Ferramentas relacionadas/i,
+  })
+
+  await expect(
+    fuelRelatedTools.getByRole('link', { name: /Calculadora de desconto/i }),
+  ).toHaveAttribute('href', '/ferramentas/calculadora-desconto')
+  await expect(
+    fuelRelatedTools.getByRole('link', { name: /Comparador de preço/i }),
+  ).toHaveAttribute('href', '/ferramentas/comparador-preco-unidade')
 })

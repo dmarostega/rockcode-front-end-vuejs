@@ -1,6 +1,7 @@
 <script setup>
 import LayoutDefault from '@/components/defaults/LayoutDefault.vue'
 import NavBoard from '@/components/defaults/NavBoard.vue'
+import { RouterLink } from 'vue-router'
 
 const projects = [
   {
@@ -240,6 +241,21 @@ const projects = [
           <strong>Acessar projeto →</strong>
         </a>
       </section>
+
+      <section class="related-tools-section" aria-labelledby="related-tools-title">
+        <div>
+          <span class="section-label">Ferramentas gratuitas</span>
+          <h2 id="related-tools-title">Utilitários menores ficam no hub de ferramentas.</h2>
+          <p>
+            Além dos projetos e MVPs, a Rock Code Labs mantém ferramentas online simples para
+            conversões, cálculos e tarefas rápidas de desenvolvimento.
+          </p>
+        </div>
+
+        <RouterLink to="/ferramentas" class="related-tools-link">
+          Ver ferramentas gratuitas →
+        </RouterLink>
+      </section>
     </main>
 
     <NavBoard />
@@ -257,7 +273,8 @@ const projects = [
 }
 
 .page-hero,
-.projects-grid {
+.projects-grid,
+.related-tools-section {
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -399,9 +416,65 @@ const projects = [
   color: #38bdf8;
 }
 
+.related-tools-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding: 1.7rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 24px;
+  background: rgba(15, 23, 42, 0.78);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+}
+
+.section-label {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 1rem;
+  padding: 0.32rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.12);
+  color: #7dd3fc;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.related-tools-section h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.55rem;
+}
+
+.related-tools-section p {
+  max-width: 700px;
+  margin: 0.7rem 0 0;
+  color: #94a3b8;
+  line-height: 1.75;
+}
+
+.related-tools-link {
+  flex: 0 0 auto;
+  color: #38bdf8;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.related-tools-link:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 820px) {
   .projects-grid {
     grid-template-columns: 1fr;
+  }
+
+  .related-tools-section {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .project-card {

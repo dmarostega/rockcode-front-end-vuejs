@@ -76,6 +76,10 @@ const featuredProjects = [
         <RouterLink to="/about" class="button button-secondary">
           Sobre a Rock Code Labs
         </RouterLink>
+
+        <RouterLink to="/ferramentas" class="button button-secondary">
+          Usar ferramentas gratuitas
+        </RouterLink>
       </div>
     </section>
 
