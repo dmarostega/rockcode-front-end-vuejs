@@ -10,10 +10,23 @@ const expectNoHorizontalOverflow = async (page) => {
   expect(hasHorizontalOverflow).toBe(false)
 }
 
+const expectNotCoveredByFixedNav = async (page, locator) => {
+  await locator.scrollIntoViewIfNeeded()
+
+  const [targetBox, navBox] = await Promise.all([
+    locator.boundingBox(),
+    page.locator('.nav-footer').boundingBox(),
+  ])
+
+  expect(targetBox).not.toBeNull()
+  expect(navBox).not.toBeNull()
+  expect(targetBox.y + targetBox.height).toBeLessThanOrEqual(navBox.y)
+}
+
 const longText = Array.from(
   { length: 18 },
   (_, index) =>
-    `Linha ${index + 1}: texto longo para validar campos grandes, quebra visual e resultado sem persistencia.`,
+    `Linha ${index + 1}: texto longo para validar campos grandes, quebra visual e resultado sem persistência.`,
 ).join('\n')
 
 const longJson = JSON.stringify({
@@ -50,8 +63,13 @@ test('valida Base64 em desktop e mobile com entradas simples, invalidas e longas
   await page.reload()
   await page.getByLabel('Entrada').fill(longText)
 
-  await expect(page.getByRole('button', { name: 'Copiar resultado' })).toBeVisible()
-  await expect(page.getByLabel('Resultado')).toBeVisible()
+  const base64CopyButton = page.getByRole('button', { name: 'Copiar resultado' })
+  const base64Result = page.getByLabel('Resultado')
+
+  await expect(base64CopyButton).toBeVisible()
+  await expect(base64Result).toBeVisible()
+  await expectNotCoveredByFixedNav(page, base64Result)
+  await expectNotCoveredByFixedNav(page, base64CopyButton)
   await expectNoHorizontalOverflow(page)
   await page.screenshot({ fullPage: true, path: screenshotPath('base64-mobile') })
 })
@@ -85,8 +103,13 @@ test('valida JSON em desktop e mobile com entradas validas, invalidas, minificad
   await page.getByLabel('Entrada JSON').fill(longJson)
   await page.getByRole('button', { name: 'Formatar JSON' }).click()
 
-  await expect(page.getByRole('button', { name: 'Copiar resultado' })).toBeVisible()
-  await expect(page.getByLabel('Resultado')).toBeVisible()
+  const jsonCopyButton = page.getByRole('button', { name: 'Copiar resultado' })
+  const jsonResult = page.getByLabel('Resultado')
+
+  await expect(jsonCopyButton).toBeVisible()
+  await expect(jsonResult).toBeVisible()
+  await expectNotCoveredByFixedNav(page, jsonResult)
+  await expectNotCoveredByFixedNav(page, jsonCopyButton)
   await expectNoHorizontalOverflow(page)
   await page.screenshot({ fullPage: true, path: screenshotPath('json-mobile') })
 })

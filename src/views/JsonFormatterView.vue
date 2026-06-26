@@ -337,6 +337,7 @@ handleJsonAction('format')
 
 textarea {
   width: 100%;
+  scroll-margin-bottom: 6rem;
   resize: vertical;
   padding: 1rem;
   border: 1px solid rgba(148, 163, 184, 0.22);
@@ -370,6 +371,7 @@ textarea:focus {
 .primary-action,
 .secondary-action {
   min-height: 2.85rem;
+  scroll-margin-bottom: 6rem;
   padding: 0.75rem 1rem;
   border-radius: 12px;
   cursor: pointer;

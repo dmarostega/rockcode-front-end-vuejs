@@ -4,9 +4,9 @@ Issue de origem: <https://github.com/dmarostega/rockcode-front-end-vuejs/issues/
 
 ## Objetivo
 
-Validar que `/ferramentas/base64` e `/ferramentas/formatador-json` continuam legiveis em desktop e mobile com entradas simples, invalidas, minificadas e longas.
+Validar que `/ferramentas/base64` e `/ferramentas/formatador-json` continuam legíveis em desktop e mobile com entradas simples, inválidas, minificadas e longas.
 
-## Evidencias esperadas
+## Evidências esperadas
 
 O teste E2E `tests/e2e/base64-json-visual-smoke.spec.js` captura screenshots locais em:
 
@@ -18,18 +18,18 @@ O teste E2E `tests/e2e/base64-json-visual-smoke.spec.js` captura screenshots loc
 ## Base64
 
 1. Abrir `/ferramentas/base64` em desktop.
-2. Confirmar H1, card principal, campos de entrada/resultado, botoes, privacidade e FAQ sem sobreposicao.
-3. Informar `Rock Code Labs` e confirmar resultado Base64 visivel.
-4. Alternar para `Base64 para texto`, informar `%%%` e confirmar erro amigavel.
-5. Informar texto longo com varias linhas e confirmar que entrada, resultado e botoes nao estouram o layout.
-6. Repetir em mobile com largura aproximada de 390 px e confirmar que o menu fixo nao cobre a interacao principal.
+2. Confirmar H1, card principal, campos de entrada/resultado, botões, privacidade e FAQ sem sobreposição.
+3. Informar `Rock Code Labs` e confirmar resultado Base64 visível.
+4. Alternar para `Base64 para texto`, informar `%%%` e confirmar erro amigável.
+5. Informar texto longo com várias linhas e confirmar que entrada, resultado e botões não estouram o layout.
+6. Repetir em mobile com largura aproximada de 390 px e confirmar que o menu fixo não cobre a interação principal.
 
 ## JSON
 
 1. Abrir `/ferramentas/formatador-json` em desktop.
-2. Confirmar H1, card principal, campos de entrada/resultado, botoes, privacidade e FAQ sem sobreposicao.
-3. Informar JSON minificado valido e clicar em `Formatar JSON`.
-4. Confirmar resultado formatado e botao `Copiar resultado` habilitado.
-5. Informar JSON invalido e confirmar erro amigavel.
-6. Informar JSON longo com arrays e objetos aninhados, clicar em `Minificar JSON` e confirmar que o resultado nao estoura o layout.
-7. Repetir em mobile com largura aproximada de 390 px e confirmar que o menu fixo nao cobre a interacao principal.
+2. Confirmar H1, card principal, campos de entrada/resultado, botões, privacidade e FAQ sem sobreposição.
+3. Informar JSON minificado válido e clicar em `Formatar JSON`.
+4. Confirmar resultado formatado e botão `Copiar resultado` habilitado.
+5. Informar JSON inválido e confirmar erro amigável.
+6. Informar JSON longo com arrays e objetos aninhados, clicar em `Minificar JSON` e confirmar que o resultado não estoura o layout.
+7. Repetir em mobile com largura aproximada de 390 px e confirmar que o menu fixo não cobre a interação principal.
