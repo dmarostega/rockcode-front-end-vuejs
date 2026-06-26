@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import LayoutDefault from '@/components/defaults/LayoutDefault.vue'
 import NavBoard from '@/components/defaults/NavBoard.vue'
+import { ToolBackLink } from '@/components/tools'
 
 const textEncoder = new TextEncoder()
 const textDecoder = new TextDecoder('utf-8', { fatal: true })
@@ -121,6 +122,8 @@ convertInput()
 <template>
   <LayoutDefault>
     <main class="tool-page">
+      <ToolBackLink />
+
       <section class="tool-hero">
         <span class="eyebrow">Ferramenta gratuita</span>
 
@@ -486,6 +489,10 @@ textarea:focus {
 }
 
 @media (max-width: 820px) {
+  :global(.tool-back-link) {
+    max-width: 100%;
+  }
+
   .tool-panel,
   .content-grid,
   .faq-list,
