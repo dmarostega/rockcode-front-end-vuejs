@@ -13,6 +13,7 @@ test('calcula desconto percentual com preço em vírgula', async ({ page }) => {
 
   await expect(result.getByText('R$ 29,99')).toBeVisible()
   await expect(result.getByText('R$ 169,91')).toBeVisible()
+  await expect(page.getByText('Resultado estimado.')).toBeVisible()
 })
 
 test('calcula limites de 0% e 100%', async ({ page }) => {

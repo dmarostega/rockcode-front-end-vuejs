@@ -11,7 +11,20 @@ defineProps({
   description: {
     type: String,
     default:
-      'O conteúdo digitado é processado nesta página, sem envio para backend, API externa ou upload. A ferramenta não cria histórico nem persiste a entrada.',
+      'Os dados digitados ficam no seu navegador enquanto você usa esta página. Eles não são salvos em histórico nem enviados para backend ou APIs externas.',
+  },
+  estimate: {
+    type: Boolean,
+    default: false,
+  },
+  estimateTitle: {
+    type: String,
+    default: 'Resultado estimado.',
+  },
+  estimateDescription: {
+    type: String,
+    default:
+      'Use o resultado como referência. Valores finais podem variar conforme preços, condições de compra, arredondamentos ou informações digitadas.',
   },
   items: {
     type: Array,
@@ -29,6 +42,11 @@ defineProps({
     <ul v-if="items.length" class="tool-privacy-notice__list">
       <li v-for="item in items" :key="item">{{ item }}</li>
     </ul>
+
+    <div v-if="estimate" class="tool-privacy-notice__estimate">
+      <strong>{{ estimateTitle }}</strong>
+      <span>{{ estimateDescription }}</span>
+    </div>
   </article>
 </template>
 
@@ -77,5 +95,26 @@ defineProps({
   gap: 0.45rem;
   margin: 1rem 0 0;
   padding-left: 1.2rem;
+}
+
+.tool-privacy-notice__estimate {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  border-radius: 14px;
+  background: rgba(14, 116, 144, 0.16);
+}
+
+.tool-privacy-notice__estimate strong {
+  color: #e0f2fe;
+  font-size: 0.92rem;
+}
+
+.tool-privacy-notice__estimate span {
+  color: #bae6fd;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 </style>

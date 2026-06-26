@@ -16,6 +16,7 @@ test('compara preço por unidade e indica a melhor opção', async ({ page }) =>
   await expect(result.getByText('Arroz pacote 1 compensa mais')).toBeVisible()
   await expect(result.getByText('R$ 4,58 por kg')).toBeVisible()
   await expect(result.getByText('R$ 5,20 por kg')).toBeVisible()
+  await expect(page.getByText('Resultado estimado.')).toBeVisible()
 })
 
 test('exibe erro para unidades incompatíveis', async ({ page }) => {

@@ -136,11 +136,6 @@ const useExample = () => {
           </span>
         </output>
 
-        <p class="estimate-notice">
-          Resultado estimado. O consumo real pode variar conforme trânsito, rota, carga, manutenção
-          e forma de condução.
-        </p>
-
         <div class="button-row">
           <button type="button" class="primary-action" @click="calculate">Calcular consumo</button>
           <button type="button" class="secondary-action" @click="useExample">Usar exemplo</button>
@@ -176,7 +171,10 @@ const useExample = () => {
       </article>
     </section>
 
-    <ToolPrivacyNotice />
+    <ToolPrivacyNotice
+      estimate
+      estimate-description="O consumo real pode variar conforme trânsito, rota, carga, manutenção e forma de condução."
+    />
 
     <ToolFaq
       heading-id="fuel-consumption-faq-title"
@@ -267,8 +265,7 @@ input:focus {
   line-height: 1.25;
 }
 
-.error-message,
-.estimate-notice {
+.error-message {
   margin: 0;
   padding: 0.9rem 1rem;
   border-radius: 12px;
@@ -281,12 +278,6 @@ input:focus {
   border: 1px solid rgba(248, 113, 113, 0.28);
   background: rgba(127, 29, 29, 0.28);
   color: #fecaca;
-}
-
-.estimate-notice {
-  border: 1px solid rgba(56, 189, 248, 0.22);
-  background: rgba(14, 116, 144, 0.16);
-  color: #bae6fd;
 }
 
 .button-row {
