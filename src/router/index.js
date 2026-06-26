@@ -88,6 +88,12 @@ const router = createRouter({
       meta: getPageMetadata('/ferramentas/gerador-hash'),
     },
     {
+      path: '/ferramentas/calculadora-desconto',
+      name: 'discount-calculator',
+      component: () => import('../views/tools/DiscountCalculatorView.vue'),
+      meta: getPageMetadata('/ferramentas/calculadora-desconto'),
+    },
+    {
       path: '/experiences',
       name: 'experiences',
       component: () => import('../views/ExperiencesView.vue'),

@@ -79,6 +79,15 @@ const hubTools = [
       'Digite um texto, escolha o algoritmo e copie o hash sem enviar dados para servidores ou salvar histórico.',
     route: '/ferramentas/gerador-hash',
   },
+  {
+    name: 'Calculadora de Desconto',
+    icon: '%',
+    status: 'Disponível',
+    description: 'Calcule valor economizado e preço final a partir de um desconto percentual.',
+    details:
+      'Informe o preço original e o percentual de desconto para conferir ofertas direto no navegador, sem login, backend ou histórico.',
+    route: '/ferramentas/calculadora-desconto',
+  },
 ]
 
 const relatedProjects = [
