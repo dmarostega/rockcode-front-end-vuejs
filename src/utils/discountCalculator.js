@@ -1,48 +1,10 @@
-export const currencyFormatter = new Intl.NumberFormat('pt-BR', {
-  style: 'currency',
-  currency: 'BRL',
-})
+import { formatCurrency, parseLocaleNumber, roundTo } from './numberFormat'
 
-const normalizeNumericInput = (value) => {
-  const trimmedValue = String(value ?? '').trim()
-
-  if (!trimmedValue) {
-    return ''
-  }
-
-  const compactValue = trimmedValue.replace(/\s/g, '')
-  const lastCommaIndex = compactValue.lastIndexOf(',')
-  const lastDotIndex = compactValue.lastIndexOf('.')
-
-  if (lastCommaIndex !== -1 && lastDotIndex !== -1) {
-    const decimalSeparator = lastCommaIndex > lastDotIndex ? ',' : '.'
-    const thousandSeparator = decimalSeparator === ',' ? '.' : ','
-
-    return compactValue.replaceAll(thousandSeparator, '').replace(decimalSeparator, '.')
-  }
-
-  if (lastDotIndex !== -1 && /^\d{1,3}(\.\d{3})+$/.test(compactValue)) {
-    return compactValue.replaceAll('.', '')
-  }
-
-  return compactValue.replace(',', '.')
-}
+export { formatCurrency }
 
 export const parseDiscountNumber = (value) => {
-  const normalizedValue = normalizeNumericInput(value)
-
-  if (!normalizedValue || !/^\d+(\.\d+)?$/.test(normalizedValue)) {
-    return null
-  }
-
-  const numericValue = Number(normalizedValue)
-
-  return Number.isFinite(numericValue) ? numericValue : null
+  return parseLocaleNumber(value)
 }
-
-export const formatCurrency = (value) => currencyFormatter.format(value)
-
-const roundToCents = (value) => Math.round((value + Number.EPSILON) * 100) / 100
 
 export const calculateDiscount = (originalPriceInput, discountPercentInput) => {
   const originalPrice = parseDiscountNumber(originalPriceInput)
@@ -64,8 +26,8 @@ export const calculateDiscount = (originalPriceInput, discountPercentInput) => {
     }
   }
 
-  const discountAmount = roundToCents(originalPrice * (discountPercent / 100))
-  const finalPrice = roundToCents(originalPrice - discountAmount)
+  const discountAmount = roundTo(originalPrice * (discountPercent / 100))
+  const finalPrice = roundTo(originalPrice - discountAmount)
 
   return {
     error: '',

@@ -85,6 +85,18 @@ export const INDEXABLE_PAGE_METADATA = [
       'Calcule preço final e economia a partir de um desconto percentual, com moeda em pt-BR e processamento local no navegador.',
   },
   {
+    path: '/ferramentas/comparador-preco-unidade',
+    title: 'Comparador de preço por unidade online gratuito | Rock Code Labs',
+    description:
+      'Compare custo por unidade, quilo, litro ou metro entre produtos para descobrir qual opção compensa mais, sem login ou backend.',
+  },
+  {
+    path: '/ferramentas/calculadora-consumo-combustivel',
+    title: 'Calculadora de consumo de combustível online gratuita | Rock Code Labs',
+    description:
+      'Calcule km/l, custo por quilômetro e gasto estimado com combustível no navegador, sem localização, cadastro ou API externa.',
+  },
+  {
     path: '/experiences',
     title: 'Experiências | Rock Code Labs',
     description:

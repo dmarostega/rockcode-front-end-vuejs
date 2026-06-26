@@ -94,6 +94,18 @@ const router = createRouter({
       meta: getPageMetadata('/ferramentas/calculadora-desconto'),
     },
     {
+      path: '/ferramentas/comparador-preco-unidade',
+      name: 'unit-price-comparator',
+      component: () => import('../views/tools/UnitPriceComparatorView.vue'),
+      meta: getPageMetadata('/ferramentas/comparador-preco-unidade'),
+    },
+    {
+      path: '/ferramentas/calculadora-consumo-combustivel',
+      name: 'fuel-consumption-calculator',
+      component: () => import('../views/tools/FuelConsumptionCalculatorView.vue'),
+      meta: getPageMetadata('/ferramentas/calculadora-consumo-combustivel'),
+    },
+    {
       path: '/experiences',
       name: 'experiences',
       component: () => import('../views/ExperiencesView.vue'),
