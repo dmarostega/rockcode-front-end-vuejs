@@ -3,7 +3,7 @@ import LayoutDefault from '@/components/defaults/LayoutDefault.vue'
 import NavBoard from '@/components/defaults/NavBoard.vue'
 import { RouterLink } from 'vue-router'
 
-const hubTools = [
+const developerTools = [
   {
     name: 'Gerador de UUID',
     icon: 'ID',
@@ -79,6 +79,9 @@ const hubTools = [
       'Digite um texto, escolha o algoritmo e copie o hash sem enviar dados para servidores ou salvar histórico.',
     route: '/ferramentas/gerador-hash',
   },
+]
+
+const commonUserTools = [
   {
     name: 'Calculadora de Desconto',
     icon: '%',
@@ -128,24 +131,81 @@ const relatedProjects = [
         </p>
       </section>
 
-      <section class="tools-grid" aria-labelledby="tools-title">
+      <section class="tool-groups" aria-labelledby="tools-title">
         <div class="section-heading">
           <span class="section-label">Ferramentas disponíveis</span>
-          <h2 id="tools-title">Utilitários client-side para tarefas rápidas de desenvolvimento.</h2>
+          <h2 id="tools-title">Escolha o grupo certo para a sua tarefa.</h2>
+          <p>
+            As ferramentas ficam separadas por público para facilitar a navegação entre utilitários
+            de uso comum e recursos técnicos para desenvolvimento.
+          </p>
         </div>
 
-        <RouterLink v-for="tool in hubTools" :key="tool.name" :to="tool.route" class="tool-card">
-          <div class="card-top">
-            <span class="tool-icon" aria-hidden="true">{{ tool.icon }}</span>
-            <span class="status-badge">{{ tool.status }}</span>
+        <section class="tool-group" aria-labelledby="common-tools-title">
+          <div class="tool-group-heading">
+            <span class="group-kicker">Uso comum</span>
+            <div>
+              <h3 id="common-tools-title">Ferramentas para usuários comuns</h3>
+              <p>
+                Calculadoras e utilitários simples para compras, economia cotidiana e decisões
+                rápidas do dia a dia.
+              </p>
+            </div>
           </div>
 
-          <h3>{{ tool.name }}</h3>
+          <div class="tool-card-grid">
+            <RouterLink
+              v-for="tool in commonUserTools"
+              :key="tool.name"
+              :to="tool.route"
+              class="tool-card"
+            >
+              <div class="card-top">
+                <span class="tool-icon" aria-hidden="true">{{ tool.icon }}</span>
+                <span class="status-badge">{{ tool.status }}</span>
+              </div>
 
-          <p>{{ tool.description }}</p>
-          <p class="card-details">{{ tool.details }}</p>
-          <strong>Acessar ferramenta -></strong>
-        </RouterLink>
+              <h4>{{ tool.name }}</h4>
+
+              <p>{{ tool.description }}</p>
+              <p class="card-details">{{ tool.details }}</p>
+              <strong>Acessar ferramenta -></strong>
+            </RouterLink>
+          </div>
+        </section>
+
+        <section class="tool-group" aria-labelledby="developer-tools-title">
+          <div class="tool-group-heading">
+            <span class="group-kicker">Dev</span>
+            <div>
+              <h3 id="developer-tools-title">Ferramentas para desenvolvedores</h3>
+              <p>
+                Utilitários client-side para formatar, converter, gerar e validar dados técnicos
+                sem backend.
+              </p>
+            </div>
+          </div>
+
+          <div class="tool-card-grid">
+            <RouterLink
+              v-for="tool in developerTools"
+              :key="tool.name"
+              :to="tool.route"
+              class="tool-card"
+            >
+              <div class="card-top">
+                <span class="tool-icon" aria-hidden="true">{{ tool.icon }}</span>
+                <span class="status-badge">{{ tool.status }}</span>
+              </div>
+
+              <h4>{{ tool.name }}</h4>
+
+              <p>{{ tool.description }}</p>
+              <p class="card-details">{{ tool.details }}</p>
+              <strong>Acessar ferramenta -></strong>
+            </RouterLink>
+          </div>
+        </section>
       </section>
 
       <section class="related-section" aria-labelledby="related-title">
@@ -197,7 +257,7 @@ const relatedProjects = [
 
 .tools-hero,
 .hub-intro,
-.tools-grid,
+.tool-groups,
 .related-section,
 .future-ad-space {
   max-width: 1100px;
@@ -270,13 +330,16 @@ const relatedProjects = [
 
 .hub-intro h2,
 .section-heading h2,
-.tool-card h3,
+.tool-group-heading h3,
+.tool-card h4,
 .related-card h3 {
   margin: 0;
   color: #ffffff;
 }
 
 .hub-intro p,
+.section-heading p,
+.tool-group-heading p,
 .tool-card p,
 .related-card p,
 .future-ad-space p {
@@ -285,20 +348,61 @@ const relatedProjects = [
   line-height: 1.75;
 }
 
-.tools-grid,
+.tool-groups,
 .related-section {
   margin-top: 2rem;
 }
 
-.tools-grid {
+.tool-groups {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .section-heading {
-  grid-column: 1 / -1;
   margin-bottom: 1rem;
+}
+
+.section-heading p {
+  max-width: 760px;
+  margin-top: 0.8rem;
+}
+
+.tool-group {
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.tool-group-heading {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.tool-group-heading h3 {
+  margin-bottom: 0.45rem;
+  font-size: 1.55rem;
+}
+
+.group-kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.25rem;
+  min-height: 2.5rem;
+  border-radius: 16px;
+  background: rgba(56, 189, 248, 0.12);
+  color: #7dd3fc;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.tool-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
 }
 
 .tool-card,
@@ -355,7 +459,7 @@ const relatedProjects = [
   font-size: 0.72rem;
 }
 
-.tool-card h3,
+.tool-card h4,
 .related-card h3 {
   margin-bottom: 0.8rem;
   font-size: 1.55rem;
@@ -420,11 +524,13 @@ const relatedProjects = [
 @media (max-width: 820px) {
   .hub-intro,
   .related-card,
-  .tools-grid {
+  .tool-group-heading,
+  .tool-card-grid {
     grid-template-columns: 1fr;
   }
 
-  .hub-intro {
+  .hub-intro,
+  .tool-group-heading {
     gap: 1rem;
   }
 
