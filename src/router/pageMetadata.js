@@ -61,6 +61,12 @@ export const INDEXABLE_PAGE_METADATA = [
       'Conte caracteres, palavras e linhas em tempo real no navegador, sem login, sem backend, sem API externa e sem salvar o texto digitado.',
   },
   {
+    path: '/ferramentas/url-encode-decode',
+    title: 'URL encode e decode online gratuito | Rock Code Labs',
+    description:
+      'Codifique e decodifique URLs, parâmetros e textos no navegador, sem login, sem backend, sem API externa e sem salvar a entrada digitada.',
+  },
+  {
     path: '/experiences',
     title: 'Experiências | Rock Code Labs',
     description:

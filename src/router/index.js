@@ -70,6 +70,12 @@ const router = createRouter({
       meta: getPageMetadata('/ferramentas/contador-caracteres-palavras'),
     },
     {
+      path: '/ferramentas/url-encode-decode',
+      name: 'url-encode-decode',
+      component: () => import('../views/tools/UrlEncodeDecodeView.vue'),
+      meta: getPageMetadata('/ferramentas/url-encode-decode'),
+    },
+    {
       path: '/experiences',
       name: 'experiences',
       component: () => import('../views/ExperiencesView.vue'),
