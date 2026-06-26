@@ -154,3 +154,30 @@ test('backlink mantem alinhamento esquerdo consistente entre ferramentas antigas
   expect(sharedLayoutBackLinkBox).not.toBeNull()
   expect(Math.abs(legacyBackLinkBox.x - sharedLayoutBackLinkBox.x)).toBeLessThanOrEqual(2)
 })
+
+test('ferramentas de compra apontam apenas para relacionadas publicadas', async ({ page }) => {
+  await page.goto('/ferramentas/calculadora-desconto')
+
+  const discountRelatedTools = page.getByRole('region', {
+    name: /Ferramentas relacionadas/,
+  })
+
+  await expect(
+    discountRelatedTools.getByRole('link', { name: /Comparador de preço/i }),
+  ).toHaveAttribute('href', '/ferramentas/comparador-preco-unidade')
+
+  await page.goto('/ferramentas/comparador-preco-unidade')
+
+  const unitPriceRelatedTools = page.getByRole('region', {
+    name: /Ferramentas relacionadas/,
+  })
+
+  await expect(
+    unitPriceRelatedTools.getByRole('link', { name: /Calculadora de desconto/i }),
+  ).toHaveAttribute('href', '/ferramentas/calculadora-desconto')
+
+  await page.goto('/ferramentas/calculadora-consumo-combustivel')
+
+  await expect(page.getByRole('link', { name: /custo de viagem/i })).toHaveCount(0)
+  await expect(page.getByRole('region', { name: /Ferramentas relacionadas/i })).toHaveCount(0)
+})

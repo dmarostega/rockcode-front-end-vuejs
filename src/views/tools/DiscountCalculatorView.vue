@@ -6,6 +6,7 @@ import {
   ToolHero,
   ToolPageLayout,
   ToolPrivacyNotice,
+  ToolRelatedLinks,
   ToolResultCard,
 } from '@/components/tools'
 import { calculateDiscount, formatCurrency } from '@/utils/discountCalculator'
@@ -29,6 +30,16 @@ const faqItems = [
     question: 'O resultado é uma recomendação financeira?',
     answer:
       'Não. A página apenas calcula desconto percentual, economia e preço final a partir dos valores informados.',
+  },
+]
+
+const relatedTools = [
+  {
+    kicker: 'Compras',
+    title: 'Comparador de preço por unidade',
+    description:
+      'Compare preço por quilo, litro, metro ou unidade depois de conferir o desconto anunciado.',
+    to: '/ferramentas/comparador-preco-unidade',
   },
 ]
 
@@ -144,6 +155,12 @@ const useExample = () => {
     </section>
 
     <ToolPrivacyNotice />
+
+    <ToolRelatedLinks
+      title="Compare a oferta com outras opções antes de comprar."
+      description="Depois de calcular o desconto, confira se a embalagem ou quantidade escolhida realmente compensa."
+      :links="relatedTools"
+    />
 
     <ToolFaq
       heading-id="discount-faq-title"
