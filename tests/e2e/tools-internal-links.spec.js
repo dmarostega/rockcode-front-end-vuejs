@@ -55,6 +55,30 @@ test('hub lista todas as ferramentas publicadas com links internos', async ({ pa
   )
 })
 
+test('hub separa ferramentas comuns, ferramentas dev e projeto relacionado', async ({ page }) => {
+  await page.goto('/ferramentas')
+
+  const commonTools = page.getByRole('region', { name: /Ferramentas para usuários comuns/ })
+  const developerTools = page.getByRole('region', { name: /Ferramentas para desenvolvedores/ })
+  const relatedProject = page.getByRole('region', { name: /QRCodeFlow continua/ })
+
+  await expect(commonTools.getByRole('link', { name: /Calculadora de Desconto/ })).toHaveAttribute(
+    'href',
+    '/ferramentas/calculadora-desconto',
+  )
+  await expect(developerTools.getByRole('link', { name: /Gerador de UUID/ })).toHaveAttribute(
+    'href',
+    '/ferramentas/gerador-uuid',
+  )
+  await expect(
+    developerTools.getByRole('link', { name: /Calculadora de Desconto/ }),
+  ).toHaveCount(0)
+  await expect(relatedProject.getByRole('link', { name: /QRCodeFlow/ })).toHaveAttribute(
+    'href',
+    'https://qrcodeflow.rockcodelabs.com.br',
+  )
+})
+
 test('paginas de ferramentas possuem retorno explicito para o hub', async ({ page }) => {
   for (const tool of publishedTools) {
     await page.goto(tool.path)
