@@ -52,6 +52,15 @@ const hubTools = [
       'Cole ou digite um texto para revisar tamanho, estrutura e quebras de linha sem login, backend, histórico ou envio para API externa.',
     route: '/ferramentas/contador-caracteres-palavras',
   },
+  {
+    name: 'URL Encode/Decode',
+    icon: '%',
+    status: 'Disponível',
+    description: 'Codifique e decodifique URLs, parâmetros e textos direto no navegador.',
+    details:
+      'Use para converter espaços, acentos, query strings e caracteres especiais sem backend, login, API externa ou histórico.',
+    route: '/ferramentas/url-encode-decode',
+  },
 ]
 
 const relatedProjects = [
