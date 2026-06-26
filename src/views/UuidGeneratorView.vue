@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import LayoutDefault from '@/components/defaults/LayoutDefault.vue'
 import NavBoard from '@/components/defaults/NavBoard.vue'
+import { ToolBackLink } from '@/components/tools'
 
 const UUID_VERSION_4_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
@@ -89,6 +90,8 @@ const copyUuid = async () => {
 <template>
   <LayoutDefault>
     <main class="uuid-page">
+      <ToolBackLink />
+
       <section class="uuid-hero">
         <span class="eyebrow">Ferramenta gratuita</span>
 
