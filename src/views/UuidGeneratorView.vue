@@ -422,10 +422,6 @@ const copyUuid = async () => {
 }
 
 @media (max-width: 820px) {
-  :global(.tool-back-link) {
-    max-width: 100%;
-  }
-
   .generator-panel,
   .content-grid,
   .faq-list {

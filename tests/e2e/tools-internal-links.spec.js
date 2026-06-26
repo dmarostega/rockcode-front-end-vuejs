@@ -65,3 +65,21 @@ test('retorno ao hub funciona no mobile', async ({ page }) => {
     await expect(page.getByRole('heading', { name: /Utilitários simples/ })).toBeVisible()
   }
 })
+
+test('backlink mantem alinhamento esquerdo consistente entre ferramentas antigas e novas', async ({
+  page,
+}) => {
+  await page.goto('/ferramentas/gerador-uuid')
+  const legacyBackLinkBox = await page
+    .getByRole('link', { name: /Voltar para ferramentas/ })
+    .boundingBox()
+
+  await page.goto('/ferramentas/gerador-slug')
+  const sharedLayoutBackLinkBox = await page
+    .getByRole('link', { name: /Voltar para ferramentas/ })
+    .boundingBox()
+
+  expect(legacyBackLinkBox).not.toBeNull()
+  expect(sharedLayoutBackLinkBox).not.toBeNull()
+  expect(Math.abs(legacyBackLinkBox.x - sharedLayoutBackLinkBox.x)).toBeLessThanOrEqual(2)
+})

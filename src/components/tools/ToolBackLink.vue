@@ -24,8 +24,10 @@ defineProps({
 
 <style scoped>
 .tool-back-link {
+  width: 100%;
   max-width: 1100px;
   margin: 0 auto;
+  text-align: left;
 }
 
 .tool-back-link a {

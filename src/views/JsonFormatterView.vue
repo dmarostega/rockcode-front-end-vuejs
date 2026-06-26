@@ -442,10 +442,6 @@ textarea:focus {
 }
 
 @media (max-width: 820px) {
-  :global(.tool-back-link) {
-    max-width: 100%;
-  }
-
   .tool-panel,
   .content-grid,
   .faq-list {
