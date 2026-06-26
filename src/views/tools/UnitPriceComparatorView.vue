@@ -1,12 +1,12 @@
 <script setup>
 import { computed, ref } from 'vue'
-import { RouterLink } from 'vue-router'
 import {
   ToolBackLink,
   ToolFaq,
   ToolHero,
   ToolPageLayout,
   ToolPrivacyNotice,
+  ToolRelatedLinks,
   ToolResultCard,
 } from '@/components/tools'
 import { compareUnitPrices, formatUnitPrice, unitOptions } from '@/utils/priceUnitComparator'
@@ -42,6 +42,16 @@ const faqItems = [
     question: 'Os valores são salvos?',
     answer:
       'Não. O cálculo acontece no navegador, sem login, backend, histórico, cadastro de produtos ou integração com preços reais.',
+  },
+]
+
+const relatedTools = [
+  {
+    kicker: 'Compras',
+    title: 'Calculadora de desconto percentual',
+    description:
+      'Calcule preço final e economia quando uma das opções comparadas estiver em promoção.',
+    to: '/ferramentas/calculadora-desconto',
   },
 ]
 
@@ -224,17 +234,22 @@ const useConstructionExample = () => {
       </article>
 
       <article class="info-panel">
-        <span class="section-label">Ferramentas relacionadas</span>
-        <h2>Continue comparando compras.</h2>
+        <span class="section-label">Privacidade</span>
+        <h2>Comparação local, sem histórico.</h2>
         <p>
-          Use também a
-          <RouterLink to="/ferramentas/calculadora-desconto">calculadora de desconto</RouterLink>
-          para conferir promoções antes de finalizar a compra.
+          Os valores digitados ficam apenas no navegador durante o uso da página. Não há cadastro,
+          histórico de produtos, integração com preços reais ou envio para servidores.
         </p>
       </article>
     </section>
 
     <ToolPrivacyNotice />
+
+    <ToolRelatedLinks
+      title="Confira promoções antes de decidir."
+      description="Quando uma das opções tiver desconto, calcule o preço final antes de comparar o custo unitário."
+      :links="relatedTools"
+    />
 
     <ToolFaq
       heading-id="unit-price-faq-title"
@@ -408,8 +423,7 @@ select:focus {
   font-weight: 700;
 }
 
-.example-copy code,
-.info-panel a {
+.example-copy code {
   color: #bae6fd;
 }
 

@@ -11,7 +11,8 @@ Issue de origem: <https://github.com/dmarostega/rockcode-front-end-vuejs/issues/
 5. Informar desconto `100`; confirmar preço final `R$ 0,00`.
 6. Limpar preço original e clicar em calcular; confirmar erro amigável.
 7. Confirmar aviso de privacidade, FAQ curta e link de retorno ao hub.
-8. Confirmar que nenhum script real de AdSense foi carregado.
+8. Confirmar a seção `Ferramentas relacionadas` com link para o comparador de preço por unidade.
+9. Confirmar que nenhum script real de AdSense foi carregado.
 
 ## Mobile
 
