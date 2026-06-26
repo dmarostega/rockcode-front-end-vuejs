@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 import LayoutDefault from '@/components/defaults/LayoutDefault.vue'
 import NavBoard from '@/components/defaults/NavBoard.vue'
-import { ToolBackLink } from '@/components/tools'
+import { ToolBackLink, ToolPrivacyNotice } from '@/components/tools'
 
 const textEncoder = new TextEncoder()
 const textDecoder = new TextDecoder('utf-8', { fatal: true })
@@ -204,14 +204,16 @@ convertInput()
         </article>
 
         <article class="info-panel">
-          <span class="section-label">Privacidade</span>
-          <h2>Processamento apenas no navegador.</h2>
+          <span class="section-label">Cuidados</span>
+          <h2>Base64 não protege dados sensíveis.</h2>
           <p>
-            A conversão acontece localmente. A página não cria histórico, não exige conta e não
-            salva o conteúdo digitado em banco ou storage remoto.
+            Base64 é uma codificação reversível. Evite usar o resultado como mecanismo de segurança
+            ou proteção de informações privadas.
           </p>
         </article>
       </section>
+
+      <ToolPrivacyNotice />
 
       <section class="faq-section" aria-labelledby="base64-faq-title">
         <div class="section-heading">

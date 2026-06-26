@@ -34,12 +34,6 @@ const faqItems = [
   },
 ]
 
-const privacyItems = [
-  'O texto é processado localmente no navegador.',
-  'Nenhum campo digitado é enviado para backend, API externa ou upload.',
-  'A página não cria histórico e não usa persistência de dados para a entrada.',
-]
-
 const isEncodeMode = computed(() => mode.value === 'encode')
 const conversionLabel = computed(() => (isEncodeMode.value ? 'Texto codificado' : 'Texto decodificado'))
 
@@ -238,11 +232,7 @@ const copyResult = async () => {
       </article>
     </section>
 
-    <ToolPrivacyNotice
-      title="Sua entrada fica somente no navegador."
-      description="A ferramenta roda client-side, sem login, sem backend obrigatório, sem API externa, sem upload, sem histórico e sem persistência de dados."
-      :items="privacyItems"
-    />
+    <ToolPrivacyNotice />
 
     <ToolFaq
       heading-id="url-encode-decode-faq-title"
