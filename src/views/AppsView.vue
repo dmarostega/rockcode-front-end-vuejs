@@ -259,7 +259,7 @@ const projects = [
           <h2 id="related-tools-title">Utilitários menores ficam no hub de ferramentas.</h2>
           <p>
             Além dos projetos e MVPs, a Rock Code Labs mantém ferramentas online simples para
-            conversões, cálculos e tarefas rápidas de desenvolvimento.
+            conversões, cálculos, comparações e tarefas rápidas para uso diário ou desenvolvimento.
           </p>
         </div>
 
