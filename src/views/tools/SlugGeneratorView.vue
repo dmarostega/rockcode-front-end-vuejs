@@ -32,12 +32,6 @@ const faqItems = [
   },
 ]
 
-const privacyItems = [
-  'A conversão acontece no seu navegador.',
-  'Nenhum texto é enviado para backend ou API externa.',
-  'A página não cria histórico e não persiste o conteúdo digitado.',
-]
-
 const normalizeSlugInput = (value) =>
   value
     .normalize('NFD')
@@ -179,11 +173,7 @@ const copySlug = async () => {
       </article>
     </section>
 
-    <ToolPrivacyNotice
-      title="Seu texto não sai do navegador."
-      description="O gerador de slug roda client-side, sem login, sem backend obrigatório, sem API externa e sem persistência de dados."
-      :items="privacyItems"
-    />
+    <ToolPrivacyNotice />
 
     <ToolFaq
       heading-id="slug-faq-title"

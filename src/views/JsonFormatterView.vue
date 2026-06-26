@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 import LayoutDefault from '@/components/defaults/LayoutDefault.vue'
 import NavBoard from '@/components/defaults/NavBoard.vue'
-import { ToolBackLink } from '@/components/tools'
+import { ToolBackLink, ToolPrivacyNotice } from '@/components/tools'
 
 const inputValue = ref('{\n  "project": "Rock Code Labs",\n  "tool": "JSON",\n  "active": true\n}')
 const resultValue = ref('')
@@ -174,14 +174,16 @@ handleJsonAction('format')
         </article>
 
         <article class="info-panel">
-          <span class="section-label">Privacidade</span>
-          <h2>Sem histórico e sem upload.</h2>
+          <span class="section-label">Uso recomendado</span>
+          <h2>Revise payloads pequenos antes de compartilhar.</h2>
           <p>
-            O processamento usa apenas recursos do navegador. A ferramenta não cria conta, não
-            mantém histórico e não envia o JSON para serviços externos.
+            Use a ferramenta para leitura, validação e minificação de exemplos, respostas de API e
+            configurações sem alterar o conteúdo original.
           </p>
         </article>
       </section>
+
+      <ToolPrivacyNotice />
 
       <section class="faq-section" aria-labelledby="json-faq-title">
         <div class="section-heading">

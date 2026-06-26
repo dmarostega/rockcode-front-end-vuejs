@@ -32,12 +32,6 @@ const faqItems = [
   },
 ]
 
-const privacyItems = [
-  'O texto é processado localmente no navegador.',
-  'Nenhum conteúdo digitado é enviado para backend, API externa ou upload.',
-  'A página não cria histórico e não usa persistência de dados para o texto.',
-]
-
 const characterCount = computed(() => Array.from(inputValue.value).length)
 const characterCountWithoutSpaces = computed(
   () => Array.from(inputValue.value.replace(/\s/g, '')).length,
@@ -155,11 +149,7 @@ const clearInput = () => {
       </article>
     </section>
 
-    <ToolPrivacyNotice
-      title="Seu texto permanece no navegador."
-      description="O contador é client-side por padrão e foi criado para medir texto sem coletar, salvar ou transmitir o conteúdo digitado."
-      :items="privacyItems"
-    />
+    <ToolPrivacyNotice />
 
     <ToolFaq
       heading-id="character-counter-faq-title"

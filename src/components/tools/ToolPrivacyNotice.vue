@@ -11,7 +11,7 @@ defineProps({
   description: {
     type: String,
     default:
-      'Use este bloco para explicar que a ferramenta não envia, salva ou compartilha os dados digitados.',
+      'O conteúdo digitado é processado nesta página, sem envio para backend, API externa ou upload. A ferramenta não cria histórico nem persiste a entrada.',
   },
   items: {
     type: Array,
