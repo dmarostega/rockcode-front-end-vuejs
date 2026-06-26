@@ -34,6 +34,12 @@ const router = createRouter({
       meta: getPageMetadata('/apps'),
     },
     {
+      path: '/apps/qrcodeflow',
+      name: 'app-qrcodeflow',
+      component: () => import('../views/apps/QrCodeFlowView.vue'),
+      meta: getPageMetadata('/apps/qrcodeflow'),
+    },
+    {
       path: '/ferramentas',
       name: 'tools',
       component: () => import('../views/ToolsView.vue'),

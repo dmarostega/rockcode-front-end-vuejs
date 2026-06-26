@@ -1,6 +1,7 @@
 <script setup>
 import LayoutDefault from '@/components/defaults/LayoutDefault.vue'
 import NavBoard from '@/components/defaults/NavBoard.vue'
+import { RouterLink } from 'vue-router'
 
 const projects = [
   {
@@ -10,6 +11,7 @@ const projects = [
       'Gerador gratuito de QR Code para links, com fluxo simples para criar, visualizar e baixar codigos rapidamente.',
     details:
       'Projeto criado para validar uma ferramenta publica e direta para geracao de QR Codes, com foco em uso rapido, paginas informativas e evolucao controlada de monetizacao.',
+    route: '/apps/qrcodeflow',
     url: 'https://qrcodeflow.rockcodelabs.com.br',
     icon: '▦',
     tag: 'QR Code',
@@ -214,41 +216,71 @@ const projects = [
         </div>
 
         <div class="projects-grid">
-          <a
-            v-for="project in projects"
-            :key="project.id"
-            :href="project.url"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="project-card"
-          >
-            <div class="project-top">
-              <div class="project-icon">{{ project.icon }}</div>
+          <template v-for="project in projects" :key="project.id">
+            <RouterLink v-if="project.route" :to="project.route" class="project-card">
+              <div class="project-top">
+                <div class="project-icon">{{ project.icon }}</div>
 
-              <div>
-                <span class="project-tag">{{ project.tag }}</span>
-                <span class="project-status">{{ project.status }}</span>
+                <div>
+                  <span class="project-tag">{{ project.tag }}</span>
+                  <span class="project-status">{{ project.status }}</span>
+                </div>
               </div>
-            </div>
 
-            <h3>{{ project.name }}</h3>
+              <h3>{{ project.name }}</h3>
 
-            <p class="project-description">
-              {{ project.description }}
-            </p>
+              <p class="project-description">
+                {{ project.description }}
+              </p>
 
-            <p class="project-details">
-              {{ project.details }}
-            </p>
+              <p class="project-details">
+                {{ project.details }}
+              </p>
 
-            <div class="stack-list">
-              <span v-for="item in project.stack" :key="item">
-                {{ item }}
-              </span>
-            </div>
+              <div class="stack-list">
+                <span v-for="item in project.stack" :key="item">
+                  {{ item }}
+                </span>
+              </div>
 
-            <strong>Acessar projeto →</strong>
-          </a>
+              <strong>Ver página do projeto →</strong>
+            </RouterLink>
+
+            <a
+              v-else
+              :href="project.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-card"
+            >
+              <div class="project-top">
+                <div class="project-icon">{{ project.icon }}</div>
+
+                <div>
+                  <span class="project-tag">{{ project.tag }}</span>
+                  <span class="project-status">{{ project.status }}</span>
+                </div>
+              </div>
+
+              <h3>{{ project.name }}</h3>
+
+              <p class="project-description">
+                {{ project.description }}
+              </p>
+
+              <p class="project-details">
+                {{ project.details }}
+              </p>
+
+              <div class="stack-list">
+                <span v-for="item in project.stack" :key="item">
+                  {{ item }}
+                </span>
+              </div>
+
+              <strong>Acessar projeto →</strong>
+            </a>
+          </template>
         </div>
       </section>
     </main>
