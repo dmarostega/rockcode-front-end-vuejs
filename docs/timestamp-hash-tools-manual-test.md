@@ -11,7 +11,7 @@ Issues de origem:
 2. Abrir `/ferramentas/conversor-timestamp`.
 3. Converter `1700000000` como segundos e conferir uma data legível.
 4. Converter uma data válida para timestamp e copiar o resultado.
-5. Informar timestamp invalido e confirmar erro amigavel.
+5. Informar timestamp inválido e confirmar erro amigável.
 6. Abrir `/ferramentas/gerador-hash`.
 7. Gerar SHA-256 para `Rock Code Labs` e copiar o resultado.
 8. Trocar para SHA-512 e confirmar que o hash muda.

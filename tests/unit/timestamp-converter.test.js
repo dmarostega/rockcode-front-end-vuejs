@@ -45,7 +45,7 @@ describe('TimestampConverterView', () => {
     expect(wrapper.get('#date-timestamp-result').text()).toContain(String(expectedMilliseconds))
   })
 
-  it('exibe erro amigavel para timestamp invalido', async () => {
+  it('exibe erro amigável para timestamp inválido', async () => {
     const wrapper = mountTimestampConverter()
 
     await wrapper.get('#timestamp-input').setValue('abc')

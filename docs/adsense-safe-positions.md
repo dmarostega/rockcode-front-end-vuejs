@@ -28,9 +28,9 @@ Posições proibidas:
 - Dentro de qualquer card de ferramenta.
 - Entre título, descrição e link de um card.
 - Colado aos links principais de acesso as ferramentas.
-- Em area que possa parecer item da grade de ferramentas.
+- Em área que possa parecer item da grade de ferramentas.
 
-## Paginas de ferramenta
+## Páginas de ferramenta
 
 Posições permitidas:
 
@@ -45,12 +45,12 @@ Posições proibidas:
 - Entre botão de ação e resultado.
 - Próximo de botão de copiar.
 - Próximo do link de retorno ao hub.
-- Acima do conteudo principal da ferramenta em mobile.
+- Acima do conteúdo principal da ferramenta em mobile.
 
 ## Desktop e mobile
 
 - Desktop: manter o slot centralizado e com largura controlada, sem ocupar colunas internas de cards.
-- Mobile: renderizar como bloco unico entre secoes, nunca entre controles sequenciais.
+- Mobile: renderizar como bloco único entre seções, nunca entre controles sequenciais.
 - Em ambos: evitar qualquer posição que incentive clique acidental ou confunda publicidade com resultado da ferramenta.
 
 ## Fluxo futuro de ativação
