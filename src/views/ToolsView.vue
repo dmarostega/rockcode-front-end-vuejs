@@ -275,10 +275,14 @@ const relatedProjects = [
 
 .tools-hero,
 .hub-intro,
-.tool-groups,
 .related-section,
 .future-ad-space {
   max-width: 1100px;
+  margin: 0 auto;
+}
+
+.tool-groups {
+  max-width: 1180px;
   margin: 0 auto;
 }
 
@@ -419,7 +423,7 @@ const relatedProjects = [
 
 .tool-card-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
   gap: 1rem;
 }
 
@@ -429,7 +433,8 @@ const relatedProjects = [
 }
 
 .tool-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   color: inherit;
   text-decoration: none;
   transition:
@@ -514,7 +519,9 @@ const relatedProjects = [
 
 .tool-card strong {
   display: inline-block;
-  margin-top: 1rem;
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 1rem;
   color: #38bdf8;
 }
 
