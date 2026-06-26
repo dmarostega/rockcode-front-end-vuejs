@@ -198,8 +198,8 @@ const relatedProjects = [
             <div>
               <h3 id="developer-tools-title">Ferramentas para desenvolvedores</h3>
               <p>
-                Utilitários client-side para formatar, converter, gerar e validar dados técnicos
-                sem backend.
+                Utilitários client-side para formatar, converter, gerar e validar dados técnicos sem
+                backend.
               </p>
             </div>
           </div>
@@ -422,8 +422,9 @@ const relatedProjects = [
 }
 
 .tool-card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
 }
 
@@ -435,6 +436,8 @@ const relatedProjects = [
 .tool-card {
   display: flex;
   flex-direction: column;
+  flex: 0 1 calc((100% - 2rem) / 3);
+  min-width: min(100%, 20rem);
   color: inherit;
   text-decoration: none;
   transition:
@@ -549,9 +552,12 @@ const relatedProjects = [
 @media (max-width: 820px) {
   .hub-intro,
   .related-card,
-  .tool-group-heading,
-  .tool-card-grid {
+  .tool-group-heading {
     grid-template-columns: 1fr;
+  }
+
+  .tool-card {
+    flex-basis: 100%;
   }
 
   .hub-intro,
