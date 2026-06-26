@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test'
 test('apps hub aponta QRCodeFlow para pagina interna', async ({ page }) => {
   await page.goto('/apps')
 
-  await expect(page.getByRole('link', { name: /QrCode Flow/ })).toHaveAttribute(
+  await expect(page.getByRole('link', { name: /QRCodeFlow/ })).toHaveAttribute(
     'href',
     '/apps/qrcodeflow',
   )

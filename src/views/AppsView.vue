@@ -6,11 +6,11 @@ import { RouterLink } from 'vue-router'
 const projects = [
   {
     id: 14,
-    name: 'QrCode Flow',
+    name: 'QRCodeFlow',
     description:
-      'Gerador gratuito de QR Code para links, com fluxo simples para criar, visualizar e baixar codigos rapidamente.',
+      'Gerador gratuito de QR Code para links, com fluxo simples para criar, visualizar e baixar códigos rapidamente.',
     details:
-      'Projeto criado para validar uma ferramenta publica e direta para geracao de QR Codes, com foco em uso rapido, paginas informativas e evolucao controlada de monetizacao.',
+      'Projeto criado para validar uma ferramenta pública e direta para geração de QR Codes, com foco em uso rápido, páginas informativas e evolução controlada de monetização.',
     route: '/apps/qrcodeflow',
     url: 'https://qrcodeflow.rockcodelabs.com.br',
     icon: '▦',
