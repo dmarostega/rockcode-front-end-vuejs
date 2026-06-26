@@ -7,8 +7,21 @@ describe('ToolPrivacyNotice', () => {
     const wrapper = mount(ToolPrivacyNotice)
 
     expect(wrapper.text()).toContain('Processamento local no navegador.')
-    expect(wrapper.text()).toContain('sem envio para backend, API externa ou upload')
-    expect(wrapper.text()).toContain('não cria histórico nem persiste a entrada')
+    expect(wrapper.text()).toContain('ficam no seu navegador')
+    expect(wrapper.text()).toContain('não são salvos em histórico')
+    expect(wrapper.text()).toContain('backend ou APIs externas')
+  })
+
+  it('exibe aviso de resultado estimado quando solicitado', () => {
+    const wrapper = mount(ToolPrivacyNotice, {
+      props: {
+        estimate: true,
+      },
+    })
+
+    expect(wrapper.text()).toContain('Resultado estimado.')
+    expect(wrapper.text()).toContain('Use o resultado como referência.')
+    expect(wrapper.text()).toContain('Valores finais podem variar')
   })
 
   it('permite complementar o aviso com itens especificos', () => {

@@ -154,7 +154,7 @@ const useExample = () => {
       </article>
     </section>
 
-    <ToolPrivacyNotice />
+    <ToolPrivacyNotice estimate />
 
     <ToolRelatedLinks
       title="Compare a oferta com outras opções antes de comprar."

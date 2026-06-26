@@ -19,7 +19,7 @@ As ferramentas já publicadas em `src/views` não foram movidas nem refatoradas 
 - `ToolBackLink`: link padrão para voltar ao hub `/ferramentas`.
 - `ToolHero`: cabeçalho de página com eyebrow, título e descrição.
 - `ToolResultCard`: bloco principal para o resultado/controle da ferramenta, com slots para corpo e rodapé.
-- `ToolPrivacyNotice`: card curto e padronizado para ferramentas com entrada de texto. O texto padrão informa processamento local, ausência de envio para backend/API/upload e ausência de histórico ou persistência da entrada.
+- `ToolPrivacyNotice`: card curto e padronizado para ferramentas com entrada de texto. O texto padrão informa processamento local no navegador, ausência de envio para backend/APIs externas e ausência de histórico. Use a prop `estimate` quando a ferramenta entregar resultado estimado.
 - `ToolFaq`: lista responsiva de perguntas e respostas. Aceita `headingId` quando a página precisar controlar o ID do título; sem essa prop, gera um ID único automaticamente.
 
 ## Quando usar

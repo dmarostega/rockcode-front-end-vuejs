@@ -243,7 +243,7 @@ const useConstructionExample = () => {
       </article>
     </section>
 
-    <ToolPrivacyNotice />
+    <ToolPrivacyNotice estimate />
 
     <ToolRelatedLinks
       title="Confira promoções antes de decidir."
