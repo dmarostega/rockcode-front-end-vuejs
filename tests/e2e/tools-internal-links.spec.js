@@ -78,9 +78,7 @@ test('hub separa ferramentas comuns, ferramentas dev e projeto relacionado', asy
     'href',
     '/ferramentas/gerador-uuid',
   )
-  await expect(
-    developerTools.getByRole('link', { name: /Calculadora de Desconto/ }),
-  ).toHaveCount(0)
+  await expect(developerTools.getByRole('link', { name: /Calculadora de Desconto/ })).toHaveCount(0)
   await expect(relatedProject.getByRole('link', { name: /QRCodeFlow/ })).toHaveAttribute(
     'href',
     'https://qrcodeflow.rockcodelabs.com.br',
@@ -97,6 +95,54 @@ test('hub mantem cards confortaveis no desktop e uma coluna no mobile', async ({
   expect(discountCardBox).not.toBeNull()
   expect(discountCardBox.width).toBeGreaterThanOrEqual(300)
   await expect(commonCards).toHaveCount(3)
+
+  const developerGridBox = await page.locator('.tool-card-grid').nth(1).boundingBox()
+
+  expect(developerGridBox).not.toBeNull()
+
+  const developerCardBoxes = await page
+    .locator('.tool-group')
+    .nth(1)
+    .locator('.tool-card')
+    .evaluateAll((cards) =>
+      cards.map((card) => {
+        const rect = card.getBoundingClientRect()
+
+        return {
+          x: rect.x,
+          y: rect.y,
+          width: rect.width,
+        }
+      }),
+    )
+  const lastRowY = Math.max(...developerCardBoxes.map((box) => box.y))
+  const lastRowCards = developerCardBoxes.filter((box) => Math.abs(box.y - lastRowY) <= 2)
+  const lastRowLeft = Math.min(...lastRowCards.map((box) => box.x))
+  const lastRowRight = Math.max(...lastRowCards.map((box) => box.x + box.width))
+  const lastRowCenter = lastRowLeft + (lastRowRight - lastRowLeft) / 2
+  const developerGridCenter = developerGridBox.x + developerGridBox.width / 2
+
+  expect(lastRowCards).toHaveLength(2)
+  expect(Math.abs(lastRowCenter - developerGridCenter)).toBeLessThanOrEqual(2)
+
+  const firstCardBox = await commonCards.first().boundingBox()
+  const firstCardCtaBox = await commonCards.first().locator('strong').boundingBox()
+
+  expect(firstCardBox).not.toBeNull()
+  expect(firstCardCtaBox).not.toBeNull()
+  expect(
+    Math.abs(
+      firstCardCtaBox.x + firstCardCtaBox.width / 2 - (firstCardBox.x + firstCardBox.width / 2),
+    ),
+  ).toBeLessThanOrEqual(2)
+
+  const relatedCard = page.getByRole('link', { name: /QRCodeFlow/ })
+  const relatedDescriptionBox = await relatedCard.locator('p').boundingBox()
+  const relatedCtaBox = await relatedCard.locator('strong').boundingBox()
+
+  expect(relatedDescriptionBox).not.toBeNull()
+  expect(relatedCtaBox).not.toBeNull()
+  expect(relatedCtaBox.y).toBeGreaterThan(relatedDescriptionBox.y + relatedDescriptionBox.height)
 
   await page.setViewportSize({ width: 390, height: 1000 })
   await page.goto('/ferramentas')

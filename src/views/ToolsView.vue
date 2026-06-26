@@ -187,7 +187,7 @@ const relatedProjects = [
 
               <p>{{ tool.description }}</p>
               <p class="card-details">{{ tool.details }}</p>
-              <strong>Acessar ferramenta -></strong>
+              <strong>Acessar ferramenta →</strong>
             </RouterLink>
           </div>
         </section>
@@ -198,8 +198,8 @@ const relatedProjects = [
             <div>
               <h3 id="developer-tools-title">Ferramentas para desenvolvedores</h3>
               <p>
-                Utilitários client-side para formatar, converter, gerar e validar dados técnicos
-                sem backend.
+                Utilitários client-side para formatar, converter, gerar e validar dados técnicos sem
+                backend.
               </p>
             </div>
           </div>
@@ -220,7 +220,7 @@ const relatedProjects = [
 
               <p>{{ tool.description }}</p>
               <p class="card-details">{{ tool.details }}</p>
-              <strong>Acessar ferramenta -></strong>
+              <strong>Acessar ferramenta →</strong>
             </RouterLink>
           </div>
         </section>
@@ -246,7 +246,7 @@ const relatedProjects = [
             <p>{{ project.description }}</p>
           </div>
 
-          <strong>Acessar QRCodeFlow -></strong>
+          <strong>Acessar QRCodeFlow →</strong>
         </a>
       </section>
 
@@ -338,8 +338,10 @@ const relatedProjects = [
 .hub-intro {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
+  align-items: center;
   gap: 2rem;
   padding: 2rem;
+  text-align: center;
 }
 
 .section-label {
@@ -382,11 +384,12 @@ const relatedProjects = [
 
 .section-heading {
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .section-heading p {
   max-width: 760px;
-  margin-top: 0.8rem;
+  margin: 0.8rem auto 0;
 }
 
 .tool-group {
@@ -395,10 +398,12 @@ const relatedProjects = [
 }
 
 .tool-group-heading {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 1rem;
   margin-bottom: 1.25rem;
+  text-align: center;
 }
 
 .tool-group-heading h3 {
@@ -422,8 +427,9 @@ const relatedProjects = [
 }
 
 .tool-card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
 }
 
@@ -435,7 +441,10 @@ const relatedProjects = [
 .tool-card {
   display: flex;
   flex-direction: column;
+  flex: 0 1 calc((100% - 2rem) / 3);
+  min-width: min(100%, 20rem);
   color: inherit;
+  text-align: center;
   text-decoration: none;
   transition:
     transform 0.2s ease,
@@ -495,10 +504,12 @@ const relatedProjects = [
 
 .related-card {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 2rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   color: inherit;
+  text-align: center;
   text-decoration: none;
   transition:
     transform 0.2s ease,
@@ -513,13 +524,14 @@ const relatedProjects = [
 }
 
 .related-card strong {
-  flex: 0 0 auto;
+  margin-top: 0.5rem;
   color: #38bdf8;
 }
 
 .tool-card strong {
-  display: inline-block;
-  align-self: flex-start;
+  display: inline-flex;
+  align-self: center;
+  justify-content: center;
   margin-top: auto;
   padding-top: 1rem;
   color: #38bdf8;
@@ -549,19 +561,17 @@ const relatedProjects = [
 @media (max-width: 820px) {
   .hub-intro,
   .related-card,
-  .tool-group-heading,
-  .tool-card-grid {
+  .tool-group-heading {
     grid-template-columns: 1fr;
+  }
+
+  .tool-card {
+    flex-basis: 100%;
   }
 
   .hub-intro,
   .tool-group-heading {
     gap: 1rem;
-  }
-
-  .related-card {
-    align-items: flex-start;
-    flex-direction: column;
   }
 }
 </style>
