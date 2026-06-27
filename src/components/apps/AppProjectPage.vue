@@ -75,7 +75,10 @@ defineProps({
   <LayoutDefault>
     <main class="app-page">
       <section class="hero-section">
-        <RouterLink to="/apps" class="back-link">← Voltar para apps</RouterLink>
+        <RouterLink to="/apps" class="back-link">
+          <span aria-hidden="true">&lt;-</span>
+          Voltar para apps
+        </RouterLink>
 
         <span class="eyebrow">{{ eyebrow }}</span>
         <h1>{{ title }}</h1>
@@ -202,9 +205,14 @@ defineProps({
 }
 
 .back-link {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.45rem;
+  margin-right: auto;
   margin-bottom: 1.4rem;
   color: #7dd3fc;
+  font-size: 0.9rem;
   font-weight: 900;
   text-decoration: none;
 }
@@ -225,6 +233,8 @@ defineProps({
 }
 
 .eyebrow {
+  margin-right: auto;
+  margin-left: auto;
   padding: 0.42rem 0.8rem;
   border: 1px solid rgba(56, 189, 248, 0.35);
   background: rgba(15, 23, 42, 0.75);
@@ -353,11 +363,41 @@ defineProps({
   margin-bottom: 1rem;
 }
 
+.list-section .section-heading {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.list-section .section-label {
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .list-section ul {
   display: grid;
   gap: 0.85rem;
   margin: 1rem 0 0;
-  padding-left: 1.2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.list-section li {
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 14px;
+  background: rgba(2, 6, 23, 0.18);
+}
+
+.related-section .section-heading {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.related-section .section-label {
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .stack-section {
