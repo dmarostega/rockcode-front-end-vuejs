@@ -37,5 +37,24 @@ test('sitemap inclui pagina interna do QRCodeFlow', async ({ page }) => {
   const response = await page.goto('/sitemap.xml')
 
   expect(response?.ok()).toBe(true)
-  await expect(page.locator('body')).toContainText('https://rockcodelabs.com.br/apps/qrcodeflow/')
+  await expect(page.locator('body')).toContainText('https://rockcodelabs.com.br/apps/qrcodeflow')
+})
+
+test('normaliza trailing slash preservando query string e hash', async ({ page }) => {
+  await page.goto('/apps/qrcodeflow/?utm_source=test#top')
+
+  await expect(page).toHaveURL('/apps/qrcodeflow?utm_source=test#top')
+})
+
+test('metadata publica canonical e og url sem trailing slash', async ({ page }) => {
+  await page.goto('/apps/qrcodeflow')
+
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    'https://rockcodelabs.com.br/apps/qrcodeflow',
+  )
+  await expect(page.locator('meta[property="og:url"]')).toHaveAttribute(
+    'content',
+    'https://rockcodelabs.com.br/apps/qrcodeflow',
+  )
 })

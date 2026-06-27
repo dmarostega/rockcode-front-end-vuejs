@@ -12,6 +12,14 @@ const pageMetadataByPath = Object.fromEntries(
 
 const getPageMetadata = (path) => pageMetadataByPath[path]
 
+const removeTrailingSlash = (path) => {
+  if (path === '/') {
+    return path
+  }
+
+  return path.replace(/\/+$/, '')
+}
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -148,6 +156,19 @@ const router = createRouter({
       },
     },
   ],
+})
+
+router.beforeEach((to) => {
+  const canonicalPath = removeTrailingSlash(to.path)
+
+  if (canonicalPath !== to.path) {
+    return {
+      path: canonicalPath,
+      query: to.query,
+      hash: to.hash,
+      replace: true,
+    }
+  }
 })
 
 router.afterEach((to) => {
