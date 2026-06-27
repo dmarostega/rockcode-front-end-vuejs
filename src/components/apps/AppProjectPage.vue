@@ -353,11 +353,41 @@ defineProps({
   margin-bottom: 1rem;
 }
 
+.list-section .section-heading {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.list-section .section-label {
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .list-section ul {
   display: grid;
   gap: 0.85rem;
   margin: 1rem 0 0;
-  padding-left: 1.2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.list-section li {
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 14px;
+  background: rgba(2, 6, 23, 0.18);
+}
+
+.related-section .section-heading {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.related-section .section-label {
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .stack-section {
