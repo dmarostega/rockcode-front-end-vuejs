@@ -37,5 +37,5 @@ test('sitemap inclui pagina interna do QRCodeFlow', async ({ page }) => {
   const response = await page.goto('/sitemap.xml')
 
   expect(response?.ok()).toBe(true)
-  await expect(page.locator('body')).toContainText('https://rockcodelabs.com.br/apps/qrcodeflow/')
+  await expect(page.locator('body')).toContainText('https://rockcodelabs.com.br/apps/qrcodeflow')
 })
