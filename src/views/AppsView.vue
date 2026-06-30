@@ -269,7 +269,7 @@ const trackRelatedToolsClick = () => {
                 <div>
                   <span class="project-tag">{{ project.tag }}</span>
                   <span v-if="isPriorityProject(project)" class="project-priority">
-                    Destaque do funil
+                    Projeto em destaque
                   </span>
                   <span class="project-status">{{ project.status }}</span>
                 </div>
@@ -308,7 +308,7 @@ const trackRelatedToolsClick = () => {
                 <div>
                   <span class="project-tag">{{ project.tag }}</span>
                   <span v-if="isPriorityProject(project)" class="project-priority">
-                    Destaque do funil
+                    Projeto em destaque
                   </span>
                   <span class="project-status">{{ project.status }}</span>
                 </div>

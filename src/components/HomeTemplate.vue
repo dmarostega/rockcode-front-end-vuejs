@@ -102,9 +102,9 @@ const trackProjectClick = (project) => {
         <RouterLink
           to="/apps"
           class="button button-primary"
-          @click="trackCtaClick('Ver apps', '/apps')"
+          @click="trackCtaClick('Ver projetos', '/apps')"
         >
-          Ver apps
+          Ver projetos
         </RouterLink>
 
         <RouterLink
