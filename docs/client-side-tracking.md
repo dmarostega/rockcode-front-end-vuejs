@@ -19,6 +19,14 @@ O helper:
 
 ## Eventos instrumentados
 
+## Mapa inicial do funil
+
+- Home para ferramentas: `cta_clicked` com `destination: '/ferramentas'`, seguido de `page_viewed` em `/ferramentas`.
+- Home para apps: `cta_clicked` com `destination: '/apps'`, seguido de `page_viewed` em `/apps`.
+- Ferramentas para ferramenta especifica: `tool_card_clicked` com `feature` e `destination`, seguido de `page_viewed`.
+- Apps para projeto: `project_card_clicked` com `project_name` e `destination`.
+- Pagina de projeto para app externo: `cta_clicked` com `source: 'app_project_page'`.
+
 ### `page_viewed`
 
 Disparado no `router.afterEach`.
