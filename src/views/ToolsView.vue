@@ -122,6 +122,12 @@ const relatedProjects = [
   },
 ]
 
+const featuredTools = [
+  developerTools.find((tool) => tool.route === '/ferramentas/gerador-slug'),
+  commonUserTools.find((tool) => tool.route === '/ferramentas/calculadora-desconto'),
+  developerTools.find((tool) => tool.route === '/ferramentas/formatador-json'),
+].filter(Boolean)
+
 const getFeatureKey = (tool) => tool.route.replace('/ferramentas/', '').replaceAll('-', '_')
 
 const trackToolCardClick = (tool, group) => {
@@ -167,6 +173,31 @@ const trackProjectClick = (project) => {
           ferramenta deve ter objetivo claro, interface responsiva e conteúdo suficiente para ser
           encontrada por quem precisa resolver uma tarefa específica.
         </p>
+      </section>
+
+      <section class="featured-tools" aria-labelledby="featured-tools-title">
+        <div class="section-heading">
+          <span class="section-label">Comece por aqui</span>
+          <h2 id="featured-tools-title">Atalhos para ferramentas de uso rápido.</h2>
+          <p>
+            Slug, desconto e JSON cobrem tarefas comuns de quem chega pelo hub e ajudam a validar
+            quais utilitários merecem evolução primeiro.
+          </p>
+        </div>
+
+        <div class="featured-tool-list">
+          <RouterLink
+            v-for="tool in featuredTools"
+            :key="tool.name"
+            :to="tool.route"
+            class="featured-tool-link"
+            @click="trackToolCardClick(tool, 'featured')"
+          >
+            <span class="tool-icon" aria-hidden="true">{{ tool.icon }}</span>
+            <span>{{ tool.name }}</span>
+            <strong>Acessar →</strong>
+          </RouterLink>
+        </div>
       </section>
 
       <section class="tool-groups" aria-labelledby="tools-title">
@@ -298,6 +329,7 @@ const trackProjectClick = (project) => {
 
 .tools-hero,
 .hub-intro,
+.featured-tools,
 .related-section,
 .future-ad-space {
   max-width: 1100px;
@@ -396,6 +428,7 @@ const trackProjectClick = (project) => {
 }
 
 .tool-groups,
+.featured-tools,
 .related-section {
   margin-top: 2rem;
 }
@@ -454,6 +487,47 @@ const trackProjectClick = (project) => {
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
+}
+
+.featured-tool-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.featured-tool-link {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-height: 5.25rem;
+  padding: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.74);
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.featured-tool-link:hover {
+  transform: translateY(-3px);
+  border-color: rgba(56, 189, 248, 0.55);
+  background: rgba(30, 41, 59, 0.88);
+}
+
+.featured-tool-link span:not(.tool-icon) {
+  color: #f8fafc;
+  font-weight: 900;
+}
+
+.featured-tool-link strong {
+  margin-left: auto;
+  color: #38bdf8;
+  white-space: nowrap;
 }
 
 .tool-card,
@@ -590,6 +664,10 @@ const trackProjectClick = (project) => {
 
   .tool-card {
     flex-basis: 100%;
+  }
+
+  .featured-tool-list {
+    grid-template-columns: 1fr;
   }
 
   .hub-intro,

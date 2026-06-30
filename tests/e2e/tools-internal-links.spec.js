@@ -51,10 +51,9 @@ test('hub lista todas as ferramentas publicadas com links internos', async ({ pa
   await page.goto('/ferramentas')
 
   for (const tool of publishedTools) {
-    await expect(page.getByRole('link', { name: new RegExp(tool.name) })).toHaveAttribute(
-      'href',
-      tool.path,
-    )
+    const toolCard = page.locator('.tool-card').filter({ hasText: tool.name })
+
+    await expect(toolCard).toHaveAttribute('href', tool.path)
   }
 
   await expect(page.getByRole('link', { name: /QRCodeFlow/ })).toHaveAttribute(

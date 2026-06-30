@@ -4,6 +4,8 @@ import NavBoard from '@/components/defaults/NavBoard.vue'
 import { trackEvent } from '@/utils/tracking'
 import { RouterLink } from 'vue-router'
 
+const priorityProjectIds = [14, 2]
+
 const projects = [
   {
     id: 14,
@@ -191,6 +193,27 @@ const projects = [
 
 ]
 
+const sortedProjects = [...projects].sort((currentProject, nextProject) => {
+  const currentPriority = priorityProjectIds.indexOf(currentProject.id)
+  const nextPriority = priorityProjectIds.indexOf(nextProject.id)
+
+  if (currentPriority === -1 && nextPriority === -1) {
+    return 0
+  }
+
+  if (currentPriority === -1) {
+    return 1
+  }
+
+  if (nextPriority === -1) {
+    return -1
+  }
+
+  return currentPriority - nextPriority
+})
+
+const isPriorityProject = (project) => priorityProjectIds.includes(project.id)
+
 const trackProjectClick = (project) => {
   trackEvent('project_card_clicked', {
     destination: project.route || project.url,
@@ -233,7 +256,7 @@ const trackRelatedToolsClick = () => {
         </div>
 
         <div class="projects-grid">
-          <template v-for="project in projects" :key="project.id">
+          <template v-for="project in sortedProjects" :key="project.id">
             <RouterLink
               v-if="project.route"
               :to="project.route"
@@ -245,6 +268,9 @@ const trackRelatedToolsClick = () => {
 
                 <div>
                   <span class="project-tag">{{ project.tag }}</span>
+                  <span v-if="isPriorityProject(project)" class="project-priority">
+                    Projeto em destaque
+                  </span>
                   <span class="project-status">{{ project.status }}</span>
                 </div>
               </div>
@@ -281,6 +307,9 @@ const trackRelatedToolsClick = () => {
 
                 <div>
                   <span class="project-tag">{{ project.tag }}</span>
+                  <span v-if="isPriorityProject(project)" class="project-priority">
+                    Projeto em destaque
+                  </span>
                   <span class="project-status">{{ project.status }}</span>
                 </div>
               </div>
@@ -462,6 +491,7 @@ const trackRelatedToolsClick = () => {
 }
 
 .project-tag,
+.project-priority,
 .project-status {
   display: block;
   width: fit-content;
@@ -477,6 +507,12 @@ const trackRelatedToolsClick = () => {
 .project-tag {
   background: rgba(56, 189, 248, 0.12);
   color: #7dd3fc;
+}
+
+.project-priority {
+  margin-top: 0.45rem;
+  background: rgba(250, 204, 21, 0.12);
+  color: #fde68a;
 }
 
 .project-status {

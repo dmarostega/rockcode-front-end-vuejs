@@ -1,6 +1,7 @@
 <script setup>
 import NavBoard from '../components/defaults/NavBoard.vue'
 import { trackEvent } from '@/utils/tracking'
+import { RouterLink } from 'vue-router'
 
 defineProps({
   messages: {
@@ -17,6 +18,13 @@ const featuredProjects = [
   //     'Sistema para controle financeiro pessoal, organização de receitas, despesas, contas e visão geral das movimentações.',
   //   url: 'https://meufinanceiro.rockcodelabs.com.br',
   // },
+  {
+    name: 'QRCodeFlow',
+    tag: 'QR Code',
+    description:
+      'Gerador gratuito de QR Code para links, com pagina dedicada para conhecer o projeto antes de acessar o app.',
+    route: '/apps/qrcodeflow',
+  },
   {
     name: 'Proposta Fácil',
     description:
@@ -47,7 +55,7 @@ const trackCtaClick = (ctaLabel, destination) => {
 const trackProjectClick = (project) => {
   trackEvent('project_card_clicked', {
     project_name: project.name,
-    destination: project.url,
+    destination: project.route || project.url,
     source: 'home_featured_projects',
   })
 }
@@ -104,7 +112,7 @@ const trackProjectClick = (project) => {
           class="button button-secondary"
           @click="trackCtaClick('Sobre a Rock Code Labs', '/about')"
         >
-          Sobre a Rock Code Labs
+          Conhecer a Rock Code Labs
         </RouterLink>
 
         <RouterLink
@@ -161,12 +169,14 @@ const trackProjectClick = (project) => {
       </div>
 
       <div class="projects-grid">
-        <a
+        <component
           v-for="project in featuredProjects"
+          :is="project.route ? RouterLink : 'a'"
           :key="project.name"
+          :to="project.route"
           :href="project.url"
-          target="_blank"
-          rel="noopener noreferrer"
+          :target="project.route ? null : '_blank'"
+          :rel="project.route ? null : 'noopener noreferrer'"
           class="project-card"
           @click="trackProjectClick(project)"
         >
@@ -174,7 +184,7 @@ const trackProjectClick = (project) => {
           <h3>{{ project.name }}</h3>
           <p>{{ project.description }}</p>
           <strong>Acessar projeto →</strong>
-        </a>
+        </component>
       </div>
 
       <div class="section-action">
