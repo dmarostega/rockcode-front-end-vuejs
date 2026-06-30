@@ -78,7 +78,7 @@ const sanitizeUrlValue = (value) => {
   }
 }
 
-const sanitizePayloadValue = (field, value, pagePath) => {
+const sanitizePayloadValue = (field, value) => {
   if (field === 'page_path') {
     return sanitizePagePath(value)
   }
@@ -115,7 +115,7 @@ const createAllowedPayload = (eventName, payload, pagePath) => {
       return eventPayload
     }
 
-    const sanitizedValue = sanitizePayloadValue(field, payload[field], pagePath)
+    const sanitizedValue = sanitizePayloadValue(field, payload[field])
 
     if (sanitizedValue) {
       eventPayload[field] = sanitizedValue
