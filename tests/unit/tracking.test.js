@@ -3,6 +3,7 @@ import { trackEvent } from '@/utils/tracking'
 
 describe('trackEvent', () => {
   beforeEach(() => {
+    window.history.pushState({}, '', '/')
     localStorage.clear()
     vi.unstubAllEnvs()
     vi.restoreAllMocks()
@@ -141,13 +142,41 @@ describe('trackEvent', () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(event),
+      body: expect.any(String),
       credentials: 'omit',
       keepalive: true,
     })
+    const sentBody = JSON.parse(fetch.mock.calls[0][1].body)
+
+    expect(sentBody).toMatchObject({
+      project: 'rockcode-site',
+      event_name: 'cta_clicked',
+      page_path: '/',
+      session_id: expect.any(String),
+      occurred_at: expect.any(String),
+      destination: 'apps',
+    })
+    expect(sentBody).not.toHaveProperty('payload')
+    expect(sentBody).not.toHaveProperty('timestamp')
     expect(event.payload.destination).toBe('/apps')
     expect(JSON.stringify(event)).not.toContain('utm_source')
     expect(JSON.stringify(event)).not.toContain('nao enviar')
+  })
+
+  it('normaliza destination enviado ao backend como identificador controlado', () => {
+    vi.stubEnv('VITE_ANALYTICS_ENABLED', 'true')
+    vi.stubEnv('VITE_ANALYTICS_ENDPOINT', 'https://api.rockcodelabs.com.br/events')
+
+    trackEvent('cta_clicked', {
+      destination: '/apps?utm_source=teste#secao',
+    })
+
+    const sentBody = JSON.parse(fetch.mock.calls[0][1].body)
+
+    expect(sentBody.destination).toBe('apps')
+    expect(sentBody.destination).not.toContain('/')
+    expect(sentBody.destination).not.toContain('?')
+    expect(sentBody.destination).not.toContain('#')
   })
 
   it('mantem fallback silencioso quando endpoint falha', () => {

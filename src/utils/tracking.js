@@ -1,4 +1,5 @@
 const TRACKING_SESSION_KEY = 'rockcode_tracking_session_id'
+const ANALYTICS_PROJECT = 'rockcode-site'
 const ANALYTICS_ENABLED_VALUES = ['1', 'true', 'enabled', 'yes']
 const ALLOWED_EVENT_PAYLOAD_FIELDS = {
   page_viewed: ['page_path', 'route_name'],
@@ -78,6 +79,31 @@ const sanitizeUrlValue = (value) => {
   }
 }
 
+const normalizeIdentifier = (value) => {
+  if (typeof value !== 'string' || !value.trim()) {
+    return null
+  }
+
+  let identifier = value.trim()
+
+  try {
+    const baseUrl = typeof window === 'undefined' ? 'http://localhost' : window.location.origin
+    const parsedUrl = new URL(identifier, baseUrl)
+    identifier = parsedUrl.pathname || parsedUrl.hostname || identifier
+  } catch {
+    identifier = identifier.replace(/[?#].*$/u, '')
+  }
+
+  identifier = identifier
+    .replace(/^\/+|\/+$/gu, '')
+    .replace(/\//gu, '_')
+    .replace(/[^A-Za-z0-9_.:-]/gu, '_')
+    .replace(/_+/gu, '_')
+    .slice(0, 120)
+
+  return identifier || null
+}
+
 const sanitizePayloadValue = (field, value) => {
   if (field === 'page_path') {
     return sanitizePagePath(value)
@@ -136,6 +162,35 @@ const getAnalyticsEndpoint = () => {
   return typeof endpoint === 'string' ? endpoint.trim() : ''
 }
 
+const createBackendAnalyticsPayload = (event) => {
+  const payload = event.payload || {}
+  const backendPayload = {
+    project: ANALYTICS_PROJECT,
+    event_name: event.event_name,
+    page_path: event.page_path,
+    session_id: event.session_id,
+    occurred_at: event.timestamp,
+  }
+
+  const feature = normalizeIdentifier(payload.feature)
+  const source = normalizeIdentifier(payload.source)
+  const destination = normalizeIdentifier(payload.destination)
+
+  if (feature) {
+    backendPayload.feature = feature
+  }
+
+  if (source) {
+    backendPayload.source = source
+  }
+
+  if (destination) {
+    backendPayload.destination = destination
+  }
+
+  return backendPayload
+}
+
 const sendTrackingEvent = (event) => {
   if (!isAnalyticsEnabled() || !getAnalyticsEndpoint() || typeof fetch !== 'function') {
     return
@@ -146,7 +201,7 @@ const sendTrackingEvent = (event) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(event),
+    body: JSON.stringify(createBackendAnalyticsPayload(event)),
     credentials: 'omit',
     keepalive: true,
   }).catch(() => {})
