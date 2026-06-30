@@ -5,6 +5,7 @@ import {
   NOT_FOUND_PAGE_METADATA,
   updatePageMetadata,
 } from './pageMetadata'
+import { trackEvent } from '@/utils/tracking'
 
 const pageMetadataByPath = Object.fromEntries(
   INDEXABLE_PAGE_METADATA.map((pageMetadata) => [pageMetadata.path, pageMetadata]),
@@ -173,6 +174,10 @@ router.beforeEach((to) => {
 
 router.afterEach((to) => {
   updatePageMetadata(to)
+  trackEvent('page_viewed', {
+    page_path: to.fullPath,
+    route_name: to.name || 'unknown',
+  })
 })
 
 export default router

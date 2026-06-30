@@ -1,6 +1,7 @@
 <script setup>
 import LayoutDefault from '@/components/defaults/LayoutDefault.vue'
 import NavBoard from '@/components/defaults/NavBoard.vue'
+import { trackEvent } from '@/utils/tracking'
 import { RouterLink } from 'vue-router'
 
 const projects = [
@@ -189,6 +190,22 @@ const projects = [
   // },
 
 ]
+
+const trackProjectClick = (project) => {
+  trackEvent('project_card_clicked', {
+    destination: project.route || project.url,
+    project_name: project.name,
+    source: 'apps_catalog',
+  })
+}
+
+const trackRelatedToolsClick = () => {
+  trackEvent('cta_clicked', {
+    cta_label: 'Ver ferramentas gratuitas',
+    destination: '/ferramentas',
+    source: 'apps_related_tools',
+  })
+}
 </script>
 
 <template>
@@ -217,7 +234,12 @@ const projects = [
 
         <div class="projects-grid">
           <template v-for="project in projects" :key="project.id">
-            <RouterLink v-if="project.route" :to="project.route" class="project-card">
+            <RouterLink
+              v-if="project.route"
+              :to="project.route"
+              class="project-card"
+              @click="trackProjectClick(project)"
+            >
               <div class="project-top">
                 <div class="project-icon">{{ project.icon }}</div>
 
@@ -252,6 +274,7 @@ const projects = [
               target="_blank"
               rel="noopener noreferrer"
               class="project-card"
+              @click="trackProjectClick(project)"
             >
               <div class="project-top">
                 <div class="project-icon">{{ project.icon }}</div>
@@ -294,7 +317,11 @@ const projects = [
           </p>
         </div>
 
-        <RouterLink to="/ferramentas" class="related-tools-link">
+        <RouterLink
+          to="/ferramentas"
+          class="related-tools-link"
+          @click="trackRelatedToolsClick"
+        >
           Ver ferramentas gratuitas →
         </RouterLink>
       </section>
