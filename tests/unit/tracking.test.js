@@ -51,6 +51,30 @@ describe('trackEvent', () => {
     expect(event.page_path).not.toContain('#')
   })
 
+  it('sanitiza page_path informado manualmente no evento e no payload', () => {
+    const event = trackEvent('page_viewed', {
+      page_path: '/apps?redirect=https://exemplo.com#token',
+      route_name: 'apps',
+    })
+
+    expect(event.page_path).toBe('/apps')
+    expect(event.payload.page_path).toBe('/apps')
+    expect(JSON.stringify(event)).not.toContain('redirect=')
+    expect(JSON.stringify(event)).not.toContain('#token')
+  })
+
+  it('remove origem, query string e hash de URL absoluta em page_path manual', () => {
+    const event = trackEvent('page_viewed', {
+      page_path: 'https://rockcodelabs.com.br/ferramentas?url=https://exemplo.com#token',
+    })
+
+    expect(event.page_path).toBe('/ferramentas')
+    expect(event.payload.page_path).toBe('/ferramentas')
+    expect(JSON.stringify(event)).not.toContain('rockcodelabs.com.br')
+    expect(JSON.stringify(event)).not.toContain('exemplo.com')
+    expect(JSON.stringify(event)).not.toContain('#token')
+  })
+
   it('falha silenciosamente quando o nome do evento nao e informado', () => {
     expect(trackEvent()).toBeNull()
   })
