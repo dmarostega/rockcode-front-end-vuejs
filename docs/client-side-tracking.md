@@ -61,6 +61,30 @@ Payload permitido:
 - `destination`
 - `source`
 
+## Eventos de uso das ferramentas
+
+O Gerador de Slug e a ferramenta piloto para instrumentacao de uso real. As demais ferramentas devem repetir o mesmo padrao sem enviar input ou resultado.
+
+Payload comum:
+
+- `feature`: identificador estavel da ferramenta, por exemplo `slug_generator`
+
+### `tool_opened`
+
+Disparado ao montar a pagina da ferramenta.
+
+### `tool_result_copied`
+
+Disparado apenas quando o usuario copia o resultado com sucesso.
+
+### `tool_example_used`
+
+Disparado quando o usuario usa um exemplo predefinido.
+
+### `tool_cleared`
+
+Disparado quando o usuario limpa os campos da ferramenta.
+
 ## Privacidade
 
 Nao registrar:

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import {
   ToolBackLink,
   ToolFaq,
@@ -8,8 +8,12 @@ import {
   ToolPrivacyNotice,
   ToolResultCard,
 } from '@/components/tools'
+import { trackEvent } from '@/utils/tracking'
 
 const exampleText = 'Guia rápido: Como criar páginas Vue com SEO básico'
+const trackingPayload = {
+  feature: 'slug_generator',
+}
 
 const inputValue = ref(exampleText)
 const copyStatus = ref('')
@@ -57,11 +61,13 @@ const resetCopyStatus = () => {
 const useExample = () => {
   inputValue.value = exampleText
   copyStatus.value = ''
+  trackEvent('tool_example_used', trackingPayload)
 }
 
 const clearInput = () => {
   inputValue.value = ''
   copyStatus.value = ''
+  trackEvent('tool_cleared', trackingPayload)
 }
 
 const copyWithFallback = () => {
@@ -95,12 +101,17 @@ const copySlug = async () => {
     }
 
     copyStatus.value = 'Slug copiado.'
+    trackEvent('tool_result_copied', trackingPayload)
   } catch {
     copyStatus.value = 'Não foi possível copiar automaticamente.'
   } finally {
     resetCopyStatus()
   }
 }
+
+onMounted(() => {
+  trackEvent('tool_opened', trackingPayload)
+})
 </script>
 
 <template>
