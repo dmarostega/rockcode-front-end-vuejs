@@ -1,5 +1,6 @@
 <script setup>
 import NavBoard from '../components/defaults/NavBoard.vue'
+import { trackEvent } from '@/utils/tracking'
 
 defineProps({
   messages: {
@@ -34,6 +35,22 @@ const featuredProjects = [
     url: 'https://minhaloteria.rockcodelabs.com.br',
   },
 ]
+
+const trackCtaClick = (ctaLabel, destination) => {
+  trackEvent('cta_clicked', {
+    cta_label: ctaLabel,
+    destination,
+    source: 'home',
+  })
+}
+
+const trackProjectClick = (project) => {
+  trackEvent('project_card_clicked', {
+    project_name: project.name,
+    destination: project.url,
+    source: 'home_featured_projects',
+  })
+}
 </script>
 
 <template>
@@ -74,13 +91,27 @@ const featuredProjects = [
       </p>
 
       <div class="hero-actions">
-        <RouterLink to="/apps" class="button button-primary"> Ver projetos </RouterLink>
+        <RouterLink
+          to="/apps"
+          class="button button-primary"
+          @click="trackCtaClick('Ver projetos', '/apps')"
+        >
+          Ver projetos
+        </RouterLink>
 
-        <RouterLink to="/about" class="button button-secondary">
+        <RouterLink
+          to="/about"
+          class="button button-secondary"
+          @click="trackCtaClick('Sobre a Rock Code Labs', '/about')"
+        >
           Sobre a Rock Code Labs
         </RouterLink>
 
-        <RouterLink to="/ferramentas" class="button button-secondary">
+        <RouterLink
+          to="/ferramentas"
+          class="button button-secondary"
+          @click="trackCtaClick('Usar ferramentas gratuitas', '/ferramentas')"
+        >
           Usar ferramentas gratuitas
         </RouterLink>
       </div>
@@ -137,6 +168,7 @@ const featuredProjects = [
           target="_blank"
           rel="noopener noreferrer"
           class="project-card"
+          @click="trackProjectClick(project)"
         >
           <span class="project-tag">{{ project.tag }}</span>
           <h3>{{ project.name }}</h3>
@@ -146,7 +178,13 @@ const featuredProjects = [
       </div>
 
       <div class="section-action">
-        <RouterLink to="/apps" class="text-link"> Ver todos os aplicativos </RouterLink>
+        <RouterLink
+          to="/apps"
+          class="text-link"
+          @click="trackCtaClick('Ver todos os aplicativos', '/apps')"
+        >
+          Ver todos os aplicativos
+        </RouterLink>
       </div>
     </section>
 
@@ -162,7 +200,11 @@ const featuredProjects = [
         </p>
       </div>
 
-      <RouterLink to="/experiences" class="button button-primary">
+      <RouterLink
+        to="/experiences"
+        class="button button-primary"
+        @click="trackCtaClick('Ver experiencia profissional', '/experiences')"
+      >
         Ver experiência profissional
       </RouterLink>
     </section>

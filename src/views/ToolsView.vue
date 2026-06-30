@@ -1,6 +1,7 @@
 <script setup>
 import LayoutDefault from '@/components/defaults/LayoutDefault.vue'
 import NavBoard from '@/components/defaults/NavBoard.vue'
+import { trackEvent } from '@/utils/tracking'
 import { RouterLink } from 'vue-router'
 
 const developerTools = [
@@ -120,6 +121,25 @@ const relatedProjects = [
     url: 'https://qrcodeflow.rockcodelabs.com.br',
   },
 ]
+
+const getFeatureKey = (tool) => tool.route.replace('/ferramentas/', '').replaceAll('-', '_')
+
+const trackToolCardClick = (tool, group) => {
+  trackEvent('tool_card_clicked', {
+    destination: tool.route,
+    feature: getFeatureKey(tool),
+    source: `tools_${group}`,
+    tool_name: tool.name,
+  })
+}
+
+const trackProjectClick = (project) => {
+  trackEvent('project_card_clicked', {
+    destination: project.url,
+    project_name: project.name,
+    source: 'tools_related_project',
+  })
+}
 </script>
 
 <template>
@@ -177,6 +197,7 @@ const relatedProjects = [
               :key="tool.name"
               :to="tool.route"
               class="tool-card"
+              @click="trackToolCardClick(tool, 'common')"
             >
               <div class="card-top">
                 <span class="tool-icon" aria-hidden="true">{{ tool.icon }}</span>
@@ -210,6 +231,7 @@ const relatedProjects = [
               :key="tool.name"
               :to="tool.route"
               class="tool-card"
+              @click="trackToolCardClick(tool, 'developer')"
             >
               <div class="card-top">
                 <span class="tool-icon" aria-hidden="true">{{ tool.icon }}</span>
@@ -239,6 +261,7 @@ const relatedProjects = [
           target="_blank"
           rel="noopener noreferrer"
           class="related-card"
+          @click="trackProjectClick(project)"
         >
           <div>
             <span class="status-badge">{{ project.status }}</span>

@@ -1,9 +1,10 @@
 <script setup>
 import LayoutDefault from '@/components/defaults/LayoutDefault.vue'
 import NavBoard from '@/components/defaults/NavBoard.vue'
+import { trackEvent } from '@/utils/tracking'
 import { RouterLink } from 'vue-router'
 
-defineProps({
+const props = defineProps({
   eyebrow: {
     type: String,
     default: 'App',
@@ -69,6 +70,33 @@ defineProps({
     default: 'Continue por caminhos úteis e existentes.',
   },
 })
+
+const trackPrimaryCtaClick = () => {
+  trackEvent('cta_clicked', {
+    cta_label: props.primaryCta.label,
+    destination: props.primaryCta.href,
+    source: 'app_project_page',
+    project_name: props.title,
+  })
+}
+
+const trackSecondaryCtaClick = () => {
+  trackEvent('cta_clicked', {
+    cta_label: props.secondaryCta.label,
+    destination: props.secondaryCta.to,
+    source: 'app_project_page',
+    project_name: props.title,
+  })
+}
+
+const trackRelatedLinkClick = (link) => {
+  trackEvent('cta_clicked', {
+    cta_label: link.label,
+    destination: link.to,
+    source: 'app_project_related_links',
+    project_name: props.title,
+  })
+}
 </script>
 
 <template>
@@ -90,6 +118,7 @@ defineProps({
             target="_blank"
             rel="noopener noreferrer"
             class="button button-primary"
+            @click="trackPrimaryCtaClick"
           >
             {{ primaryCta.label }}
           </a>
@@ -98,6 +127,7 @@ defineProps({
             v-if="secondaryCta"
             :to="secondaryCta.to"
             class="button button-secondary"
+            @click="trackSecondaryCtaClick"
           >
             {{ secondaryCta.label }}
           </RouterLink>
@@ -168,6 +198,7 @@ defineProps({
             :key="link.to"
             :to="link.to"
             class="related-card"
+            @click="trackRelatedLinkClick(link)"
           >
             <strong>{{ link.label }}</strong>
             <p>{{ link.description }}</p>
