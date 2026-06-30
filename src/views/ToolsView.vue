@@ -178,10 +178,10 @@ const trackProjectClick = (project) => {
       <section class="featured-tools" aria-labelledby="featured-tools-title">
         <div class="section-heading">
           <span class="section-label">Comece por aqui</span>
-          <h2 id="featured-tools-title">Atalhos para ferramentas de uso rapido.</h2>
+          <h2 id="featured-tools-title">Atalhos para ferramentas de uso rápido.</h2>
           <p>
             Slug, desconto e JSON cobrem tarefas comuns de quem chega pelo hub e ajudam a validar
-            quais utilitarios merecem evolucao primeiro.
+            quais utilitários merecem evolução primeiro.
           </p>
         </div>
 
