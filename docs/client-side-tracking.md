@@ -12,6 +12,7 @@ O helper:
 
 - gera um `session_id` anonimo e persistido em `localStorage`;
 - inclui `page_path` automaticamente quando o payload nao informar um valor;
+- sanitiza `page_path` para manter apenas o pathname, sem query string, hash ou origem;
 - inclui `timestamp` ISO;
 - falha silenciosamente;
 - registra no `console.debug` apenas em desenvolvimento;
@@ -68,6 +69,30 @@ Payload permitido:
 - `destination`
 - `source`
 
+## Eventos de uso das ferramentas
+
+O Gerador de Slug e a ferramenta piloto para instrumentacao de uso real. As demais ferramentas devem repetir o mesmo padrao sem enviar input ou resultado.
+
+Payload comum:
+
+- `feature`: identificador estavel da ferramenta, por exemplo `slug_generator`
+
+### `tool_opened`
+
+Disparado ao montar a pagina da ferramenta.
+
+### `tool_result_copied`
+
+Disparado apenas quando o usuario copia o resultado com sucesso.
+
+### `tool_example_used`
+
+Disparado quando o usuario usa um exemplo predefinido.
+
+### `tool_cleared`
+
+Disparado quando o usuario limpa os campos da ferramenta.
+
 ## Privacidade
 
 Nao registrar:
@@ -78,6 +103,8 @@ Nao registrar:
 - e-mail, telefone, nome, documento ou qualquer dado pessoal.
 
 Para novas ferramentas, envie apenas metadados seguros como `feature`, `source`, `destination` e nome publico do card.
+
+Se algum evento precisar de parametros de URL no futuro, usar allowlist explicita e documentada em vez de enviar `search`, `hash` ou URLs completas.
 
 ## Teste manual rapido
 

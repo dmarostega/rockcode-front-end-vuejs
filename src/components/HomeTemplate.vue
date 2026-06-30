@@ -118,7 +118,7 @@ const trackProjectClick = (project) => {
         <RouterLink
           to="/ferramentas"
           class="button button-secondary"
-          @click="trackCtaClick('Usar ferramentas gratuitas', '/ferramentas')"
+          @click="trackCtaClick('Abrir ferramentas gratuitas', '/ferramentas')"
         >
           Abrir ferramentas gratuitas
         </RouterLink>

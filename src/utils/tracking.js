@@ -30,7 +30,22 @@ const getPagePath = () => {
     return ''
   }
 
-  return `${window.location.pathname}${window.location.search}${window.location.hash}`
+  return window.location.pathname
+}
+
+const sanitizePagePath = (pagePath) => {
+  if (typeof pagePath !== 'string' || !pagePath.trim()) {
+    return getPagePath()
+  }
+
+  try {
+    const baseUrl = typeof window === 'undefined' ? 'http://localhost' : window.location.origin
+    const parsedUrl = new URL(pagePath, baseUrl)
+
+    return parsedUrl.pathname || '/'
+  } catch {
+    return getPagePath()
+  }
 }
 
 export const trackEvent = (eventName, payload = {}) => {
@@ -39,12 +54,17 @@ export const trackEvent = (eventName, payload = {}) => {
       return null
     }
 
+    const pagePath = sanitizePagePath(payload.page_path)
+    const eventPayload = Object.prototype.hasOwnProperty.call(payload, 'page_path')
+      ? { ...payload, page_path: pagePath }
+      : payload
+
     const event = {
       event_name: eventName,
-      page_path: payload.page_path || getPagePath(),
+      page_path: pagePath,
       session_id: getSessionId(),
       timestamp: new Date().toISOString(),
-      payload,
+      payload: eventPayload,
     }
 
     if (import.meta.env.DEV) {

@@ -175,7 +175,7 @@ router.beforeEach((to) => {
 router.afterEach((to) => {
   updatePageMetadata(to)
   trackEvent('page_viewed', {
-    page_path: to.fullPath,
+    page_path: to.path,
     route_name: to.name || 'unknown',
   })
 })
