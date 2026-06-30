@@ -30,7 +30,7 @@ const getPagePath = () => {
     return ''
   }
 
-  return `${window.location.pathname}${window.location.search}${window.location.hash}`
+  return window.location.pathname
 }
 
 export const trackEvent = (eventName, payload = {}) => {
