@@ -41,22 +41,24 @@ const featuredProjects = [
     <section class="hero-section">
       <div class="hero-logo">
         <img
-          src="../assets/images/stone.png"
+          src="../assets/images/stone-home.png"
           alt="Ícone da Rock Code Labs"
           class="stone-logo"
-          width="517"
-          height="537"
+          width="340"
+          height="353"
           decoding="async"
+          loading="eager"
           fetchpriority="high"
         />
 
         <img
-          src="../assets/images/solo_name.png"
+          src="../assets/images/solo-name-home.png"
           alt="Rock Code Labs"
           class="name-logo"
-          width="815"
-          height="199"
+          width="520"
+          height="127"
           decoding="async"
+          loading="eager"
           fetchpriority="high"
         />
       </div>
@@ -200,14 +202,14 @@ const featuredProjects = [
   display: block;
   width: min(170px, 42vw);
   height: auto;
-  aspect-ratio: 517 / 537;
+  aspect-ratio: 340 / 353;
 }
 
 .name-logo {
   display: block;
   width: min(260px, 68vw);
   height: auto;
-  aspect-ratio: 815 / 199;
+  aspect-ratio: 520 / 127;
 }
 
 .eyebrow,
