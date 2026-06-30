@@ -12,6 +12,7 @@ O helper:
 
 - gera um `session_id` anonimo e persistido em `localStorage`;
 - inclui `page_path` automaticamente quando o payload nao informar um valor;
+- sanitiza `page_path` para manter apenas o pathname, sem query string, hash ou origem;
 - inclui `timestamp` ISO;
 - falha silenciosamente;
 - registra no `console.debug` apenas em desenvolvimento;
@@ -94,6 +95,8 @@ Nao registrar:
 - e-mail, telefone, nome, documento ou qualquer dado pessoal.
 
 Para novas ferramentas, envie apenas metadados seguros como `feature`, `source`, `destination` e nome publico do card.
+
+Se algum evento precisar de parametros de URL no futuro, usar allowlist explicita e documentada em vez de enviar `search`, `hash` ou URLs completas.
 
 ## Teste manual rapido
 
