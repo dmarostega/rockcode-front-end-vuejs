@@ -44,34 +44,35 @@ const featuredProjects = [
           src="../assets/images/stone.png"
           alt="Ícone da Rock Code Labs"
           class="stone-logo"
+          width="517"
+          height="537"
+          decoding="async"
+          fetchpriority="high"
         />
 
         <img
           src="../assets/images/solo_name.png"
           alt="Rock Code Labs"
           class="name-logo"
+          width="815"
+          height="199"
+          decoding="async"
+          fetchpriority="high"
         />
       </div>
 
-      <p class="eyebrow">
-        Laboratório pessoal • Projetos web • Portfólio técnico
-      </p>
+      <p class="eyebrow">Laboratório pessoal • Projetos web • Portfólio técnico</p>
 
-      <h1>
-        Desenvolvimento web aplicado em projetos reais.
-      </h1>
+      <h1>Desenvolvimento web aplicado em projetos reais.</h1>
 
       <p class="hero-description">
-        A Rock Code Labs é o laboratório pessoal de Diogo Marostega, criado para
-        centralizar projetos próprios, estudos técnicos e aplicações reais
-        desenvolvidas com Laravel, Vue, PHP, JavaScript, APIs REST e bancos de
-        dados relacionais.
+        A Rock Code Labs é o laboratório pessoal de Diogo Marostega, criado para centralizar
+        projetos próprios, estudos técnicos e aplicações reais desenvolvidas com Laravel, Vue, PHP,
+        JavaScript, APIs REST e bancos de dados relacionais.
       </p>
 
       <div class="hero-actions">
-        <RouterLink to="/apps" class="button button-primary">
-          Ver projetos
-        </RouterLink>
+        <RouterLink to="/apps" class="button button-primary"> Ver projetos </RouterLink>
 
         <RouterLink to="/about" class="button button-secondary">
           Sobre a Rock Code Labs
@@ -94,9 +95,8 @@ const featuredProjects = [
           <span class="card-number">01</span>
           <h3>Projetos próprios</h3>
           <p>
-            Aplicações criadas para validar ideias, estudar arquitetura,
-            melhorar experiência de uso e transformar experimentos em produtos
-            utilizáveis.
+            Aplicações criadas para validar ideias, estudar arquitetura, melhorar experiência de uso
+            e transformar experimentos em produtos utilizáveis.
           </p>
         </article>
 
@@ -104,9 +104,8 @@ const featuredProjects = [
           <span class="card-number">02</span>
           <h3>Experiência técnica</h3>
           <p>
-            Desenvolvimento web com foco em Laravel, PHP, APIs RESTful,
-            bancos de dados relacionais, JavaScript e evolução para interfaces
-            modernas com Vue.
+            Desenvolvimento web com foco em Laravel, PHP, APIs RESTful, bancos de dados relacionais,
+            JavaScript e evolução para interfaces modernas com Vue.
           </p>
         </article>
 
@@ -114,9 +113,8 @@ const featuredProjects = [
           <span class="card-number">03</span>
           <h3>Aprendizado contínuo</h3>
           <p>
-            Registro prático de estudos, melhorias, ideias de micro SaaS,
-            integrações, automações e decisões técnicas tomadas durante o
-            desenvolvimento dos projetos.
+            Registro prático de estudos, melhorias, ideias de micro SaaS, integrações, automações e
+            decisões técnicas tomadas durante o desenvolvimento dos projetos.
           </p>
         </article>
       </div>
@@ -126,9 +124,7 @@ const featuredProjects = [
       <div class="section-header">
         <span class="section-kicker">Aplicações</span>
         <h2>Projetos em destaque</h2>
-        <p>
-          Alguns projetos publicados ou em fase de evolução dentro da Rock Code Labs.
-        </p>
+        <p>Alguns projetos publicados ou em fase de evolução dentro da Rock Code Labs.</p>
       </div>
 
       <div class="projects-grid">
@@ -148,19 +144,19 @@ const featuredProjects = [
       </div>
 
       <div class="section-action">
-        <RouterLink to="/apps" class="text-link">
-          Ver todos os aplicativos
-        </RouterLink>
+        <RouterLink to="/apps" class="text-link"> Ver todos os aplicativos </RouterLink>
       </div>
     </section>
 
     <section class="resume-callout">
       <div>
         <span class="section-kicker">Portfólio profissional</span>
-        <h2>Além dos projetos, este espaço também apresenta minha trajetória como desenvolvedor.</h2>
+        <h2>
+          Além dos projetos, este espaço também apresenta minha trajetória como desenvolvedor.
+        </h2>
         <p>
-          A ideia é unir laboratório pessoal, currículo técnico e vitrine de projetos
-          em um único lugar, mostrando experiência prática e evolução profissional.
+          A ideia é unir laboratório pessoal, currículo técnico e vitrine de projetos em um único
+          lugar, mostrando experiência prática e evolução profissional.
         </p>
       </div>
 
@@ -185,6 +181,7 @@ const featuredProjects = [
 
 .hero-section {
   max-width: 920px;
+  min-height: 760px;
   margin: 0 auto;
   padding: 2rem 0 4rem;
   text-align: center;
@@ -195,16 +192,22 @@ const featuredProjects = [
   flex-direction: column;
   align-items: center;
   gap: 0.35rem;
+  min-height: 246px;
   margin-bottom: 2rem;
 }
 
 .stone-logo {
-  max-width: 170px;
-  max-height: 190px;
+  display: block;
+  width: min(170px, 42vw);
+  height: auto;
+  aspect-ratio: 517 / 537;
 }
 
 .name-logo {
-  max-width: 260px;
+  display: block;
+  width: min(260px, 68vw);
+  height: auto;
+  aspect-ratio: 815 / 199;
 }
 
 .eyebrow,
@@ -213,6 +216,7 @@ const featuredProjects = [
   align-items: center;
   justify-content: center;
   width: fit-content;
+  min-height: 36px;
   margin: 0 auto;
   padding: 0.45rem 0.85rem;
   border: 1px solid rgba(56, 189, 248, 0.35);
@@ -295,6 +299,10 @@ const featuredProjects = [
 .resume-callout {
   max-width: 1100px;
   margin: 0 auto 4rem;
+}
+
+.content-section:first-of-type {
+  min-height: 360px;
 }
 
 .section-header {
@@ -471,15 +479,20 @@ const featuredProjects = [
   }
 
   .hero-section {
+    min-height: auto;
     padding-top: 1rem;
   }
 
+  .hero-logo {
+    min-height: 195px;
+  }
+
   .stone-logo {
-    max-width: 130px;
+    width: min(130px, 42vw);
   }
 
   .name-logo {
-    max-width: 220px;
+    width: min(220px, 68vw);
   }
 
   .hero-description {
