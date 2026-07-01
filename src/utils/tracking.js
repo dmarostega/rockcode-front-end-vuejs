@@ -1,6 +1,9 @@
+import { isExcludedAnalyticsReferrer } from './analyticsExclusions'
+
 const TRACKING_SESSION_KEY = 'rockcode_tracking_session_id'
 const ANALYTICS_PROJECT = 'rockcode-site'
 const ANALYTICS_ENABLED_VALUES = ['1', 'true', 'enabled', 'yes']
+const LOCAL_ANALYTICS_HOSTNAMES = ['localhost', '127.0.0.1', '0.0.0.0', '::1', '[::1]']
 const ALLOWED_EVENT_PAYLOAD_FIELDS = {
   page_viewed: ['page_path', 'route_name'],
   cta_clicked: ['cta_label', 'destination', 'source', 'project_name'],
@@ -44,6 +47,17 @@ const getPagePath = () => {
 
   return window.location.pathname
 }
+
+const getCurrentHostname = () => {
+  if (typeof window === 'undefined') {
+    return ''
+  }
+
+  return window.location.hostname
+}
+
+const isLocalAnalyticsHost = () =>
+  LOCAL_ANALYTICS_HOSTNAMES.includes(getCurrentHostname().trim().toLowerCase())
 
 const sanitizePagePath = (pagePath) => {
   if (typeof pagePath !== 'string' || !pagePath.trim()) {
@@ -165,9 +179,21 @@ const createAllowedPayload = (eventName, payload, pagePath) => {
   }, {})
 }
 
-const isAnalyticsEnabled = () =>
+export const shouldSendAnalyticsEvent = ({
+  analyticsEnabled = import.meta.env.VITE_ANALYTICS_ENABLED,
+  endpoint = import.meta.env.VITE_ANALYTICS_ENDPOINT,
+  isProduction = import.meta.env.PROD,
+  isLocalHost = isLocalAnalyticsHost(),
+  isExcludedReferrer = isExcludedAnalyticsReferrer(),
+  fetchAvailable = typeof fetch === 'function',
+} = {}) =>
+  isProduction === true &&
+  !isLocalHost &&
+  !isExcludedReferrer &&
+  fetchAvailable &&
+  Boolean(endpoint) &&
   ANALYTICS_ENABLED_VALUES.includes(
-    String(import.meta.env.VITE_ANALYTICS_ENABLED || '').toLowerCase(),
+    String(analyticsEnabled || '').toLowerCase(),
   )
 
 const getAnalyticsEndpoint = () => {
@@ -207,11 +233,13 @@ const createBackendAnalyticsPayload = (event) => {
 }
 
 const sendTrackingEvent = (event) => {
-  if (!isAnalyticsEnabled() || !getAnalyticsEndpoint() || typeof fetch !== 'function') {
+  const endpoint = getAnalyticsEndpoint()
+
+  if (!shouldSendAnalyticsEvent({ endpoint })) {
     return
   }
 
-  fetch(getAnalyticsEndpoint(), {
+  fetch(endpoint, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

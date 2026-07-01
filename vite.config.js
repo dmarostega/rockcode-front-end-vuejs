@@ -14,6 +14,11 @@ export default defineConfig({
   },
   test: {
     environment: 'jsdom',
+    environmentOptions: {
+      jsdom: {
+        url: 'https://rockcodelabs.com.br/',
+      },
+    },
     globals: true,
     include: ['tests/unit/**/*.test.js'],
   },

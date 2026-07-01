@@ -31,10 +31,41 @@ Comportamento esperado:
 
 - sem `VITE_ANALYTICS_ENABLED=true`, nenhum evento e enviado;
 - sem `VITE_ANALYTICS_ENDPOINT`, nenhum evento e enviado;
+- em `localhost`, `127.0.0.1`, `0.0.0.0` ou build de desenvolvimento, nenhum evento real e enviado mesmo que a env seja ligada por engano;
 - com as duas envs configuradas, apenas eventos permitidos sao enviados via `POST`;
 - falhas de rede ou erro no endpoint nao quebram a navegacao;
 - o request usa `credentials: 'omit'` e nao envia cookies automaticamente;
 - `page_path` e `destination` sao sanitizados para remover query string e hash.
+
+## GA4 e ambiente local
+
+O GA4 tambem fica desligado por padrao. A tag so e carregada quando todas as condicoes forem verdadeiras:
+
+- `VITE_GA_ENABLED=true`;
+- build de producao (`import.meta.env.PROD`);
+- hostname diferente de `localhost`, `127.0.0.1` e `0.0.0.0`.
+
+Use `.env.local` para desenvolvimento com analytics real desligado:
+
+```env
+VITE_GA_ENABLED=false
+VITE_GA_MEASUREMENT_ID=G-SRWKM62NDG
+VITE_ANALYTICS_ENABLED=false
+VITE_ANALYTICS_ENDPOINT=
+VITE_ANALYTICS_EXCLUDED_REFERRERS=195.35.18.65:8443
+```
+
+Para producao, habilite explicitamente as integracoes necessarias:
+
+```env
+VITE_GA_ENABLED=true
+VITE_GA_MEASUREMENT_ID=G-SRWKM62NDG
+VITE_ANALYTICS_ENABLED=true
+VITE_ANALYTICS_ENDPOINT=https://api.exemplo.com/events
+VITE_ANALYTICS_EXCLUDED_REFERRERS=195.35.18.65:8443
+```
+
+`VITE_ANALYTICS_EXCLUDED_REFERRERS` aceita hosts separados por virgula. O host do CloudPanel (`195.35.18.65:8443`) tambem fica bloqueado por padrao para evitar que acessos operacionais aparecam como referral real.
 
 O payload enviado ao backend e reduzido ao contrato de analytics:
 
@@ -162,4 +193,6 @@ Campos fora da allowlist do evento sao descartados antes de retornar ou enviar o
 4. Confirmar logs `[tracking]` para `page_viewed`.
 5. Clicar nos CTAs principais e cards.
 6. Confirmar que os eventos nao incluem textos digitados ou resultados gerados.
-7. Com `VITE_ANALYTICS_ENABLED=true` e `VITE_ANALYTICS_ENDPOINT` configurado, confirmar no painel Network que o `POST` contem apenas eventos e campos permitidos.
+7. Em `http://localhost:5173`, confirmar no painel Network que nao ha request para `analytics.google.com/g/collect`.
+8. Com `VITE_ANALYTICS_ENABLED=false` ou ausente, confirmar que nao ha `POST` para o endpoint proprio de analytics.
+9. Em build de producao com `VITE_ANALYTICS_ENABLED=true` e `VITE_ANALYTICS_ENDPOINT` configurado, confirmar no painel Network que o `POST` contem apenas eventos e campos permitidos.
