@@ -1,32 +1,32 @@
-# Analise de conectividade front-end e back-end
+# Análise de conectividade front-end e back-end
 
-Data da validacao: 2026-07-01
+Data da validação: 2026-07-01
 
 ## Contexto
 
-Repositorios locais avaliados:
+Repositórios locais avaliados:
 
 - `frontend-rockcode`: `dmarostega/rockcode-front-end-vuejs`
 - `rockcode-api`: `dmarostega/rockcode-site-api`
 
-Objetivo da validacao:
+Objetivo da validação:
 
 - confirmar se o front Vue consegue enviar eventos para o backend Laravel;
 - confirmar se os eventos chegam ao MySQL;
 - confirmar se o painel interno do backend exibe os agregados;
-- esclarecer por que a rota `/admin` nao existe no front-end.
+- esclarecer por que a rota `/admin` não existe no front-end.
 
 ## Resultado
 
-A conectividade front-end para back-end esta funcionando quando o backend e servido com:
+A conectividade front-end para back-end está funcionando quando o backend é servido com:
 
 ```sh
-php artisan serve
+php artisan serve --host=127.0.0.1 --port=8000
 ```
 
-O WAMP deve ficar somente como MySQL nesse fluxo local. Quando o host Apache/WAMP foi usado para servir o Laravel, ele executou PHP `7.4.33`, mas as dependencias do projeto exigem PHP `>= 8.2`, causando erro fatal antes da aplicacao responder.
+O WAMP deve ficar somente como MySQL nesse fluxo local. Quando o host Apache/WAMP foi usado para servir o Laravel, ele executou PHP `7.4.33`, mas as dependências do projeto exigem PHP `>= 8.2`, causando erro fatal antes da aplicação responder.
 
-## Configuracao local validada
+## Configuração local validada
 
 Front-end `.env`:
 
@@ -44,14 +44,18 @@ ADMIN_USERNAME=algum_usuario
 ADMIN_PASSWORD=alguma_senha
 ```
 
-Com essa configuracao:
+Com essa configuração:
 
 - o front em `http://localhost:5173` envia eventos para `http://127.0.0.1:8000/api/analytics/events`;
 - o CORS permite a origem local do Vite;
 - o Laravel persiste os eventos na tabela `product_analytics_events`;
 - o dashboard interno em `http://127.0.0.1:8000/admin` exibe os agregados.
 
-## Evidencias observadas
+> Após alterar `.env` do front-end, reinicie o Vite.
+>
+> Após alterar `.env` do backend, reinicie o Laravel.
+
+## Evidências observadas
 
 - O DevTools mostrou chamadas para `/api/analytics/events`.
 - A tabela `product_analytics_events` recebeu registros com:
@@ -61,11 +65,11 @@ Com essa configuracao:
 - O dashboard interno exibiu:
   - total de 6 eventos;
   - eventos por dia;
-  - top paginas agregadas.
+  - top páginas agregadas.
 
 ## Sobre o admin
 
-O admin atualmente esta implementado no backend Laravel como uma pagina Blade:
+O admin atualmente está implementado no backend Laravel como uma página Blade:
 
 ```text
 GET http://127.0.0.1:8000/admin
@@ -78,19 +82,32 @@ ADMIN_USERNAME=algum_usuario
 ADMIN_PASSWORD=alguma_senha
 ```
 
-Nao depende da tabela `users` e nao exige usuario cadastrado no banco.
+Não depende da tabela `users` e não exige usuário cadastrado no banco.
 
-Importante: `/admin` nao e uma rota do SPA Vue neste momento. Portanto, abrir `/admin` no front-end Vite tende a cair na rota de Not Found do Vue, mas ainda pode registrar um evento `page_viewed` com `page_path = /admin`.
+Importante: `/admin` não é uma rota do SPA Vue neste momento. Portanto, abrir `/admin` no front-end Vite tende a cair na rota de Not Found do Vue, mas ainda pode registrar um evento `page_viewed` com `page_path = /admin`.
+
+Para evitar ruído nos testes de analytics, acesse o admin somente pelo host do backend:
+
+```text
+http://127.0.0.1:8000/admin
+```
+
+Evite testar o admin pelo host do Vue:
+
+```text
+http://localhost:5173/admin
+```
 
 ## Pontos que estavam faltando ou confundindo o teste
 
-1. O Apache/WAMP estava servindo Laravel com PHP `7.4.33`, incompatovel com as dependencias.
+1. O Apache/WAMP estava servindo Laravel com PHP `7.4.33`, incompatível com as dependências.
 2. O backend precisava ser executado via `php artisan serve` usando PHP `8.2+`.
 3. O CORS precisava incluir `http://localhost:5173` e `http://127.0.0.1:5173`.
 4. O front precisava definir `VITE_ANALYTICS_ENABLED=true`.
 5. O front precisava apontar `VITE_ANALYTICS_ENDPOINT` para o backend local em `127.0.0.1:8000`.
-6. O admin usa Basic Auth por variaveis de ambiente, nao usuarios do banco.
-7. O admin atual pertence ao backend, nao ao front-end Vue.
+6. O admin usa Basic Auth por variáveis de ambiente, não usuários do banco.
+7. O admin atual pertence ao backend, não ao front-end Vue.
+8. Alterações de `.env` exigem reinício do processo correspondente.
 
 ## Roteiro manual de teste
 
@@ -98,14 +115,16 @@ Importante: `/admin` nao e uma rota do SPA Vue neste momento. Portanto, abrir `/
 2. No backend `rockcode-api`, subir o Laravel:
 
 ```sh
-php artisan serve
+php artisan serve --host=127.0.0.1 --port=8000
 ```
 
 3. No front `frontend-rockcode`, subir o Vite:
 
 ```sh
-npm.cmd run dev
+npm run dev
 ```
+
+> No PowerShell, se `npm` falhar por politica de execucao, use `npm.cmd run dev`.
 
 4. Abrir o front:
 
@@ -125,7 +144,9 @@ http://localhost:5173
 POST http://127.0.0.1:8000/api/analytics/events
 ```
 
-7. Confirmar que as respostas sao `201` com:
+> No DevTools, aba Network, confirme tambem que o request de analytics nao envia cookies ou credenciais automaticamente.
+
+7. Confirmar que as respostas são `201` com:
 
 ```json
 {"status":"accepted"}
@@ -141,18 +162,65 @@ http://127.0.0.1:8000/admin
 10. Informar as credenciais do `.env`:
 
 ```text
-Nome de usuario: algum_usuario
+Nome de usuário: algum_usuario
 Senha: alguma_senha
 ```
 
 11. Confirmar que o dashboard mostra os eventos agregados.
 
-## Proximas decisoes de produto/arquitetura
+## Teste de falha silenciosa
 
-- Se o painel interno Blade for suficiente, manter o admin no backend e documentar que ele nao pertence ao SPA Vue.
-- Se o produto precisar de admin dentro do front-end, sera necessario criar outro escopo:
+A integração do front-end deve falhar de forma silenciosa quando o backend estiver indisponível.
+
+Roteiro:
+
+1. Parar temporariamente o backend Laravel.
+2. Manter o front-end Vite aberto.
+3. Navegar por `/`, `/ferramentas` e `/apps`.
+4. Confirmar no DevTools que o POST para `/api/analytics/events` falha.
+5. Confirmar que a navegação e a interface continuam funcionando normalmente.
+
+Resultado esperado:
+
+- o erro técnico no POST aparece no Network/console técnico;
+- esse erro técnico é esperado durante o teste com backend parado;
+- o usuário não vê alerta, modal, página de erro ou quebra visual na interface;
+- a aplicação continua navegável.
+
+## Checklist de privacidade do payload
+
+Durante o teste local, validar que os eventos enviados não incluem:
+
+- input digitado pelo usuário;
+- resultado calculado ou gerado por ferramenta;
+- JSON colado;
+- Base64 informado ou gerado;
+- hash informado ou gerado;
+- URL digitada pelo usuário em ferramenta;
+- query string;
+- hash da URL;
+- e-mail;
+- telefone;
+- nome;
+- texto livre do usuário;
+- cookies ou credenciais automáticas no request de analytics.
+
+Campos esperados no payload:
+
+- `project`;
+- `event_name`;
+- `feature`, quando aplicável;
+- `source`, quando aplicável;
+- `destination`, quando aplicável;
+- `page_path`, sem query string e sem hash;
+- `session_id` anônimo;
+- `occurred_at`.
+
+## Próximas decisões de produto/arquitetura
+
+- Se o painel interno Blade for suficiente, manter o admin no backend e documentar que ele não pertence ao SPA Vue.
+- Se o produto precisar de admin dentro do front-end, será necessário criar outro escopo:
   - rotas Vue para admin;
   - endpoints JSON no backend para dashboard;
-  - estrategia de autenticacao propria para o SPA;
-  - regras de seguranca e autorizacao para expor dados administrativos via API.
-
+  - estratégia de autenticação própria para o SPA;
+  - regras de segurança e autorização para expor dados administrativos via API.
