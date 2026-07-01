@@ -51,6 +51,7 @@ Use `.env.local` para desenvolvimento com analytics real desligado:
 VITE_GA_ENABLED=false
 VITE_ANALYTICS_ENABLED=false
 VITE_ANALYTICS_ENDPOINT=
+VITE_ANALYTICS_EXCLUDED_REFERRERS=195.35.18.65:8443
 ```
 
 Para producao, habilite explicitamente as integracoes necessarias:
@@ -59,7 +60,10 @@ Para producao, habilite explicitamente as integracoes necessarias:
 VITE_GA_ENABLED=true
 VITE_ANALYTICS_ENABLED=true
 VITE_ANALYTICS_ENDPOINT=https://api.exemplo.com/events
+VITE_ANALYTICS_EXCLUDED_REFERRERS=195.35.18.65:8443
 ```
+
+`VITE_ANALYTICS_EXCLUDED_REFERRERS` aceita hosts separados por virgula. O host do CloudPanel (`195.35.18.65:8443`) tambem fica bloqueado por padrao para evitar que acessos operacionais aparecam como referral real.
 
 O payload enviado ao backend e reduzido ao contrato de analytics:
 

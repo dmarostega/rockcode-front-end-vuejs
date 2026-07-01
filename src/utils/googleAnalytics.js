@@ -1,3 +1,5 @@
+import { isExcludedAnalyticsReferrer } from './analyticsExclusions'
+
 const GA_MEASUREMENT_ID = 'G-SRWKM62NDG'
 const GA_SCRIPT_ID = 'rockcode-ga4-script'
 const ENABLED_VALUES = ['1', 'true', 'enabled', 'yes']
@@ -21,7 +23,12 @@ export const shouldLoadGoogleAnalytics = ({
   gaEnabled = import.meta.env.VITE_GA_ENABLED,
   isProduction = import.meta.env.PROD,
   hostname = getCurrentHostname(),
-} = {}) => isExplicitlyEnabled(gaEnabled) && isProduction === true && !isLocalAnalyticsHost(hostname)
+  isExcludedReferrer = isExcludedAnalyticsReferrer(),
+} = {}) =>
+  isExplicitlyEnabled(gaEnabled) &&
+  isProduction === true &&
+  !isLocalAnalyticsHost(hostname) &&
+  !isExcludedReferrer
 
 export const initializeGoogleAnalytics = () => {
   if (typeof window === 'undefined' || !shouldLoadGoogleAnalytics()) {

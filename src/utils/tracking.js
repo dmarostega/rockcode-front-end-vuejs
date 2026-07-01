@@ -1,3 +1,5 @@
+import { isExcludedAnalyticsReferrer } from './analyticsExclusions'
+
 const TRACKING_SESSION_KEY = 'rockcode_tracking_session_id'
 const ANALYTICS_PROJECT = 'rockcode-site'
 const ANALYTICS_ENABLED_VALUES = ['1', 'true', 'enabled', 'yes']
@@ -182,10 +184,12 @@ export const shouldSendAnalyticsEvent = ({
   endpoint = import.meta.env.VITE_ANALYTICS_ENDPOINT,
   isProduction = import.meta.env.PROD,
   isLocalHost = isLocalAnalyticsHost(),
+  isExcludedReferrer = isExcludedAnalyticsReferrer(),
   fetchAvailable = typeof fetch === 'function',
 } = {}) =>
   isProduction === true &&
   !isLocalHost &&
+  !isExcludedReferrer &&
   fetchAvailable &&
   Boolean(endpoint) &&
   ANALYTICS_ENABLED_VALUES.includes(

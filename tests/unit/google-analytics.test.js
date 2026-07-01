@@ -42,7 +42,19 @@ describe('googleAnalytics', () => {
         gaEnabled: 'true',
         isProduction: true,
         hostname: 'rockcodelabs.com.br',
+        isExcludedReferrer: false,
       }),
     ).toBe(true)
+  })
+
+  it('bloqueia GA4 quando o referrer vem do CloudPanel', () => {
+    expect(
+      shouldLoadGoogleAnalytics({
+        gaEnabled: 'true',
+        isProduction: true,
+        hostname: 'rockcodelabs.com.br',
+        isExcludedReferrer: true,
+      }),
+    ).toBe(false)
   })
 })

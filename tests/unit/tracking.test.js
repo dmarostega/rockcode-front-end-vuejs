@@ -235,4 +235,17 @@ describe('trackEvent', () => {
       }),
     ).toBe(false)
   })
+
+  it('bloqueia envio real quando o referrer vem do CloudPanel', () => {
+    expect(
+      shouldSendAnalyticsEvent({
+        analyticsEnabled: 'true',
+        endpoint: 'https://api.rockcodelabs.com.br/events',
+        isProduction: true,
+        isLocalHost: false,
+        isExcludedReferrer: true,
+        fetchAvailable: true,
+      }),
+    ).toBe(false)
+  })
 })
