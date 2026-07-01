@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { trackEvent } from '@/utils/tracking'
+import { shouldSendAnalyticsEvent, trackEvent } from '@/utils/tracking'
 
 describe('trackEvent', () => {
   beforeEach(() => {
@@ -118,6 +118,7 @@ describe('trackEvent', () => {
 
   it('nao envia evento quando endpoint nao esta configurado', () => {
     vi.stubEnv('VITE_ANALYTICS_ENABLED', 'true')
+    vi.stubEnv('PROD', true)
 
     trackEvent('cta_clicked', {
       cta_label: 'Ver projetos',
@@ -130,6 +131,7 @@ describe('trackEvent', () => {
   it('envia evento permitido quando analytics esta habilitado e endpoint configurado', () => {
     vi.stubEnv('VITE_ANALYTICS_ENABLED', 'true')
     vi.stubEnv('VITE_ANALYTICS_ENDPOINT', 'https://api.rockcodelabs.com.br/events')
+    vi.stubEnv('PROD', true)
 
     const event = trackEvent('cta_clicked', {
       cta_label: 'Ver projetos',
@@ -166,6 +168,7 @@ describe('trackEvent', () => {
   it('normaliza destination enviado ao backend como identificador controlado', () => {
     vi.stubEnv('VITE_ANALYTICS_ENABLED', 'true')
     vi.stubEnv('VITE_ANALYTICS_ENDPOINT', 'https://api.rockcodelabs.com.br/events')
+    vi.stubEnv('PROD', true)
 
     trackEvent('cta_clicked', {
       destination: '/apps?utm_source=teste#secao',
@@ -182,6 +185,7 @@ describe('trackEvent', () => {
   it('mapeia project_name para feature em eventos de projeto', () => {
     vi.stubEnv('VITE_ANALYTICS_ENABLED', 'true')
     vi.stubEnv('VITE_ANALYTICS_ENDPOINT', 'https://api.rockcodelabs.com.br/events')
+    vi.stubEnv('PROD', true)
 
     trackEvent('project_card_clicked', {
       project_name: 'QRCodeFlow',
@@ -201,9 +205,34 @@ describe('trackEvent', () => {
   it('mantem fallback silencioso quando endpoint falha', () => {
     vi.stubEnv('VITE_ANALYTICS_ENABLED', 'true')
     vi.stubEnv('VITE_ANALYTICS_ENDPOINT', 'https://api.rockcodelabs.com.br/events')
+    vi.stubEnv('PROD', true)
     fetch.mockRejectedValueOnce(new Error('Network error'))
 
     expect(() => trackEvent('page_viewed', { page_path: '/apps' })).not.toThrow()
     expect(fetch).toHaveBeenCalledTimes(1)
+  })
+
+  it('bloqueia envio real em localhost mesmo com env habilitada', () => {
+    expect(
+      shouldSendAnalyticsEvent({
+        analyticsEnabled: 'true',
+        endpoint: 'https://api.rockcodelabs.com.br/events',
+        isProduction: true,
+        isLocalHost: true,
+        fetchAvailable: true,
+      }),
+    ).toBe(false)
+  })
+
+  it('bloqueia envio real em build de desenvolvimento mesmo com env habilitada', () => {
+    expect(
+      shouldSendAnalyticsEvent({
+        analyticsEnabled: 'true',
+        endpoint: 'https://api.rockcodelabs.com.br/events',
+        isProduction: false,
+        isLocalHost: false,
+        fetchAvailable: true,
+      }),
+    ).toBe(false)
   })
 })
