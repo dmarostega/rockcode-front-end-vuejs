@@ -21,7 +21,7 @@ Objetivo da validação:
 A conectividade front-end para back-end está funcionando quando o backend é servido com:
 
 ```sh
-php artisan serve
+php artisan serve --host=127.0.0.1 --port=8000
 ```
 
 O WAMP deve ficar somente como MySQL nesse fluxo local. Quando o host Apache/WAMP foi usado para servir o Laravel, ele executou PHP `7.4.33`, mas as dependências do projeto exigem PHP `>= 8.2`, causando erro fatal antes da aplicação responder.
@@ -115,14 +115,16 @@ http://localhost:5173/admin
 2. No backend `rockcode-api`, subir o Laravel:
 
 ```sh
-php artisan serve
+php artisan serve --host=127.0.0.1 --port=8000
 ```
 
 3. No front `frontend-rockcode`, subir o Vite:
 
 ```sh
-npm.cmd run dev
+npm run dev
 ```
+
+> No PowerShell, se `npm` falhar por politica de execucao, use `npm.cmd run dev`.
 
 4. Abrir o front:
 
@@ -141,6 +143,8 @@ http://localhost:5173
 ```text
 POST http://127.0.0.1:8000/api/analytics/events
 ```
+
+> No DevTools, aba Network, confirme tambem que o request de analytics nao envia cookies ou credenciais automaticamente.
 
 7. Confirmar que as respostas são `201` com:
 
@@ -178,9 +182,10 @@ Roteiro:
 
 Resultado esperado:
 
-- o erro aparece apenas no Network/console técnico;
-- o usuário não vê erro na interface;
-- a aplicação não quebra por falha de analytics.
+- o erro técnico no POST aparece no Network/console técnico;
+- esse erro técnico é esperado durante o teste com backend parado;
+- o usuário não vê alerta, modal, página de erro ou quebra visual na interface;
+- a aplicação continua navegável.
 
 ## Checklist de privacidade do payload
 
@@ -197,7 +202,8 @@ Durante o teste local, validar que os eventos enviados não incluem:
 - e-mail;
 - telefone;
 - nome;
-- texto livre do usuário.
+- texto livre do usuário;
+- cookies ou credenciais automáticas no request de analytics.
 
 Campos esperados no payload:
 
