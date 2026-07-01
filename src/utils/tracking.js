@@ -3,7 +3,7 @@ import { isExcludedAnalyticsReferrer } from './analyticsExclusions'
 const TRACKING_SESSION_KEY = 'rockcode_tracking_session_id'
 const ANALYTICS_PROJECT = 'rockcode-site'
 const ANALYTICS_ENABLED_VALUES = ['1', 'true', 'enabled', 'yes']
-const LOCAL_ANALYTICS_HOSTNAMES = ['localhost', '127.0.0.1', '0.0.0.0']
+const LOCAL_ANALYTICS_HOSTNAMES = ['localhost', '127.0.0.1', '0.0.0.0', '::1', '[::1]']
 const ALLOWED_EVENT_PAYLOAD_FIELDS = {
   page_viewed: ['page_path', 'route_name'],
   cta_clicked: ['cta_label', 'destination', 'source', 'project_name'],
@@ -57,7 +57,7 @@ const getCurrentHostname = () => {
 }
 
 const isLocalAnalyticsHost = () =>
-  LOCAL_ANALYTICS_HOSTNAMES.includes(getCurrentHostname().toLowerCase())
+  LOCAL_ANALYTICS_HOSTNAMES.includes(getCurrentHostname().trim().toLowerCase())
 
 const sanitizePagePath = (pagePath) => {
   if (typeof pagePath !== 'string' || !pagePath.trim()) {

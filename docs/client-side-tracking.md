@@ -49,6 +49,7 @@ Use `.env.local` para desenvolvimento com analytics real desligado:
 
 ```env
 VITE_GA_ENABLED=false
+VITE_GA_MEASUREMENT_ID=G-SRWKM62NDG
 VITE_ANALYTICS_ENABLED=false
 VITE_ANALYTICS_ENDPOINT=
 VITE_ANALYTICS_EXCLUDED_REFERRERS=195.35.18.65:8443
@@ -58,6 +59,7 @@ Para producao, habilite explicitamente as integracoes necessarias:
 
 ```env
 VITE_GA_ENABLED=true
+VITE_GA_MEASUREMENT_ID=G-SRWKM62NDG
 VITE_ANALYTICS_ENABLED=true
 VITE_ANALYTICS_ENDPOINT=https://api.exemplo.com/events
 VITE_ANALYTICS_EXCLUDED_REFERRERS=195.35.18.65:8443

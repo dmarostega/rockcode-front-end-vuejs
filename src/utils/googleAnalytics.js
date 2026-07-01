@@ -1,9 +1,9 @@
 import { isExcludedAnalyticsReferrer } from './analyticsExclusions'
 
-const GA_MEASUREMENT_ID = 'G-SRWKM62NDG'
+const DEFAULT_GA_MEASUREMENT_ID = 'G-SRWKM62NDG'
 const GA_SCRIPT_ID = 'rockcode-ga4-script'
 const ENABLED_VALUES = ['1', 'true', 'enabled', 'yes']
-const LOCAL_ANALYTICS_HOSTNAMES = ['localhost', '127.0.0.1', '0.0.0.0']
+const LOCAL_ANALYTICS_HOSTNAMES = ['localhost', '127.0.0.1', '0.0.0.0', '::1', '[::1]']
 
 const isExplicitlyEnabled = (value) =>
   ENABLED_VALUES.includes(String(value || '').trim().toLowerCase())
@@ -16,8 +16,16 @@ const getCurrentHostname = () => {
   return window.location.hostname
 }
 
+const getGoogleAnalyticsMeasurementId = () => {
+  const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID
+
+  return typeof measurementId === 'string' && measurementId.trim()
+    ? measurementId.trim()
+    : DEFAULT_GA_MEASUREMENT_ID
+}
+
 export const isLocalAnalyticsHost = (hostname = getCurrentHostname()) =>
-  LOCAL_ANALYTICS_HOSTNAMES.includes(String(hostname || '').toLowerCase())
+  LOCAL_ANALYTICS_HOSTNAMES.includes(String(hostname || '').trim().toLowerCase())
 
 export const shouldLoadGoogleAnalytics = ({
   gaEnabled = import.meta.env.VITE_GA_ENABLED,
@@ -35,6 +43,8 @@ export const initializeGoogleAnalytics = () => {
     return false
   }
 
+  const measurementId = getGoogleAnalyticsMeasurementId()
+
   window.dataLayer = window.dataLayer || []
   window.gtag =
     window.gtag ||
@@ -46,12 +56,12 @@ export const initializeGoogleAnalytics = () => {
     const script = document.createElement('script')
     script.id = GA_SCRIPT_ID
     script.async = true
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`
     document.head.appendChild(script)
   }
 
   window.gtag('js', new Date())
-  window.gtag('config', GA_MEASUREMENT_ID)
+  window.gtag('config', measurementId)
 
   return true
 }

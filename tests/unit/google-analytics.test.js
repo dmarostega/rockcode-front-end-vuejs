@@ -1,8 +1,19 @@
-import { describe, expect, it } from 'vitest'
-import { isLocalAnalyticsHost, shouldLoadGoogleAnalytics } from '@/utils/googleAnalytics'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import {
+  initializeGoogleAnalytics,
+  isLocalAnalyticsHost,
+  shouldLoadGoogleAnalytics,
+} from '@/utils/googleAnalytics'
 
 describe('googleAnalytics', () => {
-  it.each(['localhost', '127.0.0.1', '0.0.0.0'])(
+  beforeEach(() => {
+    document.head.innerHTML = ''
+    window.dataLayer = undefined
+    window.gtag = undefined
+    vi.unstubAllEnvs()
+  })
+
+  it.each(['localhost', 'LOCALHOST', '127.0.0.1', '0.0.0.0', '::1', '[::1]'])(
     'bloqueia GA4 em host local: %s',
     (hostname) => {
       expect(
@@ -56,5 +67,27 @@ describe('googleAnalytics', () => {
         isExcludedReferrer: true,
       }),
     ).toBe(false)
+  })
+
+  it('inicializa GA4 sem duplicar script quando chamado mais de uma vez', () => {
+    vi.stubEnv('VITE_GA_ENABLED', 'true')
+    vi.stubEnv('VITE_GA_MEASUREMENT_ID', 'G-TEST123')
+    vi.stubEnv('PROD', true)
+
+    expect(initializeGoogleAnalytics()).toBe(true)
+    expect(initializeGoogleAnalytics()).toBe(true)
+
+    const scripts = document.querySelectorAll('#rockcode-ga4-script')
+
+    expect(scripts).toHaveLength(1)
+    expect(scripts[0].getAttribute('src')).toBe(
+      'https://www.googletagmanager.com/gtag/js?id=G-TEST123',
+    )
+    expect(window.dataLayer.map((item) => Array.from(item))).toEqual([
+      ['js', expect.any(Date)],
+      ['config', 'G-TEST123'],
+      ['js', expect.any(Date)],
+      ['config', 'G-TEST123'],
+    ])
   })
 })
