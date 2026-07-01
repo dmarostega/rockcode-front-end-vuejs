@@ -3,8 +3,15 @@ import { trackEvent } from '@/utils/tracking'
 
 describe('trackEvent', () => {
   beforeEach(() => {
+    window.history.pushState({}, '', '/')
     localStorage.clear()
+    vi.unstubAllEnvs()
+    vi.restoreAllMocks()
     vi.spyOn(console, 'debug').mockImplementation(() => {})
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(() => Promise.resolve({ ok: true })),
+    )
   })
 
   it('gera e reaproveita um session_id anonimo', () => {
@@ -39,6 +46,27 @@ describe('trackEvent', () => {
       },
     })
     expect(JSON.stringify(event.payload)).not.toContain('input')
+  })
+
+  it('ignora eventos fora da allowlist', () => {
+    expect(trackEvent('form_submitted', { email: 'cliente@example.com' })).toBeNull()
+    expect(fetch).not.toHaveBeenCalled()
+  })
+
+  it('remove campos nao permitidos antes de retornar ou enviar o evento', () => {
+    const event = trackEvent('tool_result_copied', {
+      feature: 'slug_generator',
+      input: 'Texto digitado',
+      output: 'texto-digitado',
+      email: 'cliente@example.com',
+    })
+
+    expect(event.payload).toEqual({
+      feature: 'slug_generator',
+    })
+    expect(JSON.stringify(event)).not.toContain('Texto digitado')
+    expect(JSON.stringify(event)).not.toContain('texto-digitado')
+    expect(JSON.stringify(event)).not.toContain('cliente@example.com')
   })
 
   it('nao registra query string nem hash no page_path automatico', () => {
@@ -77,5 +105,105 @@ describe('trackEvent', () => {
 
   it('falha silenciosamente quando o nome do evento nao e informado', () => {
     expect(trackEvent()).toBeNull()
+  })
+
+  it('nao envia evento quando analytics esta desativado por env ausente', () => {
+    trackEvent('cta_clicked', {
+      cta_label: 'Ver projetos',
+      destination: '/apps',
+    })
+
+    expect(fetch).not.toHaveBeenCalled()
+  })
+
+  it('nao envia evento quando endpoint nao esta configurado', () => {
+    vi.stubEnv('VITE_ANALYTICS_ENABLED', 'true')
+
+    trackEvent('cta_clicked', {
+      cta_label: 'Ver projetos',
+      destination: '/apps',
+    })
+
+    expect(fetch).not.toHaveBeenCalled()
+  })
+
+  it('envia evento permitido quando analytics esta habilitado e endpoint configurado', () => {
+    vi.stubEnv('VITE_ANALYTICS_ENABLED', 'true')
+    vi.stubEnv('VITE_ANALYTICS_ENDPOINT', 'https://api.rockcodelabs.com.br/events')
+
+    const event = trackEvent('cta_clicked', {
+      cta_label: 'Ver projetos',
+      destination: '/apps?utm_source=teste#secao',
+      input: 'nao enviar',
+    })
+
+    expect(fetch).toHaveBeenCalledWith('https://api.rockcodelabs.com.br/events', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: expect.any(String),
+      credentials: 'omit',
+      keepalive: true,
+    })
+    const sentBody = JSON.parse(fetch.mock.calls[0][1].body)
+
+    expect(sentBody).toMatchObject({
+      project: 'rockcode-site',
+      event_name: 'cta_clicked',
+      page_path: '/',
+      session_id: expect.any(String),
+      occurred_at: expect.any(String),
+      destination: 'apps',
+    })
+    expect(sentBody).not.toHaveProperty('payload')
+    expect(sentBody).not.toHaveProperty('timestamp')
+    expect(event.payload.destination).toBe('/apps')
+    expect(JSON.stringify(event)).not.toContain('utm_source')
+    expect(JSON.stringify(event)).not.toContain('nao enviar')
+  })
+
+  it('normaliza destination enviado ao backend como identificador controlado', () => {
+    vi.stubEnv('VITE_ANALYTICS_ENABLED', 'true')
+    vi.stubEnv('VITE_ANALYTICS_ENDPOINT', 'https://api.rockcodelabs.com.br/events')
+
+    trackEvent('cta_clicked', {
+      destination: '/apps?utm_source=teste#secao',
+    })
+
+    const sentBody = JSON.parse(fetch.mock.calls[0][1].body)
+
+    expect(sentBody.destination).toBe('apps')
+    expect(sentBody.destination).not.toContain('/')
+    expect(sentBody.destination).not.toContain('?')
+    expect(sentBody.destination).not.toContain('#')
+  })
+
+  it('mapeia project_name para feature em eventos de projeto', () => {
+    vi.stubEnv('VITE_ANALYTICS_ENABLED', 'true')
+    vi.stubEnv('VITE_ANALYTICS_ENDPOINT', 'https://api.rockcodelabs.com.br/events')
+
+    trackEvent('project_card_clicked', {
+      project_name: 'QRCodeFlow',
+      destination: 'https://qrcodeflow.rockcodelabs.com.br/',
+      source: 'home_featured_projects',
+    })
+
+    const sentBody = JSON.parse(fetch.mock.calls[0][1].body)
+
+    expect(sentBody).toMatchObject({
+      feature: 'qrcodeflow',
+      destination: 'qrcodeflow_rockcodelabs_com_br',
+      source: 'home_featured_projects',
+    })
+  })
+
+  it('mantem fallback silencioso quando endpoint falha', () => {
+    vi.stubEnv('VITE_ANALYTICS_ENABLED', 'true')
+    vi.stubEnv('VITE_ANALYTICS_ENDPOINT', 'https://api.rockcodelabs.com.br/events')
+    fetch.mockRejectedValueOnce(new Error('Network error'))
+
+    expect(() => trackEvent('page_viewed', { page_path: '/apps' })).not.toThrow()
+    expect(fetch).toHaveBeenCalledTimes(1)
   })
 })

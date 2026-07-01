@@ -16,7 +16,38 @@ O helper:
 - inclui `timestamp` ISO;
 - falha silenciosamente;
 - registra no `console.debug` apenas em desenvolvimento;
-- nao envia dados para backend nesta fase.
+- envia eventos ao backend somente quando a integracao estiver explicitamente habilitada.
+
+## Envio para endpoint
+
+O envio real fica desligado por padrao. Para habilitar, configure as duas variaveis:
+
+```env
+VITE_ANALYTICS_ENABLED=true
+VITE_ANALYTICS_ENDPOINT=https://api.exemplo.com/events
+```
+
+Comportamento esperado:
+
+- sem `VITE_ANALYTICS_ENABLED=true`, nenhum evento e enviado;
+- sem `VITE_ANALYTICS_ENDPOINT`, nenhum evento e enviado;
+- com as duas envs configuradas, apenas eventos permitidos sao enviados via `POST`;
+- falhas de rede ou erro no endpoint nao quebram a navegacao;
+- o request usa `credentials: 'omit'` e nao envia cookies automaticamente;
+- `page_path` e `destination` sao sanitizados para remover query string e hash.
+
+O payload enviado ao backend e reduzido ao contrato de analytics:
+
+- `project`
+- `event_name`
+- `page_path`
+- `session_id`
+- `occurred_at`
+- `feature`, quando houver identificador seguro
+- `source`, quando houver identificador seguro
+- `destination`, quando houver identificador seguro
+
+O evento local pode manter campos de apoio no `payload`, mas o backend nao recebe esse objeto cru. Em `project_card_clicked`, `project_name` e usado apenas para derivar um `feature` normalizado.
 
 ## Eventos instrumentados
 
@@ -93,6 +124,21 @@ Disparado quando o usuario usa um exemplo predefinido.
 
 Disparado quando o usuario limpa os campos da ferramenta.
 
+## Eventos permitidos para envio
+
+O helper aceita e envia somente estes eventos:
+
+- `page_viewed`
+- `cta_clicked`
+- `tool_card_clicked`
+- `project_card_clicked`
+- `tool_opened`
+- `tool_result_copied`
+- `tool_example_used`
+- `tool_cleared`
+
+Eventos fora dessa lista sao ignorados.
+
 ## Privacidade
 
 Nao registrar:
@@ -106,6 +152,8 @@ Para novas ferramentas, envie apenas metadados seguros como `feature`, `source`,
 
 Se algum evento precisar de parametros de URL no futuro, usar allowlist explicita e documentada em vez de enviar `search`, `hash` ou URLs completas.
 
+Campos fora da allowlist do evento sao descartados antes de retornar ou enviar o payload. Isso evita envio acidental de `input`, `output`, JSON colado, Base64 informado, hashes, URL digitada pelo usuario ou texto livre.
+
 ## Teste manual rapido
 
 1. Rodar o site em desenvolvimento.
@@ -114,3 +162,4 @@ Se algum evento precisar de parametros de URL no futuro, usar allowlist explicit
 4. Confirmar logs `[tracking]` para `page_viewed`.
 5. Clicar nos CTAs principais e cards.
 6. Confirmar que os eventos nao incluem textos digitados ou resultados gerados.
+7. Com `VITE_ANALYTICS_ENABLED=true` e `VITE_ANALYTICS_ENDPOINT` configurado, confirmar no painel Network que o `POST` contem apenas eventos e campos permitidos.
