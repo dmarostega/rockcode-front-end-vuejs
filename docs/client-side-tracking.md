@@ -36,6 +36,19 @@ Comportamento esperado:
 - o request usa `credentials: 'omit'` e nao envia cookies automaticamente;
 - `page_path` e `destination` sao sanitizados para remover query string e hash.
 
+O payload enviado ao backend e reduzido ao contrato de analytics:
+
+- `project`
+- `event_name`
+- `page_path`
+- `session_id`
+- `occurred_at`
+- `feature`, quando houver identificador seguro
+- `source`, quando houver identificador seguro
+- `destination`, quando houver identificador seguro
+
+O evento local pode manter campos de apoio no `payload`, mas o backend nao recebe esse objeto cru. Em `project_card_clicked`, `project_name` e usado apenas para derivar um `feature` normalizado.
+
 ## Eventos instrumentados
 
 ## Mapa inicial do funil

@@ -179,6 +179,25 @@ describe('trackEvent', () => {
     expect(sentBody.destination).not.toContain('#')
   })
 
+  it('mapeia project_name para feature em eventos de projeto', () => {
+    vi.stubEnv('VITE_ANALYTICS_ENABLED', 'true')
+    vi.stubEnv('VITE_ANALYTICS_ENDPOINT', 'https://api.rockcodelabs.com.br/events')
+
+    trackEvent('project_card_clicked', {
+      project_name: 'QRCodeFlow',
+      destination: 'https://qrcodeflow.rockcodelabs.com.br/',
+      source: 'home_featured_projects',
+    })
+
+    const sentBody = JSON.parse(fetch.mock.calls[0][1].body)
+
+    expect(sentBody).toMatchObject({
+      feature: 'qrcodeflow',
+      destination: 'qrcodeflow_rockcodelabs_com_br',
+      source: 'home_featured_projects',
+    })
+  })
+
   it('mantem fallback silencioso quando endpoint falha', () => {
     vi.stubEnv('VITE_ANALYTICS_ENABLED', 'true')
     vi.stubEnv('VITE_ANALYTICS_ENDPOINT', 'https://api.rockcodelabs.com.br/events')

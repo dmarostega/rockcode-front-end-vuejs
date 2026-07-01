@@ -85,19 +85,33 @@ const normalizeIdentifier = (value) => {
   }
 
   let identifier = value.trim()
+  const shouldParseAsUrl =
+    /^https?:\/\//iu.test(identifier) ||
+    identifier.startsWith('/') ||
+    identifier.startsWith('./') ||
+    identifier.startsWith('../')
 
-  try {
-    const baseUrl = typeof window === 'undefined' ? 'http://localhost' : window.location.origin
-    const parsedUrl = new URL(identifier, baseUrl)
-    identifier = parsedUrl.pathname || parsedUrl.hostname || identifier
-  } catch {
-    identifier = identifier.replace(/[?#].*$/u, '')
+  if (shouldParseAsUrl) {
+    try {
+      const baseUrl = typeof window === 'undefined' ? 'http://localhost' : window.location.origin
+      const parsedUrl = new URL(identifier, baseUrl)
+      const pathIdentifier =
+        parsedUrl.pathname && parsedUrl.pathname !== '/' ? parsedUrl.pathname : ''
+
+      identifier =
+        pathIdentifier || (parsedUrl.origin !== baseUrl ? parsedUrl.hostname : identifier)
+    } catch {
+      identifier = identifier.replace(/[?#].*$/u, '')
+    }
   }
 
   identifier = identifier
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/gu, '')
+    .toLowerCase()
     .replace(/^\/+|\/+$/gu, '')
     .replace(/\//gu, '_')
-    .replace(/[^A-Za-z0-9_.:-]/gu, '_')
+    .replace(/[^a-z0-9_-]/gu, '_')
     .replace(/_+/gu, '_')
     .slice(0, 120)
 
@@ -164,6 +178,7 @@ const getAnalyticsEndpoint = () => {
 
 const createBackendAnalyticsPayload = (event) => {
   const payload = event.payload || {}
+  const projectFeature = event.event_name === 'project_card_clicked' ? payload.project_name : null
   const backendPayload = {
     project: ANALYTICS_PROJECT,
     event_name: event.event_name,
@@ -172,7 +187,7 @@ const createBackendAnalyticsPayload = (event) => {
     occurred_at: event.timestamp,
   }
 
-  const feature = normalizeIdentifier(payload.feature)
+  const feature = normalizeIdentifier(payload.feature || projectFeature)
   const source = normalizeIdentifier(payload.source)
   const destination = normalizeIdentifier(payload.destination)
 
